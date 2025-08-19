@@ -21,7 +21,6 @@ public class ShootingStars : MonoBehaviour
     {
         if (starTimer > nextStar)
         {
-            Debug.Log("Star Timer Complete");
             CreateStar();
             nextStar = Random.Range(2.0f, 6.0f);
             starTimer = 0.0f;
@@ -32,7 +31,6 @@ public class ShootingStars : MonoBehaviour
     void CreateStar()
     {
         float starY = Random.Range(-35, 100);
-        Debug.Log("Star Spawned");
         StarShoot newStar = Instantiate(star, new Vector3(-166, starY, -35), this.transform.rotation);
         newStar.speed = Random.Range(minSpeed, maxSpeed);
     }
