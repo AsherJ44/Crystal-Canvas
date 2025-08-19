@@ -24,10 +24,8 @@ public class CrystalFloat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log($"x rotate is {this.transform.rotation.x}; change is {properties.xRotate}");
         transform.position = new Vector3(transform.position.x, this.transform.position.y - (properties.speed * Time.deltaTime), transform.position.z);
-        transform.rotation = new Quaternion(this.transform.rotation.x + (properties.xRotate),
-                                            this.transform.rotation.y + (properties.yRotate * Time.deltaTime),
-                                            this.transform.rotation.z + (properties.zRotate * Time.deltaTime), 0);
+        this.transform.Rotate(properties.xRotate * Time.deltaTime, properties.yRotate * Time.deltaTime,
+                         properties.zRotate * Time.deltaTime, Space.Self);
     }
 }
