@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class StarShoot : MonoBehaviour
 {
-    public float speed = 10.0f;
+    [HideInInspector] public float speed;
 
     // Update is called once per frame
     void Update()
