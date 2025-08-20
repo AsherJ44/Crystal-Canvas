@@ -27,5 +27,9 @@ public class CrystalFloat : MonoBehaviour
         transform.position = new Vector3(transform.position.x, this.transform.position.y - (properties.speed * Time.deltaTime), transform.position.z);
         this.transform.Rotate(properties.xRotate * Time.deltaTime, properties.yRotate * Time.deltaTime,
                          properties.zRotate * Time.deltaTime, Space.Self);
+        if (transform.position.y < -2f)
+        {
+            Destroy(gameObject);
+        }
     }
 }

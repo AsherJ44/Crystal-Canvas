@@ -11,8 +11,15 @@ public class CrystalSpawn : MonoBehaviour
     public float crystalFloatSpeed;
     public float crystalSpawnY;
     public float crystalSpawnZ;
+    public float minXBound;
+    public float maxXBound;
+    public float minZBound;
+    public float maxZBound;
 
-    public List<Shader> crystalColours;
+    public float spawnMinTime;
+    public float spawnMaxTime;
+
+    public List<Material> crystalColours;
 
     [Serializable]
     public struct Crystal
@@ -31,7 +38,7 @@ public class CrystalSpawn : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        nextCrystal = UnityEngine.Random.Range(0.5f, 1.5f);
+        nextCrystal = UnityEngine.Random.Range(spawnMinTime, spawnMaxTime);
         crystalTimer = 0.0f;
     }
 
@@ -41,7 +48,7 @@ public class CrystalSpawn : MonoBehaviour
         if (crystalTimer > nextCrystal)
         {
             CreateCrystal();
-            nextCrystal = UnityEngine.Random.Range(0.5f, 1.5f);
+            nextCrystal = UnityEngine.Random.Range(spawnMinTime, spawnMaxTime);
             crystalTimer = 0.0f;
         }
         else { crystalTimer += Time.deltaTime; }
@@ -49,18 +56,21 @@ public class CrystalSpawn : MonoBehaviour
 
     void CreateCrystal()
     {
-        float crystalX = UnityEngine.Random.Range(-0.05f, 0.05f);
+        float crystalX = UnityEngine.Random.Range(minXBound, maxXBound);
+        float crystalZ = UnityEngine.Random.Range(minZBound, maxZBound);
+
         int crystalInt = UnityEngine.Random.Range(0, crystalValues.Count);
         int crystalColourInt = UnityEngine.Random.Range(0, crystalColours.Count);
+
         Crystal newCrystalValues = crystalValues[crystalInt];
-        CrystalFloat newCrystal = Instantiate(crystalValues[crystalInt].crystal, new Vector3(crystalX, crystalSpawnY, crystalSpawnZ), this.transform.rotation);
+        CrystalFloat newCrystal = Instantiate(crystalValues[crystalInt].crystal, new Vector3(crystalX, crystalSpawnY, crystalZ), this.transform.rotation);
         
         newCrystal.properties.speed = crystalFloatSpeed;
         newCrystal.properties.xRotate = UnityEngine.Random.Range(newCrystalValues.minXRotate, newCrystalValues.maxXRotate);
         newCrystal.properties.yRotate = UnityEngine.Random.Range(newCrystalValues.minYRotate, newCrystalValues.maxYRotate);
         newCrystal.properties.zRotate = UnityEngine.Random.Range(newCrystalValues.minZRotate, newCrystalValues.maxZRotate);
 
-        var renderer = newCrystal.GetComponent<Renderer>();
-        renderer.material.shader = crystalColours[crystalColourInt];
+        var renderer = newCrystal.GetComponentInChildren<Renderer>();
+        renderer.material = crystalColours[crystalColourInt];
     }
 }
