@@ -72,5 +72,8 @@ public class CrystalSpawn : MonoBehaviour
 
         var renderer = newCrystal.GetComponentInChildren<Renderer>();
         renderer.material = crystalColours[crystalColourInt];
+
+        var motion = newCrystal.GetComponentInChildren<CrystalMovable>();
+        motion.colourIndex = crystalColourInt;
     }
 }
