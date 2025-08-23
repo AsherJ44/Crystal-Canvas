@@ -22,6 +22,8 @@ public class CrystalMovable : MonoBehaviour
 
     new Renderer renderer;
 
+    Vector3 mousePosition;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -33,95 +35,31 @@ public class CrystalMovable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();
-    }
 
-    private void Move()
-    {
-        if (IsMoving) 
-        {
-            transform.position = GetMousePosition();
-        }
     }
 
     private Vector3 GetMousePosition()
     {
-        Vector3 mouseInput = Mouse.current.position.ReadValue();
-        mouseInput.z = transform.position.z - Camera.main.transform.position.z;
-        
-        Vector3 mouseInWorld = Camera.main.ScreenToWorldPoint(mouseInput);
-        mouseInWorld.x = transform.position.x;
+        //Getting the mouse's position in relation to the world space
+        Vector3 mouseInWorld = Camera.main.WorldToScreenPoint(transform.position);
         return mouseInWorld;
     }
 
     private void OnMouseDown()
     {
-        IsMoving = true;
-        //ColourCycle();
-        mouseClickTimer = Time.time;
+        mousePosition = Input.mousePosition - GetMousePosition();
+        mouseClickTimer = Time.time + mouseClickTime;
     }
 
     private void OnMouseDrag()
     {
-        //transform.position = GetMousePosition();
-        IsMoving = true;
+        transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition - mousePosition);
     }
 
     private void OnMouseUp()
     {
-        IsMoving = false;
-        if (mouseClickTimer < Time.time - mouseClickTime) { ColourCycle(); }
+        if (Time.time < mouseClickTimer) { ColourCycle(); }
     }
-
-    /*
-    private void MouseClickAction(InputAction.CallbackContext context)
-    {
-        //Get mouse pos
-        Vector3 mouseInWorld = GetMousePosition();
-
-        //Check if mouse over crystal
-        
-    }
-    
-
-    private void MouseReleaseAction(InputAction.CallbackContext context)
-    {
-        IsMoving = false;
-    }
-   
-    Code for new input system, needs raycasts which is annoying
-    private void OnEnable()
-    {
-        colourChange.Enable();
-        colourChange.performed += ColourCycle;
-
-        
-        mouseClick.Enable();
-        mouseClick.performed += MouseClickAction;
-        mouseClick.canceled += MouseReleaseAction;
-    }
-
-    private void OnDisable()
-    {
-        colourChange.Disable();
-        colourChange.performed -= ColourCycle;
-
-        mouseClick.Disable();
-        mouseClick.performed -= MouseClickAction;
-        mouseClick.canceled -= MouseReleaseAction;
-        
-    }
-
-    private void ColourCycle(InputAction.CallbackContext context)
-    {
-        colourIndex++;
-        if (colourIndex >= crystalColours.Count) { colourIndex = 0; } //Handling for looping back to the first list element
-        
-        //Getting the renderer component and setting the colour to the next available colour
-        var renderer = GetComponent<Renderer>();
-        renderer.material = crystalColours[colourIndex];
-    }
-    */
 
     private void ColourCycle()
     {
