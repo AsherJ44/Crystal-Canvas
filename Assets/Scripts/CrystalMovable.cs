@@ -6,10 +6,6 @@ using UnityEngine.InputSystem;
 
 public class CrystalMovable : MonoBehaviour
 {
-    [SerializeField] private InputAction colourChange; //Binding to change crystal colour
-
-    [SerializeField] private InputAction mouseClick; //Crystal selection binding
-
     public List<Material> crystalColours; //List of possible crystal colours
 
     [HideInInspector] public bool IsMoving = false; //Bool for movement
@@ -17,8 +13,8 @@ public class CrystalMovable : MonoBehaviour
     //[HideInInspector] 
     public int colourIndex;
 
-    public float mouseClickTime = 0.2f;
-    public float mouseClickTimer;
+    private float mouseClickTime = 0.2f;
+    private float mouseClickTimer;
 
     new Renderer renderer;
 
@@ -32,12 +28,6 @@ public class CrystalMovable : MonoBehaviour
         renderer.material = crystalColours[colourIndex];
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     private Vector3 GetMousePosition()
     {
         //Getting the mouse's position in relation to the world space
@@ -48,17 +38,17 @@ public class CrystalMovable : MonoBehaviour
     private void OnMouseDown()
     {
         mousePosition = Input.mousePosition - GetMousePosition();
-        mouseClickTimer = Time.time + mouseClickTime;
+        mouseClickTimer = Time.time + mouseClickTime; //Starting the mouse click timer
     }
 
     private void OnMouseDrag()
     {
-        transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition - mousePosition);
+        transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition - mousePosition); //Moving the object
     }
 
     private void OnMouseUp()
     {
-        if (Time.time < mouseClickTimer) { ColourCycle(); }
+        if (Time.time < mouseClickTimer) { ColourCycle(); } //If the mouse is down for less than 0.2 seconds, change the colour
     }
 
     private void ColourCycle()

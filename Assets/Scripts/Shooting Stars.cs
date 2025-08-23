@@ -12,7 +12,7 @@ public class ShootingStars : MonoBehaviour
 
     void Start()
     {
-        nextStar = Random.Range(2.0f, 6.0f);
+        nextStar = Random.Range(2.0f, 3.5f);
         starTimer = 0.0f;
     }
 
@@ -31,7 +31,7 @@ public class ShootingStars : MonoBehaviour
     void CreateStar()
     {
         float starY = Random.Range(-35, 100);
-        StarShoot newStar = Instantiate(star, new Vector3(-166, starY, -35), this.transform.rotation);
+        StarShoot newStar = Instantiate(star, new Vector3(-166, starY, 145), this.transform.rotation);
         newStar.speed = Random.Range(minSpeed, maxSpeed);
     }
 }
