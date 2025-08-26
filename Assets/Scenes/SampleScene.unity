@@ -134,7 +134,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &15084365
 Transform:
   m_ObjectHideFlags: 0
@@ -170,7 +170,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &330585544
 AudioListener:
   m_ObjectHideFlags: 0
@@ -513,6 +513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 221a36e095e5cf94cbafeb36202e2739, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  crystalEffect: {fileID: 0}
   crystalColours:
   - {fileID: 2100000, guid: c4cd899aa90aedd40a708fc8e457ed99, type: 2}
   - {fileID: 2100000, guid: c4afd060b734fea45b690dc72e4f3547, type: 2}
@@ -846,6 +847,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 221a36e095e5cf94cbafeb36202e2739, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  crystalEffect: {fileID: 0}
   crystalColours:
   - {fileID: 2100000, guid: c4cd899aa90aedd40a708fc8e457ed99, type: 2}
   - {fileID: 2100000, guid: c4afd060b734fea45b690dc72e4f3547, type: 2}
@@ -869,7 +871,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &832575518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -918,7 +920,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1033823148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1059,7 +1061,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -273, y: -183.625}
+  m_AnchoredPosition: {x: -860, y: -183.625}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1337716520
@@ -6295,6 +6297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 221a36e095e5cf94cbafeb36202e2739, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  crystalEffect: {fileID: 0}
   crystalColours:
   - {fileID: 2100000, guid: c4cd899aa90aedd40a708fc8e457ed99, type: 2}
   - {fileID: 2100000, guid: c4afd060b734fea45b690dc72e4f3547, type: 2}
