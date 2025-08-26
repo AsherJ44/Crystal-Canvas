@@ -6,6 +6,13 @@ using UnityEngine.InputSystem;
 
 public class CrystalMovable : MonoBehaviour
 {
+    float minXBound = -0.195f;
+    float maxXBound = 0.195f;
+    float minYBound = -0.087f;
+    float maxYBound = 0.105f;
+
+    public GameObject crystalEffect;
+
     public List<Material> crystalColours; //List of possible crystal colours
 
     [HideInInspector] public bool IsMoving = false; //Bool for movement
@@ -43,7 +50,17 @@ public class CrystalMovable : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition - mousePosition); //Moving the object
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition - mousePosition);
+        
+        //Ensuring the crystal stays within the screen bounds even if the player attempts to move it outside of them
+        if (mousePos.z < minXBound) { mousePos.z = minXBound; }
+        else if (mousePos.z > maxXBound) { mousePos.z = maxXBound; }
+
+        if (mousePos.y < minYBound) { mousePos.y = minYBound; }
+        else if (mousePos.y > maxYBound) { mousePos.y = maxYBound; }
+
+        //transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition - mousePosition); //Moving the object
+        transform.position = mousePos; //Moving the object
     }
 
     private void OnMouseUp()
@@ -59,5 +76,15 @@ public class CrystalMovable : MonoBehaviour
         //Getting the renderer component and setting the colour to the next available colour
         var renderer = GetComponent<Renderer>();
         renderer.material = crystalColours[colourIndex];
+    }
+
+    public void EffectOn()
+    {
+        crystalEffect.SetActive(true);
+    }
+
+    public void EffectOff()
+    { 
+        crystalEffect.SetActive(false); 
     }
 }
