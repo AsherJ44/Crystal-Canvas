@@ -27,6 +27,12 @@ public class CrystalMovable : MonoBehaviour
 
     Vector3 mousePosition;
 
+    void OnEnable()
+    {
+        //Setting the crystal floating element to inactive once the crystal is made movable
+        CrystalFloat crystalFloat = GetComponent<CrystalFloat>();
+        crystalFloat.enabled = false;
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
