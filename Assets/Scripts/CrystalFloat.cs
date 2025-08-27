@@ -36,6 +36,12 @@ public class CrystalFloat : MonoBehaviour
         {
             transform.position = Vector3.Lerp(startPos, canvasPos, lerpLevel);
             lerpLevel += 0.01f;
+            if (lerpLevel >= 1)
+            {
+                //Set crystal movable script to active
+                CrystalMovable crystalMovable = GetComponent<CrystalMovable>();
+                crystalMovable.enabled = true;
+            }
         }
     }
 
@@ -49,9 +55,5 @@ public class CrystalFloat : MonoBehaviour
 
         //Setting the crystal to start lerping over to the canvas
         clickedAndMoving = true;
-
-        //Set crystal movable script to active
-        CrystalMovable crystalMovable = GetComponent<CrystalMovable>();
-        crystalMovable.enabled = false;
     }
 }

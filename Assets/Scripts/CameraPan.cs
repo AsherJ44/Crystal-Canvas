@@ -7,10 +7,19 @@ public class CameraPan : MonoBehaviour
     float time;
     public float panTime;
 
+    public GameObject leftButton;
+    public GameObject rightButton;
+
     bool panningToStream = false;
     bool panningToCanvas = false;
 
     float startY;
+
+    void Start()
+    {
+        leftButton.SetActive(true);
+        rightButton.SetActive(false);
+    }
 
     void Update()
     {
@@ -21,8 +30,10 @@ public class CameraPan : MonoBehaviour
             transform.rotation = Quaternion.Euler(transform.rotation.x, streamPanDamping.Evaluate(time), transform.rotation.z);
             time += Time.deltaTime;
 
+            leftButton.SetActive(false);
+            rightButton.SetActive(true);
+
             if (time > panTime) { panningToStream = false; }
-            //Deactivate button object, activate other button
         }
 
         else if (panningToCanvas)
@@ -30,8 +41,10 @@ public class CameraPan : MonoBehaviour
             transform.rotation = Quaternion.Euler(transform.rotation.x, canvasPanDamping.Evaluate(time), transform.rotation.z);
             time += Time.deltaTime;
 
+            leftButton.SetActive(true);
+            rightButton.SetActive(false);
+
             if (time > panTime) { panningToCanvas = false; }
-            //Deactivate button object, activate other button
         }
     }
 
