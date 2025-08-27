@@ -22,7 +22,7 @@ public class ShootingStars : MonoBehaviour
         if (starTimer > nextStar)
         {
             CreateStar();
-            nextStar = Random.Range(2.0f, 6.0f);
+            nextStar = Random.Range(2.0f, 4.0f);
             starTimer = 0.0f;
         }
         else { starTimer += Time.deltaTime; }

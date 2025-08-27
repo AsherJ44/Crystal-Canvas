@@ -35,8 +35,8 @@ public class CrystalFloat : MonoBehaviour
         if (clickedAndMoving)
         {
             transform.position = Vector3.Lerp(startPos, canvasPos, lerpLevel);
-            lerpLevel += 0.01f;
-            if (lerpLevel >= 1)
+            lerpLevel += Time.deltaTime;
+            if (lerpLevel >= 1.6f) //Move the crystal over to the workspace over the course of 1.6 seconds
             {
                 //Set crystal movable script to active
                 CrystalMovable crystalMovable = GetComponent<CrystalMovable>();
