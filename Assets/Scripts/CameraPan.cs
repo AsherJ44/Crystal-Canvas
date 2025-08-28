@@ -10,6 +10,9 @@ public class CameraPan : MonoBehaviour
     public GameObject leftButton;
     public GameObject rightButton;
 
+    public GameObject lightsButton;
+    public GameObject captureButton;
+
     bool panningToStream = false;
     bool panningToCanvas = false;
 
@@ -32,6 +35,8 @@ public class CameraPan : MonoBehaviour
 
             leftButton.SetActive(false);
             rightButton.SetActive(true);
+            captureButton.SetActive(false);
+            lightsButton.SetActive(false);
 
             if (time > panTime) { panningToStream = false; }
         }
@@ -43,6 +48,8 @@ public class CameraPan : MonoBehaviour
 
             leftButton.SetActive(true);
             rightButton.SetActive(false);
+            captureButton.SetActive(false);
+            lightsButton.SetActive(true);
 
             if (time > panTime) { panningToCanvas = false; }
         }

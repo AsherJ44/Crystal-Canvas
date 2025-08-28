@@ -26,7 +26,7 @@ public class CameraOutputSaver : MonoBehaviour
         }
     }
 
-    void CaptureAndSaveCameraOutput()
+    public void CaptureAndSaveCameraOutput()
     {
         RenderTexture rt = new RenderTexture(resolutionWidth, resolutionHeight, 24);
         targetCamera.targetTexture = rt;
