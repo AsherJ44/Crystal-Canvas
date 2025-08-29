@@ -9,6 +9,8 @@ public class CameraOutputSaver : MonoBehaviour
     public string folderName = "CameraCaptures";
     private int captureIndex = 0;
 
+    public GameObject submitButton;
+
     void Start()
     {
         if (targetCamera == null)
@@ -49,6 +51,8 @@ public class CameraOutputSaver : MonoBehaviour
         File.WriteAllBytes(fileName, bytes);
         Debug.Log("Camera output saved to: " + fileName);
         captureIndex++;
+
+        submitButton.SetActive(true);
 
         Destroy(screenshot);
     }
