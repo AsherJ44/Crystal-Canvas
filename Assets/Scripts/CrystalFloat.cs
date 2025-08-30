@@ -10,6 +10,7 @@ public class CrystalFloat : MonoBehaviour
     Vector3 startPos = new Vector3();
     Vector3 canvasPos = new Vector3();
 
+    [HideInInspector] public GameManager manager;
 
     public struct CrystalMotionProperties
     {
@@ -20,6 +21,11 @@ public class CrystalFloat : MonoBehaviour
     }
     
     public CrystalMotionProperties properties = new CrystalMotionProperties();
+
+    private void Start()
+    {
+        manager = FindAnyObjectByType<GameManager>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -36,11 +42,12 @@ public class CrystalFloat : MonoBehaviour
         {
             transform.position = Vector3.Lerp(startPos, canvasPos, lerpLevel);
             lerpLevel += Time.deltaTime;
-            if (lerpLevel >= 1.6f) //Move the crystal over to the workspace over the course of 1.6 seconds
+            if (transform.position == canvasPos) //Move the crystal over to the workspace over the course of 1.6 seconds
             {
                 //Set crystal movable script to active
                 CrystalMovable crystalMovable = GetComponent<CrystalMovable>();
                 crystalMovable.enabled = true;
+                manager.canvasCrystals.Add(crystalMovable);
             }
         }
     }

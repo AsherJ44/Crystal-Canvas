@@ -12,6 +12,7 @@ public class CrystalMovable : MonoBehaviour
     float maxYBound = 0.105f;
 
     public GameObject crystalEffect;
+    public GameObject crystalLight;
 
     public List<Material> crystalColours; //List of possible crystal colours
 
