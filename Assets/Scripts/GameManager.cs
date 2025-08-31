@@ -91,4 +91,9 @@ public class GameManager : MonoBehaviour
     {
         Application.OpenURL(url);
     }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
 }
