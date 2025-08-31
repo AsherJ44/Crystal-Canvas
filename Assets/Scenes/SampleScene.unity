@@ -809,12 +809,34 @@ MonoBehaviour:
   uploadButton: {fileID: 945586016}
   crystalActiveButton: {fileID: 1337716518}
   crystalInactiveButton: {fileID: 712044888}
+  cameraPanButton: {fileID: 1306244866}
+  crystalLight: {fileID: 6734219154050373894, guid: ec068ed747e72d847a2368dbecd9ea60, type: 3}
   crystalColours:
-  - {r: 0, g: 0.15294118, b: 0.8, a: 1}
-  - {r: 0, g: 0.9607843, b: 1, a: 1}
-  - {r: 0.8, g: 0, b: 0.76862746, a: 1}
-  - {r: 0.15294118, g: 0.019607844, b: 0.4509804, a: 1}
-  - {r: 0.02745098, g: 0.043137256, b: 0.23921569, a: 1}
+  - lightColor: {r: 0, g: 0.019607844, b: 1, a: 1}
+    particleColor: {r: 0, g: 0.15294118, b: 0.8, a: 1}
+    intensity: 10
+    newMaterial: {fileID: 2100000, guid: e55a8ca1e7a0ecc4080b05989c048dcd, type: 2}
+    oldMaterial: {fileID: 2100000, guid: 29dc59e45b12e154d932d29bc08e31d2, type: 2}
+  - lightColor: {r: 0, g: 0.9372549, b: 1, a: 1}
+    particleColor: {r: 0, g: 0.9607843, b: 1, a: 1}
+    intensity: 10
+    newMaterial: {fileID: 2100000, guid: e29a422abaf6c3842b6420f58a859318, type: 2}
+    oldMaterial: {fileID: 2100000, guid: 12324337e535b114d94e979a5e4b847d, type: 2}
+  - lightColor: {r: 1, g: 1, b: 1, a: 1}
+    particleColor: {r: 0.8, g: 0, b: 0.76862746, a: 1}
+    intensity: 0.6
+    newMaterial: {fileID: 2100000, guid: a2d836f9fb302ba4082bd41a23cf6a35, type: 2}
+    oldMaterial: {fileID: 2100000, guid: a2d836f9fb302ba4082bd41a23cf6a35, type: 2}
+  - lightColor: {r: 0.25780392, g: 0, b: 0.6745283, a: 1}
+    particleColor: {r: 0.15294118, g: 0.019607844, b: 0.4509804, a: 1}
+    intensity: 6.5
+    newMaterial: {fileID: 2100000, guid: 3cb9852e0d661734291e3da89fd70eff, type: 2}
+    oldMaterial: {fileID: 2100000, guid: 7a4f80385eebc2146b4eb24fb871a951, type: 2}
+  - lightColor: {r: 0.05940919, g: 0, b: 0.4575472, a: 1}
+    particleColor: {r: 0.02745098, g: 0.043137256, b: 0.23921569, a: 1}
+    intensity: 65
+    newMaterial: {fileID: 2100000, guid: 5ce7d74a5c1244d449041e4f335db6c4, type: 2}
+    oldMaterial: {fileID: 2100000, guid: 5ce7d74a5c1244d449041e4f335db6c4, type: 2}
 --- !u!1 &578196901
 GameObject:
   m_ObjectHideFlags: 0
@@ -1266,7 +1288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crystalFloatSpeed: 0.0175
-  crystalSpawnY: 0.175
+  crystalSpawnY: 0.135
   spawnXRange: 0.08
   spawnZRange: 0.025
   spawnMinTime: 0.5

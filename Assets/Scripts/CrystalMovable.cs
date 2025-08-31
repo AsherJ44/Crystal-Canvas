@@ -11,8 +11,9 @@ public class CrystalMovable : MonoBehaviour
     float minYBound = -0.087f;
     float maxYBound = 0.105f;
 
+    [HideInInspector] public bool moveComplete = false;
+
     public GameObject crystalEffect;
-    public GameObject crystalLight;
 
     public List<Material> crystalColours; //List of possible crystal colours
 
@@ -72,7 +73,7 @@ public class CrystalMovable : MonoBehaviour
 
     private void OnMouseUp()
     {
-        if (Time.time < mouseClickTimer) { ColourCycle(); } //If the mouse is down for less than 0.2 seconds, change the colour
+        if (Time.time < mouseClickTimer && moveComplete) { ColourCycle(); } //If the mouse is down for less than 0.2 seconds, change the colour
     }
 
     private void ColourCycle()
