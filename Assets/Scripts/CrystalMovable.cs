@@ -19,7 +19,7 @@ public class CrystalMovable : MonoBehaviour
 
     [HideInInspector] public bool IsMoving = false; //Bool for movement
 
-    //[HideInInspector] 
+    //[HideInInspector]
     public int colourIndex;
 
     private float mouseClickTime = 0.2f;
@@ -28,6 +28,12 @@ public class CrystalMovable : MonoBehaviour
     new Renderer renderer;
 
     Vector3 mousePosition;
+
+    //[HideInInspector] 
+    public CrystalMovable connectedCrystal;
+    bool canConnect = false;
+
+    public GameObject crystalConnectEffect;
 
     void OnEnable()
     {
@@ -67,8 +73,10 @@ public class CrystalMovable : MonoBehaviour
         if (mousePos.y < minYBound) { mousePos.y = minYBound; }
         else if (mousePos.y > maxYBound) { mousePos.y = maxYBound; }
 
-        //transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition - mousePosition); //Moving the object
         transform.position = mousePos; //Moving the object
+
+        connectedCrystal = FindNearestCrystal();
+        
     }
 
     private void OnMouseUp()
@@ -94,5 +102,52 @@ public class CrystalMovable : MonoBehaviour
     public void EffectOff()
     { 
         crystalEffect.SetActive(false); 
+    }
+
+    private CrystalMovable FindNearestCrystal()
+    {   
+        //Iterates through all the crystal movable objects and returns the closest one
+        CrystalMovable[] crystals = FindObjectsOfType<CrystalMovable>();
+        float closestCrystal = 9999f;
+        CrystalMovable tempCrystal = null;
+
+        foreach (CrystalMovable crystal in crystals)
+        {
+            float crystalDistance = Vector3.Distance(transform.position, crystal.transform.position);
+            if(crystalDistance < closestCrystal && crystal.transform != this.transform)
+            {
+                closestCrystal = crystalDistance;
+                tempCrystal = crystal;
+            }
+        }
+        return tempCrystal;
+    }
+
+    private void ConnectEffect()
+    {
+        GameObject[] connectObject = GameObject.FindGameObjectsWithTag("ConnectEffect");
+        GameObject newEffect = null;
+
+        Vector3 effectPos = Vector3.Lerp(transform.position, connectedCrystal.transform.position, 0.5f);
+        float direction = Vector3.SignedAngle(transform.position, connectedCrystal.transform.position, Vector3.up);
+
+        if (connectObject.Length == 0) 
+        {
+            newEffect = Instantiate(crystalConnectEffect, effectPos, Quaternion.Euler(0, direction, 0));
+        }
+
+        else 
+        { 
+            newEffect = connectObject[0];
+            newEffect.transform.position = effectPos;
+            newEffect.transform.rotation = Quaternion.Euler(0, direction, 0);
+            //newEffect.
+        }
+
+        //Vector3 scaleChange = new Vector3(0, 0, Vector3.Distance(transform.position, connectedCrystal.transform.position) - transform.localScale.z);
+        //newEffect.transform.localScale += scaleChange;
+        
+        //newEffect.transform.localScale.z = Vector3.Distance(transform.position, connectedCrystal.transform.position);
+        
     }
 }

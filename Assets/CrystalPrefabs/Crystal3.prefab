@@ -125,6 +125,8 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 5ce7d74a5c1244d449041e4f335db6c4, type: 2}
   IsMoving: 0
   colourIndex: 0
+  connectedCrystal: {fileID: 0}
+  crystalConnectEffect: {fileID: 7509254270408314980, guid: 603b83ce17fe5c949a3771886f3834af, type: 3}
 --- !u!136 &7322538178443203661
 CapsuleCollider:
   m_ObjectHideFlags: 0
