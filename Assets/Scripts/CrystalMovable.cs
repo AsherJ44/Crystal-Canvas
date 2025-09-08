@@ -3,6 +3,7 @@ using System.Drawing;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static CrystalSpawn;
 
 public class CrystalMovable : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class CrystalMovable : MonoBehaviour
     public List<Material> crystalColours; //List of possible crystal colours
 
     [HideInInspector] public bool IsMoving = false; //Bool for movement
+
+    public bool inDestructionArea = false; //Bool to determine if a crystal is going to be destroyed
 
     //[HideInInspector]
     public int colourIndex;
@@ -47,6 +50,23 @@ public class CrystalMovable : MonoBehaviour
     {
         renderer = GetComponent<Renderer>();
         renderer.material = crystalColours[colourIndex];
+    }
+
+    
+    private void OnTriggerEnter(UnityEngine.Collider other)
+    {
+        if (other.transform.CompareTag("Bin"))
+        {
+            inDestructionArea = true;
+        }
+    }
+
+    private void OnTriggerExit(UnityEngine.Collider other)
+    {
+        if (other.transform.CompareTag("Bin"))
+        {
+            inDestructionArea = false;
+        }
     }
 
     private Vector3 GetMousePosition()
@@ -81,7 +101,11 @@ public class CrystalMovable : MonoBehaviour
 
     private void OnMouseUp()
     {
-        if (Time.time < mouseClickTimer && moveComplete) { ColourCycle(); } //If the mouse is down for less than 0.2 seconds, change the colour
+        //if (Time.time < mouseClickTimer && moveComplete) { ColourCycle(); } //If the mouse is down for less than 0.2 seconds, change the colour
+        
+        if (inDestructionArea) { Destroy(gameObject); }
+        
+        //Add code to calculate direction and velocity of crystal current position compared to previous position
     }
 
     private void ColourCycle()
@@ -105,9 +129,9 @@ public class CrystalMovable : MonoBehaviour
     }
 
     private CrystalMovable FindNearestCrystal()
-    {   
+    {
         //Iterates through all the crystal movable objects and returns the closest one
-        CrystalMovable[] crystals = FindObjectsOfType<CrystalMovable>();
+        CrystalMovable[] crystals = FindObjectsByType<CrystalMovable>(FindObjectsSortMode.None);
         float closestCrystal = 9999f;
         CrystalMovable tempCrystal = null;
 

@@ -13,6 +13,8 @@ public class CameraPan : MonoBehaviour
     public GameObject lightsButton;
     public GameObject captureButton;
 
+    [HideInInspector] public GameManager manager;
+
     bool panningToStream = false;
     bool panningToCanvas = false;
 
@@ -22,6 +24,7 @@ public class CameraPan : MonoBehaviour
     {
         leftButton.SetActive(true);
         rightButton.SetActive(false);
+        manager = FindAnyObjectByType<GameManager>();
     }
 
     void Update()
@@ -33,6 +36,7 @@ public class CameraPan : MonoBehaviour
             transform.rotation = Quaternion.Euler(transform.rotation.x, streamPanDamping.Evaluate(time), transform.rotation.z);
             time += Time.deltaTime;
 
+            manager.DeactivateCrystals();
             leftButton.SetActive(false);
             rightButton.SetActive(true);
             captureButton.SetActive(false);
@@ -49,7 +53,7 @@ public class CameraPan : MonoBehaviour
             leftButton.SetActive(true);
             rightButton.SetActive(false);
             captureButton.SetActive(false);
-            lightsButton.SetActive(true);
+            if (manager.canvasCrystals.Count > 0) { lightsButton.SetActive(true); } //Only setting the light button to active if the player has placed crystals
 
             if (time > panTime) { panningToCanvas = false; }
         }

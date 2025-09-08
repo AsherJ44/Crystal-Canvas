@@ -20,14 +20,6 @@ public class CameraOutputSaver : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.C)) // Press 'C' to capture
-        {
-            CaptureAndSaveCameraOutput();
-        }
-    }
-
     public void CaptureAndSaveCameraOutput()
     {
         RenderTexture rt = new RenderTexture(resolutionWidth, resolutionHeight, 24);
