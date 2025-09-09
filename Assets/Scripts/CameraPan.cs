@@ -2,23 +2,27 @@ using UnityEngine;
 
 public class CameraPan : MonoBehaviour
 {
-    public AnimationCurve streamPanDamping;
-    public AnimationCurve canvasPanDamping;
-    float time;
-    public float panTime;
+    [SerializeField] private AnimationCurve streamPanDamping;
+    [SerializeField] private AnimationCurve canvasPanDamping;
+    
+    [SerializeField] private float panTime;
 
-    public GameObject leftButton;
-    public GameObject rightButton;
+    [SerializeField] private GameObject leftButton;
+    [SerializeField] private GameObject rightButton;
 
-    public GameObject lightsButton;
-    public GameObject captureButton;
+    [SerializeField] private GameObject lightsButton;
+    [SerializeField] private GameObject captureButton;
 
     [HideInInspector] public GameManager manager;
 
-    bool panningToStream = false;
-    bool panningToCanvas = false;
+    [SerializeField] private GameObject Bin;
 
-    float startY;
+    private bool onCanvas = true;
+    private bool panningToStream = false;
+    private bool panningToCanvas = false;
+
+    private float startY;
+    private float time;
 
     void Start()
     {
@@ -31,16 +35,20 @@ public class CameraPan : MonoBehaviour
     {
         if (panningToStream)
         {
+            onCanvas = false;
+
             startY = transform.position.y;
 
             transform.rotation = Quaternion.Euler(transform.rotation.x, streamPanDamping.Evaluate(time), transform.rotation.z);
             time += Time.deltaTime;
 
-            manager.DeactivateCrystals();
+            if (manager.canvasCrystals.Count > 0) { manager.DeactivateCrystals(); }
+                
             leftButton.SetActive(false);
             rightButton.SetActive(true);
             captureButton.SetActive(false);
             lightsButton.SetActive(false);
+            Bin.SetActive(false);
 
             if (time > panTime) { panningToStream = false; }
         }
@@ -53,10 +61,15 @@ public class CameraPan : MonoBehaviour
             leftButton.SetActive(true);
             rightButton.SetActive(false);
             captureButton.SetActive(false);
-            if (manager.canvasCrystals.Count > 0) { lightsButton.SetActive(true); } //Only setting the light button to active if the player has placed crystals
+            Bin.SetActive(true);
+            onCanvas = true;
 
             if (time > panTime) { panningToCanvas = false; }
         }
+
+        //Only setting the light button to active if the player has placed crystals
+        if (manager.canvasCrystals.Count > 0 && onCanvas) { lightsButton.SetActive(true); }
+        else { lightsButton.SetActive(false); }
     }
 
     public void PanToStream()

@@ -9,12 +9,15 @@ using static UnityEngine.ParticleSystem;
 
 public class GameManager : MonoBehaviour
 {
-    [HideInInspector] public List<CrystalMovable> canvasCrystals; //List of all crystals on the canvas, used to turn them on and off
+    //[HideInInspector] 
+    public List<CrystalMovable> canvasCrystals; //List of all crystals on the canvas, used to turn them on and off
     public GameObject snapShotButton;
     public GameObject uploadButton;
     public GameObject crystalActiveButton;
     public GameObject crystalInactiveButton;
     public GameObject cameraPanButton;
+
+    public bool crystalsActive = false;
 
     public Light crystalLight;
 
@@ -39,6 +42,8 @@ public class GameManager : MonoBehaviour
 
     public void ActivateCrystals()
     {
+        crystalsActive = true;
+
         foreach (CrystalMovable crystal in canvasCrystals)
         {
             int crystalIndex = crystal.colourIndex; //Getting the colour reference for the crystal
@@ -70,14 +75,18 @@ public class GameManager : MonoBehaviour
 
     public void DeactivateCrystals()
     {
-        //Disabling crystal effects
-        foreach (CrystalMovable crystal in canvasCrystals)
+        if (crystalsActive)
         {
-            //Destroy the crystal's light and set it back to it's original material
-            //Destroy(crystal.transform.GetComponentInChildren<Light>());
-            Destroy(crystal.transform.GetChild(1).gameObject);
-            crystal.GetComponent<MeshRenderer>().material = crystalColours[crystal.colourIndex].oldMaterial;
-            crystal.crystalEffect.SetActive(false);
+            crystalsActive = false;
+
+            //Disabling crystal effects
+            foreach (CrystalMovable crystal in canvasCrystals)
+            {
+                //Destroy the crystal's light and set it back to it's original material
+                Destroy(crystal.transform.GetChild(1).gameObject);
+                crystal.GetComponent<MeshRenderer>().material = crystalColours[crystal.colourIndex].oldMaterial;
+                crystal.crystalEffect.SetActive(false);
+            }
         }
 
         //Setting relevant buttons active and inactive

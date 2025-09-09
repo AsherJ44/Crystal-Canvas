@@ -7,6 +7,8 @@ using static CrystalSpawn;
 
 public class CrystalMovable : MonoBehaviour
 {
+    [HideInInspector] public GameManager manager;
+
     float minXBound = -0.195f;
     float maxXBound = 0.195f;
     float minYBound = -0.087f;
@@ -48,6 +50,7 @@ public class CrystalMovable : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        manager = FindAnyObjectByType<GameManager>();
         renderer = GetComponent<Renderer>();
         renderer.material = crystalColours[colourIndex];
     }
@@ -101,9 +104,14 @@ public class CrystalMovable : MonoBehaviour
 
     private void OnMouseUp()
     {
-        //if (Time.time < mouseClickTimer && moveComplete) { ColourCycle(); } //If the mouse is down for less than 0.2 seconds, change the colour
-        
-        if (inDestructionArea) { Destroy(gameObject); }
+        //If the mouse is down for less than 0.2 seconds, change the colour
+        //if (Time.time < mouseClickTimer && moveComplete) { ColourCycle(); }
+
+        if (inDestructionArea) 
+        {
+            manager.canvasCrystals.Remove(this);
+            Destroy(gameObject); 
+        }
         
         //Add code to calculate direction and velocity of crystal current position compared to previous position
     }
