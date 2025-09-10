@@ -4982,12 +4982,11 @@ MonoBehaviour:
   - {fileID: 2100000, guid: a2d836f9fb302ba4082bd41a23cf6a35, type: 2}
   - {fileID: 2100000, guid: 7a4f80385eebc2146b4eb24fb871a951, type: 2}
   - {fileID: 2100000, guid: 5ce7d74a5c1244d449041e4f335db6c4, type: 2}
-  IsMoving: 0
   inDestructionArea: 0
   colourIndex: 0
   animator: {fileID: 7874739418227880996}
   connectedCrystal: {fileID: 0}
-  crystalConnectEffect: {fileID: 7509254270408314980, guid: 603b83ce17fe5c949a3771886f3834af, type: 3}
+  crystalConnectEffect: {fileID: 947041677007373129, guid: e263c68d2f15daa45ab983618ee50145, type: 3}
 --- !u!54 &3978535005472061116
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -21,12 +21,9 @@ public class CrystalMovable : MonoBehaviour
 
     public List<Material> crystalColours; //List of possible crystal colours
 
-    [HideInInspector] public bool IsMoving = false; //Bool for movement
-
     public bool inDestructionArea = false; //Bool to determine if a crystal is going to be destroyed
 
-    //[HideInInspector]
-    public int colourIndex;
+    [HideInInspector] public int colourIndex;
 
     private float mouseClickTime = 0.2f;
     private float mouseClickTimer;
@@ -37,11 +34,12 @@ public class CrystalMovable : MonoBehaviour
 
     public Animator animator;
 
+    //Crystal Connection values
     //[HideInInspector] 
     public CrystalMovable connectedCrystal;
     bool canConnect = false;
-
     public GameObject crystalConnectEffect;
+    GameObject connectEffect;
 
     void OnEnable()
     {
@@ -86,6 +84,7 @@ public class CrystalMovable : MonoBehaviour
     {
         mousePosition = Input.mousePosition - GetMousePosition();
         mouseClickTimer = Time.time + mouseClickTime; //Starting the mouse click timer
+        connectEffect = Instantiate(crystalConnectEffect, new Vector3(0, 0, 0), transform.rotation);
     }
 
     private void OnMouseDrag()
@@ -102,7 +101,7 @@ public class CrystalMovable : MonoBehaviour
         transform.position = mousePos; //Moving the object
 
         connectedCrystal = FindNearestCrystal();
-        
+        ConnectEffect();
     }
 
     private void OnMouseUp()
@@ -113,11 +112,12 @@ public class CrystalMovable : MonoBehaviour
         if (inDestructionArea) 
         {
             manager.canvasCrystals.Remove(this);
-            //crystalFlyAway.gameObject.SetActive(true);
             animator.SetBool("FlyingAway", true);
             StartCoroutine(WaitAndDestroy());
         }
-        
+
+        Destroy(connectEffect);
+
         //Add code to calculate direction and velocity of crystal current position compared to previous position
     }
 
@@ -135,16 +135,6 @@ public class CrystalMovable : MonoBehaviour
         //Getting the renderer component and setting the colour to the next available colour
         var renderer = GetComponent<Renderer>();
         renderer.material = crystalColours[colourIndex];
-    }
-
-    public void EffectOn()
-    {
-        crystalEffect.SetActive(true);
-    }
-
-    public void EffectOff()
-    { 
-        crystalEffect.SetActive(false); 
     }
 
     private CrystalMovable FindNearestCrystal()
@@ -168,29 +158,19 @@ public class CrystalMovable : MonoBehaviour
 
     private void ConnectEffect()
     {
-        GameObject[] connectObject = GameObject.FindGameObjectsWithTag("ConnectEffect");
-        GameObject newEffect = null;
-
         Vector3 effectPos = Vector3.Lerp(transform.position, connectedCrystal.transform.position, 0.5f);
-        float direction = Vector3.SignedAngle(transform.position, connectedCrystal.transform.position, Vector3.up);
+        //float direction = Vector3.SignedAngle(transform.position, connectedCrystal.transform.position, Vector3.up);
 
-        if (connectObject.Length == 0) 
-        {
-            newEffect = Instantiate(crystalConnectEffect, effectPos, Quaternion.Euler(0, direction, 0));
-        }
+        float crystalDistance = Vector3.Distance(transform.position, connectedCrystal.transform.position);
 
-        else 
-        { 
-            newEffect = connectObject[0];
-            newEffect.transform.position = effectPos;
-            newEffect.transform.rotation = Quaternion.Euler(0, direction, 0);
-            //newEffect.
-        }
+        connectEffect.transform.position = effectPos;
 
-        //Vector3 scaleChange = new Vector3(0, 0, Vector3.Distance(transform.position, connectedCrystal.transform.position) - transform.localScale.z);
-        //newEffect.transform.localScale += scaleChange;
-        
-        //newEffect.transform.localScale.z = Vector3.Distance(transform.position, connectedCrystal.transform.position);
-        
+        Vector3 scaleChange = new Vector3(0.01f, 0.01f, crystalDistance);
+        connectEffect.transform.localScale = scaleChange;
+        ParticleSystem connectParticles = connectEffect.GetComponentInChildren<ParticleSystem>();
+        var shape = connectParticles.shape;
+        shape.scale = new Vector3(0.5f, 0.5f, (crystalDistance * 0.5f));
+
+        connectEffect.transform.LookAt(connectedCrystal.transform.position);
     }
 }

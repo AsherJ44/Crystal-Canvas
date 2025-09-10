@@ -33,24 +33,29 @@ public class CrystalFloat : MonoBehaviour
         transform.position = new Vector3(transform.position.x, this.transform.position.y - (properties.speed * Time.deltaTime), transform.position.z);
         this.transform.Rotate(properties.xRotate * Time.deltaTime, properties.yRotate * Time.deltaTime,
                          properties.zRotate * Time.deltaTime, Space.Self);
+
+        //Destroys the crystal once it goes low enough
         if (transform.position.y < -0.45f)
         {
             Destroy(gameObject);
         }
 
+        //Moves the crystal over to the canvas and waits for 2 seconds before activating the crystal movable component
         if (clickedAndMoving)
         {
             transform.position = Vector3.Lerp(startPos, canvasPos, lerpLevel);
             lerpLevel += Time.deltaTime;
-            if (transform.position == canvasPos) //Move the crystal over to the workspace over the course of 1.6 seconds
-            {
-                //Set crystal movable script to active
-                CrystalMovable crystalMovable = GetComponent<CrystalMovable>();
-                crystalMovable.enabled = true;
-                manager.canvasCrystals.Add(crystalMovable);
-                crystalMovable.moveComplete = true;
-            }
+            StartCoroutine(WaitToActivate());
         }
+    }
+
+    private IEnumerator WaitToActivate()
+    {
+        yield return new WaitForSeconds(2.0f);
+        CrystalMovable crystalMovable = GetComponent<CrystalMovable>();
+        crystalMovable.enabled = true;
+        manager.canvasCrystals.Add(crystalMovable);
+        crystalMovable.moveComplete = true;
     }
 
     private void OnMouseDown()
