@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 1, g: 1, b: 1, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: b13109bc4674dd24ebc04b7c12437ad6, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 46c68540d8a25b144a726ab6b9696bbb, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -772,6 +772,7 @@ GameObject:
   m_Component:
   - component: {fileID: 425893063}
   - component: {fileID: 425893064}
+  - component: {fileID: 425893065}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -841,6 +842,19 @@ MonoBehaviour:
     newMaterial: {fileID: 2100000, guid: 5ce7d74a5c1244d449041e4f335db6c4, type: 2}
     oldMaterial: {fileID: 2100000, guid: 5ce7d74a5c1244d449041e4f335db6c4, type: 2}
   crystalConnections: []
+--- !u!114 &425893065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 425893062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d35daa0e8d1eb5c459fec8a4e52dbed6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skyboxrotateSpeed: 0.3
 --- !u!1 &578196901
 GameObject:
   m_ObjectHideFlags: 0
