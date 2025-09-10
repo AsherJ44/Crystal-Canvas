@@ -10,6 +10,8 @@ public class CrystalFloat : MonoBehaviour
     Vector3 startPos = new Vector3();
     Vector3 canvasPos = new Vector3();
 
+    bool waiting = false;
+
     [HideInInspector] public GameManager manager;
 
     public struct CrystalMotionProperties
@@ -45,7 +47,12 @@ public class CrystalFloat : MonoBehaviour
         {
             transform.position = Vector3.Lerp(startPos, canvasPos, lerpLevel);
             lerpLevel += Time.deltaTime;
-            StartCoroutine(WaitToActivate());
+
+            if (!waiting)
+            {
+                waiting = true;
+                StartCoroutine(WaitToActivate());
+            }
         }
     }
 

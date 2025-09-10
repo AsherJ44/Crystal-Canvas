@@ -840,6 +840,7 @@ MonoBehaviour:
     intensity: 65
     newMaterial: {fileID: 2100000, guid: 5ce7d74a5c1244d449041e4f335db6c4, type: 2}
     oldMaterial: {fileID: 2100000, guid: 5ce7d74a5c1244d449041e4f335db6c4, type: 2}
+  crystalConnections: []
 --- !u!1 &578196901
 GameObject:
   m_ObjectHideFlags: 0
@@ -7258,7 +7259,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 50, y: 10, z: 10}
+  m_Size: {x: 25, y: 3, z: 3}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &543450652452645702
 Transform:

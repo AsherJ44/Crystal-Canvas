@@ -35,9 +35,7 @@ public class CrystalMovable : MonoBehaviour
     public Animator animator;
 
     //Crystal Connection values
-    //[HideInInspector] 
-    public CrystalMovable connectedCrystal;
-    bool canConnect = false;
+    [HideInInspector] public CrystalMovable connectedCrystal;
     public GameObject crystalConnectEffect;
     GameObject connectEffect;
 
@@ -82,47 +80,58 @@ public class CrystalMovable : MonoBehaviour
 
     private void OnMouseDown()
     {
-        mousePosition = Input.mousePosition - GetMousePosition();
-        mouseClickTimer = Time.time + mouseClickTime; //Starting the mouse click timer
-        connectEffect = Instantiate(crystalConnectEffect, new Vector3(0, 0, 0), transform.rotation);
+        if (this.enabled)
+        {
+            mousePosition = Input.mousePosition - GetMousePosition();
+            mouseClickTimer = Time.time + mouseClickTime; //Starting the mouse click timer
+            connectEffect = Instantiate(crystalConnectEffect, new Vector3(0, 0, 0), transform.rotation);
+        }
     }
 
     private void OnMouseDrag()
     {
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition - mousePosition);
+        if (this.enabled)
+        {
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition - mousePosition);
         
-        //Ensuring the crystal stays within the screen bounds even if the player attempts to move it outside of them
-        if (mousePos.z < minXBound) { mousePos.z = minXBound; }
-        else if (mousePos.z > maxXBound) { mousePos.z = maxXBound; }
+            //Ensuring the crystal stays within the screen bounds even if the player attempts to move it outside of them
+            if (mousePos.z < minXBound) { mousePos.z = minXBound; }
+            else if (mousePos.z > maxXBound) { mousePos.z = maxXBound; }
 
-        if (mousePos.y < minYBound) { mousePos.y = minYBound; }
-        else if (mousePos.y > maxYBound) { mousePos.y = maxYBound; }
+            if (mousePos.y < minYBound) { mousePos.y = minYBound; }
+            else if (mousePos.y > maxYBound) { mousePos.y = maxYBound; }
 
-        transform.position = mousePos; //Moving the object
+            transform.position = mousePos; //Moving the object
 
-        connectedCrystal = FindNearestCrystal();
-        ConnectEffect();
+            connectedCrystal = FindNearestCrystal();
+            if (connectedCrystal != null) { ConnectEffect(); }
+
+        }
+        
     }
 
     private void OnMouseUp()
     {
         //If the mouse is down for less than 0.2 seconds, change the colour
         //if (Time.time < mouseClickTimer && moveComplete) { ColourCycle(); }
+        if (this.enabled)
+        { 
+            if (inDestructionArea) 
+            {
+                manager.canvasCrystals.Remove(this);
+                animator.SetBool("FlyingAway", true);
+                StartCoroutine(WaitAndDestroy());
+            }
 
-        if (inDestructionArea) 
-        {
-            manager.canvasCrystals.Remove(this);
-            animator.SetBool("FlyingAway", true);
-            StartCoroutine(WaitAndDestroy());
+            Destroy(connectEffect);
         }
-
-        Destroy(connectEffect);
 
         //Add code to calculate direction and velocity of crystal current position compared to previous position
     }
 
     IEnumerator WaitAndDestroy()
     {
+        this.enabled = false; //Disabling while flying away to prevent erroneous connections
         yield return new WaitForSeconds(2.0f);
         Destroy(gameObject);
     }
@@ -140,20 +149,32 @@ public class CrystalMovable : MonoBehaviour
     private CrystalMovable FindNearestCrystal()
     {
         //Iterates through all the crystal movable objects and returns the closest one
-        CrystalMovable[] crystals = FindObjectsByType<CrystalMovable>(FindObjectsSortMode.None);
-        float closestCrystal = 9999f;
-        CrystalMovable tempCrystal = null;
+        //CrystalMovable[] crystals = FindObjectsByType<CrystalMovable>(FindObjectsSortMode.None);
+        //List<CrystalMovable> crystals = ;
 
-        foreach (CrystalMovable crystal in crystals)
+        if (manager.canvasCrystals.Count > 1)
         {
-            float crystalDistance = Vector3.Distance(transform.position, crystal.transform.position);
-            if(crystalDistance < closestCrystal && crystal.transform != this.transform)
+            float closestCrystal = 9999f;
+            CrystalMovable tempCrystal = null;
+
+            foreach (CrystalMovable crystal in manager.canvasCrystals)
             {
-                closestCrystal = crystalDistance;
-                tempCrystal = crystal;
+                if (crystal.enabled)
+                {
+                    float crystalDistance = Vector3.Distance(transform.position, crystal.transform.position);
+
+                    if(crystalDistance < closestCrystal && crystal.transform != this.transform)
+                    {
+                        closestCrystal = crystalDistance;
+                        tempCrystal = crystal;
+                    }
+                }
             }
+            return tempCrystal;
         }
-        return tempCrystal;
+
+        //Returning null if no other crystals are on the canvas
+        return null;
     }
 
     private void ConnectEffect()
@@ -165,11 +186,11 @@ public class CrystalMovable : MonoBehaviour
 
         connectEffect.transform.position = effectPos;
 
-        Vector3 scaleChange = new Vector3(0.01f, 0.01f, crystalDistance);
+        Vector3 scaleChange = new Vector3(connectEffect.transform.localScale.x, connectEffect.transform.localScale.y, crystalDistance);
         connectEffect.transform.localScale = scaleChange;
         ParticleSystem connectParticles = connectEffect.GetComponentInChildren<ParticleSystem>();
         var shape = connectParticles.shape;
-        shape.scale = new Vector3(0.5f, 0.5f, (crystalDistance * 0.5f));
+        shape.scale = new Vector3(shape.scale.x, shape.scale.y, (crystalDistance * 0.5f));
 
         connectEffect.transform.LookAt(connectedCrystal.transform.position);
     }

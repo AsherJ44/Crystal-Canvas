@@ -48,7 +48,6 @@ public class CameraPan : MonoBehaviour
             rightButton.SetActive(true);
             captureButton.SetActive(false);
             lightsButton.SetActive(false);
-            Bin.SetActive(false);
 
             if (time > panTime) { panningToStream = false; }
         }
@@ -61,7 +60,6 @@ public class CameraPan : MonoBehaviour
             leftButton.SetActive(true);
             rightButton.SetActive(false);
             captureButton.SetActive(false);
-            Bin.SetActive(true);
             onCanvas = true;
 
             if (time > panTime) { panningToCanvas = false; }

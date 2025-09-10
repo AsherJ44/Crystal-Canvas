@@ -9,8 +9,7 @@ using static UnityEngine.ParticleSystem;
 
 public class GameManager : MonoBehaviour
 {
-    //[HideInInspector] 
-    public List<CrystalMovable> canvasCrystals; //List of all crystals on the canvas, used to turn them on and off
+    [HideInInspector] public List<CrystalMovable> canvasCrystals; //List of all crystals on the canvas, used to turn them on and off
     public GameObject snapShotButton;
     public GameObject uploadButton;
     public GameObject crystalActiveButton;
@@ -32,6 +31,7 @@ public class GameManager : MonoBehaviour
     }
 
     public List<CrystalColours> crystalColours = new List<CrystalColours>();
+    public List<GameObject> crystalConnections = new List<GameObject>();
 
     public void Start()
     {
@@ -64,6 +64,9 @@ public class GameManager : MonoBehaviour
             var pfxMain = particles.main;
             pfxMain.startColor = crystalColours[crystalIndex].particleColor;
             particles.Play();
+
+            //Find linked crystal and instantiate effect
+            if (crystal.connectedCrystal != null) { ConnectEffect(crystal, crystal.connectedCrystal); }
         }
 
         //Setting relevant buttons active and inactive
@@ -87,6 +90,11 @@ public class GameManager : MonoBehaviour
                 crystal.GetComponent<MeshRenderer>().material = crystalColours[crystal.colourIndex].oldMaterial;
                 crystal.crystalEffect.SetActive(false);
             }
+
+            //Destroying all the connection effects between crystals
+            foreach(GameObject connection in crystalConnections) { Destroy(connection); }
+
+            crystalConnections = new List<GameObject>();
         }
 
         //Setting relevant buttons active and inactive
@@ -95,6 +103,28 @@ public class GameManager : MonoBehaviour
         snapShotButton.SetActive(false);
         cameraPanButton.SetActive(true);
         uploadButton.SetActive(false);
+    }
+
+    private void ConnectEffect(CrystalMovable crystal1, CrystalMovable crystal2)
+    {
+        Vector3 effectPos = Vector3.Lerp(crystal1.transform.position, crystal2.transform.position, 0.5f);
+        //float direction = Vector3.SignedAngle(transform.position, connectedCrystal.transform.position, Vector3.up);
+
+        float crystalDistance = Vector3.Distance(crystal1.transform.position, crystal2.transform.position);
+
+        GameObject connectEffect = Instantiate(crystal1.crystalConnectEffect, crystal1.transform);
+
+        connectEffect.transform.position = effectPos;
+
+        Vector3 scaleChange = new Vector3(connectEffect.transform.localScale.x, connectEffect.transform.localScale.y, crystalDistance);
+        connectEffect.transform.localScale = scaleChange;
+        ParticleSystem connectParticles = connectEffect.GetComponentInChildren<ParticleSystem>();
+        var shape = connectParticles.shape;
+        shape.scale = new Vector3(shape.scale.x, shape.scale.y, (crystalDistance * 0.5f));
+
+        connectEffect.transform.LookAt(crystal2.transform.position);
+
+        crystalConnections.Add(connectEffect);
     }
 
     public void OpenGallery(string url)
