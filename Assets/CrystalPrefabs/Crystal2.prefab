@@ -4848,6 +4848,7 @@ GameObject:
   - component: {fileID: 943538451838327392}
   - component: {fileID: 7185758173278266770}
   - component: {fileID: 3978535005472061116}
+  - component: {fileID: 7874739418227880996}
   m_Layer: 0
   m_Name: Crystal2
   m_TagString: Crystal Movable
@@ -4972,6 +4973,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 221a36e095e5cf94cbafeb36202e2739, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  manager: {fileID: 0}
   moveComplete: 0
   crystalEffect: {fileID: 2246469315263622800}
   crystalColours:
@@ -4983,6 +4985,7 @@ MonoBehaviour:
   IsMoving: 0
   inDestructionArea: 0
   colourIndex: 0
+  animator: {fileID: 7874739418227880996}
   connectedCrystal: {fileID: 0}
   crystalConnectEffect: {fileID: 7509254270408314980, guid: 603b83ce17fe5c949a3771886f3834af, type: 3}
 --- !u!54 &3978535005472061116
@@ -5012,3 +5015,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!95 &7874739418227880996
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3083157050330341223}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 40b98bd6fa28b45498234c2546241161, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

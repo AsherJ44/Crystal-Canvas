@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Drawing;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -34,6 +35,8 @@ public class CrystalMovable : MonoBehaviour
 
     Vector3 mousePosition;
 
+    public Animator animator;
+
     //[HideInInspector] 
     public CrystalMovable connectedCrystal;
     bool canConnect = false;
@@ -45,6 +48,7 @@ public class CrystalMovable : MonoBehaviour
         //Setting the crystal floating element to inactive once the crystal is made movable
         CrystalFloat crystalFloat = GetComponent<CrystalFloat>();
         crystalFloat.enabled = false;
+        animator.enabled = true;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -55,7 +59,6 @@ public class CrystalMovable : MonoBehaviour
         renderer.material = crystalColours[colourIndex];
     }
 
-    
     private void OnTriggerEnter(UnityEngine.Collider other)
     {
         if (other.transform.CompareTag("Bin"))
@@ -110,10 +113,18 @@ public class CrystalMovable : MonoBehaviour
         if (inDestructionArea) 
         {
             manager.canvasCrystals.Remove(this);
-            Destroy(gameObject); 
+            //crystalFlyAway.gameObject.SetActive(true);
+            animator.SetBool("FlyingAway", true);
+            StartCoroutine(WaitAndDestroy());
         }
         
         //Add code to calculate direction and velocity of crystal current position compared to previous position
+    }
+
+    IEnumerator WaitAndDestroy()
+    {
+        yield return new WaitForSeconds(2.0f);
+        Destroy(gameObject);
     }
 
     private void ColourCycle()
