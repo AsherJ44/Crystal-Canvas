@@ -30,7 +30,19 @@ public class GameManager : MonoBehaviour
         public Material oldMaterial;
     }
 
+    public float specialEffectDistanceThreshold;
+
+    [Serializable]
+    public struct CrystalSpecialEffects
+    {
+        public CrystalMovable[] requiredCrystals;
+        public ParticleSystem particles;
+        public Light lightEffect;
+        public float foundCrystals;
+    }
+
     public List<CrystalColours> crystalColours = new List<CrystalColours>();
+    public List<CrystalSpecialEffects> specialEffects = new List<CrystalSpecialEffects>();
     public List<GameObject> crystalConnections = new List<GameObject>();
 
     public void Start()
@@ -108,7 +120,6 @@ public class GameManager : MonoBehaviour
     private void ConnectEffect(CrystalMovable crystal1, CrystalMovable crystal2)
     {
         Vector3 effectPos = Vector3.Lerp(crystal1.transform.position, crystal2.transform.position, 0.5f);
-        //float direction = Vector3.SignedAngle(transform.position, connectedCrystal.transform.position, Vector3.up);
 
         float crystalDistance = Vector3.Distance(crystal1.transform.position, crystal2.transform.position);
 
@@ -126,6 +137,34 @@ public class GameManager : MonoBehaviour
 
         crystalConnections.Add(connectEffect);
     }
+
+    /*
+    private void SpecialEffectCheck(CrystalMovable crystal)
+    {
+        List<CrystalMovable> closeCrystals = new List<CrystalMovable>();
+
+        foreach (CrystalMovable nextCrystal in canvasCrystals)
+        {
+            if (Vector3.Distance(crystal.transform.position, nextCrystal.transform.position) < 0.5f) { Debug.Log(""); }
+        }
+
+        foreach (CrystalSpecialEffects effect in specialEffects)
+        {
+            foreach (CrystalMovable checkCrystal in effect.requiredCrystals)
+            {
+                if (closeCrystals.Contains(checkCrystal))
+                {
+                    effect.foundCrystals++;
+                }
+            }
+            if (effect.foundCrystals > effect.requiredCrystals.Count)
+            {
+                var effectParticles = Instantiate(effect.particles, crystal.transform.position, new Vector3(0,0,0), crystal);
+                var effectLight = Instantiate(effect.lightEffect, crystal.transform.position, new Vector3(0, 0, 0), crystal);
+            }
+        }
+    }
+    */
 
     public void OpenGallery(string url)
     {

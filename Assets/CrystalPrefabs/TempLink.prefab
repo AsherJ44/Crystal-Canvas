@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5012137743425256139}
   - component: {fileID: 1115615962641838689}
   - component: {fileID: -5889046831317614281}
-  - component: {fileID: 2886319403817593407}
   m_Layer: 0
   m_Name: TempLink
   m_TagString: Untagged
@@ -111,23 +110,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!111 &2886319403817593407
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 947041677007373129}
-  m_Enabled: 0
-  serializedVersion: 4
-  m_Animation: {fileID: 7400000, guid: b9a62eb17ee284b4794c8aa67fcdabfb, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: b9a62eb17ee284b4794c8aa67fcdabfb, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_UpdateMode: 0
-  m_CullingType: 0
 --- !u!1 &2640831597736769047
 GameObject:
   m_ObjectHideFlags: 0

@@ -38,13 +38,13 @@ public class CrystalMovable : MonoBehaviour
     [HideInInspector] public CrystalMovable connectedCrystal;
     public GameObject crystalConnectEffect;
     GameObject connectEffect;
+    Animator connectAnimator;
 
     void OnEnable()
     {
         //Setting the crystal floating element to inactive once the crystal is made movable
         CrystalFloat crystalFloat = GetComponent<CrystalFloat>();
         crystalFloat.enabled = false;
-        animator.enabled = true;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -119,7 +119,8 @@ public class CrystalMovable : MonoBehaviour
             if (inDestructionArea) 
             {
                 manager.canvasCrystals.Remove(this);
-                animator.SetBool("FlyingAway", true);
+                animator.enabled = true;
+                //animator.SetBool("FlyingAway", true);
                 StartCoroutine(WaitAndDestroy());
             }
 
@@ -185,6 +186,8 @@ public class CrystalMovable : MonoBehaviour
         float crystalDistance = Vector3.Distance(transform.position, connectedCrystal.transform.position);
 
         connectEffect.transform.position = effectPos;
+        connectAnimator = connectEffect.GetComponent<Animator>();
+        connectAnimator.enabled = true;
 
         Vector3 scaleChange = new Vector3(connectEffect.transform.localScale.x, connectEffect.transform.localScale.y, crystalDistance);
         connectEffect.transform.localScale = scaleChange;
