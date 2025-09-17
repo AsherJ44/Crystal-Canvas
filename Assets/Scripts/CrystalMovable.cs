@@ -27,8 +27,12 @@ public class CrystalMovable : MonoBehaviour
 
     private float mouseClickTime = 0.2f;
     private float mouseClickTimer;
+    public AudioSource crystalAudio;
 
-    new Renderer renderer;
+    public AnimationCurve bobCurve;
+    bool bobbing = false;
+    public float maxBobTime;
+    float bobTime;
 
     Vector3 mousePosition;
 
@@ -45,16 +49,27 @@ public class CrystalMovable : MonoBehaviour
         //Setting the crystal floating element to inactive once the crystal is made movable
         CrystalFloat crystalFloat = GetComponent<CrystalFloat>();
         crystalFloat.enabled = false;
+        bobbing = true;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         manager = FindAnyObjectByType<GameManager>();
-        renderer = GetComponent<Renderer>();
-        renderer.material = crystalColours[colourIndex];
+        GetComponent<Renderer>().material = crystalColours[colourIndex];
     }
 
+    /*
+    void Update()
+    {
+        if (bobbing)
+        {
+            if (bobTime > maxBobTime) { bobTime = 0; }
+            transform.position = new Vector3(transform.position.x, transform.position.y + bobCurve.Evaluate(bobTime), transform.position.z);
+            bobTime += Time.deltaTime;
+        }
+    }
+    */
     private void OnTriggerEnter(UnityEngine.Collider other)
     {
         if (other.transform.CompareTag("Bin"))
@@ -82,6 +97,11 @@ public class CrystalMovable : MonoBehaviour
     {
         if (this.enabled)
         {
+            bobbing = false;
+            //Picks a random audio clip from the sounds in manager and plays it
+            crystalAudio.clip = manager.crystalSounds[Random.Range(0, manager.crystalSounds.Length)];
+            crystalAudio.Play();
+
             mousePosition = Input.mousePosition - GetMousePosition();
             mouseClickTimer = Time.time + mouseClickTime; //Starting the mouse click timer
             connectEffect = Instantiate(crystalConnectEffect, new Vector3(0, 0, 0), transform.rotation);
@@ -115,7 +135,12 @@ public class CrystalMovable : MonoBehaviour
         //If the mouse is down for less than 0.2 seconds, change the colour
         //if (Time.time < mouseClickTimer && moveComplete) { ColourCycle(); }
         if (this.enabled)
-        { 
+        {
+            bobbing = true;
+            //Picks a random audio clip from the sounds in manager and plays it
+            crystalAudio.clip = manager.crystalSounds[Random.Range(0, manager.crystalSounds.Length)];
+            crystalAudio.Play();
+
             if (inDestructionArea) 
             {
                 manager.canvasCrystals.Remove(this);
@@ -186,8 +211,8 @@ public class CrystalMovable : MonoBehaviour
         float crystalDistance = Vector3.Distance(transform.position, connectedCrystal.transform.position);
 
         connectEffect.transform.position = effectPos;
-        connectAnimator = connectEffect.GetComponent<Animator>();
-        connectAnimator.enabled = true;
+        //connectAnimator = connectEffect.GetComponent<Animator>();
+        //connectAnimator.enabled = true;
 
         Vector3 scaleChange = new Vector3(connectEffect.transform.localScale.x, connectEffect.transform.localScale.y, crystalDistance);
         connectEffect.transform.localScale = scaleChange;

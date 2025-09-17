@@ -683,6 +683,10 @@ MonoBehaviour:
   cameraOutputSaver: {fileID: 265694251}
   crystalsActive: 0
   crystalLight: {fileID: 6734219154050373894, guid: ec068ed747e72d847a2368dbecd9ea60, type: 3}
+  crystalSounds:
+  - {fileID: 8300000, guid: 7c0b69e296affca4ab8f0b214afbbb99, type: 3}
+  - {fileID: 8300000, guid: 6cbe693d327b61a4da37c3166c6d77f6, type: 3}
+  - {fileID: 8300000, guid: f08cfcbc1a0cc4d49974bced2ed1543a, type: 3}
   specialEffectDistanceThreshold: 0
   crystalColours:
   - lightColor: {r: 0, g: 0.019607844, b: 1, a: 1}

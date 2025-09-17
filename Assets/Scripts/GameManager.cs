@@ -10,6 +10,7 @@ using System.IO;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Game Management Objects")]
     [HideInInspector] public List<CrystalMovable> canvasCrystals; //List of all crystals on the canvas, used to turn them on and off
     public GameObject snapShotButton;
     public GameObject uploadButton;
@@ -17,15 +18,15 @@ public class GameManager : MonoBehaviour
     public GameObject crystalInactiveButton;
     public GameObject cameraPanButton;
 
-    public bool crystalsActive = false;
-
-    public Light crystalLight;
-
     [Header("Analytics Tracking")]
     public CameraPan pan;
     public CameraOutputSaver cameraOutputSaver;
     string folderName = "Analytics";
 
+    [Header("Crystal Values")]
+    public bool crystalsActive = false;
+    public Light crystalLight;
+    public AudioClip[] crystalSounds;
 
     [Serializable]
     public struct CrystalColours
