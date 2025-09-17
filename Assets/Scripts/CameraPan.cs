@@ -24,6 +24,8 @@ public class CameraPan : MonoBehaviour
     private float startY;
     private float time;
 
+    public int timesPanned;
+
     void Start()
     {
         leftButton.SetActive(true);
@@ -73,6 +75,7 @@ public class CameraPan : MonoBehaviour
     public void PanToStream()
     {
         time = 0;
+        timesPanned++;
         panningToStream = true;
     }
 

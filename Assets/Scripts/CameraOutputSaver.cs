@@ -7,7 +7,7 @@ public class CameraOutputSaver : MonoBehaviour
     public int resolutionWidth = 1920;
     public int resolutionHeight = 1080;
     public string folderName = "CameraCaptures";
-    private int captureIndex = 0;
+    public int captureIndex = 0;
 
     public GameObject submitButton;
 

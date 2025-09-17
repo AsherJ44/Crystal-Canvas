@@ -6,6 +6,7 @@ using System;
 using UnityEngine.Experimental.GlobalIllumination;
 using static GameManager;
 using static UnityEngine.ParticleSystem;
+using System.IO;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,6 +20,12 @@ public class GameManager : MonoBehaviour
     public bool crystalsActive = false;
 
     public Light crystalLight;
+
+    [Header("Analytics Tracking")]
+    public CameraPan pan;
+    public CameraOutputSaver cameraOutputSaver;
+    string folderName = "Analytics";
+
 
     [Serializable]
     public struct CrystalColours
@@ -173,6 +180,25 @@ public class GameManager : MonoBehaviour
 
     public void ExitGame()
     {
+        float timeMinutes;
+        if (Time.time > 60) { timeMinutes = (Time.time / 60); }
+        else { timeMinutes = 0; }
+
+        float timeSeconds = Mathf.RoundToInt(Time.time % 60);
+
+        string path = Path.Combine(Application.dataPath, folderName);
+        if (!Directory.Exists(path))
+        {
+            Directory.CreateDirectory(path);
+        }
+
+        string fileName = string.Format("{0}/PlayerAnalytics.txt", path);
+
+        var sr = File.CreateText(fileName);
+        sr.WriteLine("Playtime {0} minutes and {1} seconds", timeMinutes, timeSeconds);
+        sr.WriteLine("User accessed crystal stream {0} times", pan.timesPanned);
+        sr.WriteLine("User took a snapshot {0} times", cameraOutputSaver.captureIndex);
+        sr.Close();
         Application.Quit();
     }
 }

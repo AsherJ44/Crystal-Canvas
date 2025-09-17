@@ -284,6 +284,7 @@ MonoBehaviour:
   resolutionWidth: 1920
   resolutionHeight: 1080
   folderName: CameraCaptures
+  captureIndex: 0
   submitButton: {fileID: 945586016}
 --- !u!4 &265694252
 Transform:
@@ -505,6 +506,7 @@ MonoBehaviour:
   captureButton: {fileID: 96941112}
   manager: {fileID: 0}
   Bin: {fileID: 2080981455}
+  timesPanned: 0
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -677,6 +679,8 @@ MonoBehaviour:
   crystalActiveButton: {fileID: 1337716518}
   crystalInactiveButton: {fileID: 712044888}
   cameraPanButton: {fileID: 1306244866}
+  pan: {fileID: 330585548}
+  cameraOutputSaver: {fileID: 265694251}
   crystalsActive: 0
   crystalLight: {fileID: 6734219154050373894, guid: ec068ed747e72d847a2368dbecd9ea60, type: 3}
   specialEffectDistanceThreshold: 0
