@@ -39,7 +39,8 @@ public class CrystalMovable : MonoBehaviour
     public Animator animator;
 
     //Crystal Connection values
-    [HideInInspector] public CrystalMovable connectedCrystal;
+    [HideInInspector] public CrystalMovable[] connectedCrystals;
+    public int connectionLimit = 2;
     public GameObject crystalConnectEffect;
     GameObject connectEffect;
     Animator connectAnimator;

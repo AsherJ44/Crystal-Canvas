@@ -125,6 +125,41 @@ public class GameManager : MonoBehaviour
         uploadButton.SetActive(false);
     }
 
+    private void UpdateLinks()
+    {
+        foreach(CrystalMovable crystal in canvasCrystals)
+        {
+            crystal.connectedCrystals = new CrystalMovable[crystal.connectionLimit];
+
+            //Loops through the list of crystals and checks they aren't the same as the current one
+            foreach (CrystalMovable otherCrystal in canvasCrystals)
+            {
+                if (otherCrystal != crystal)
+                {
+                    float crystalGap = Vector3.Distance(crystal.transform.position, otherCrystal.transform.position);
+                    bool crystalAdded = false;
+                    int biggestDistanceIndex = 999;
+                    for(int i = 0; i < crystal.connectionLimit; i++)
+                    {
+                        //If the crystal has an empty connection, adding this one regardless of the distance
+                        if (crystal.connectedCrystals[i] = null) { crystal.connectedCrystals[i] = otherCrystal; crystalAdded = true; break; }
+
+                        float tempGap = Vector3.Distance(crystal.transform.position, crystal.connectedCrystals[i].transform.position);
+                        //If the crystal has a current connection, check the distance between the current connection and the possible new one, and take note if it's longer
+                        if (tempGap > crystalGap)
+                        {
+                            crystalGap = tempGap;
+                            biggestDistanceIndex = i;
+                        }
+                    }
+                    
+                    //If the crystal was closer than one of the currently connected ones, add it to the list
+                    if (!crystalAdded && biggestDistanceIndex != 999) { crystal.connectedCrystals[biggestDistanceIndex] = otherCrystal; }
+                }
+            }
+        }
+    }
+
     private void ConnectEffect(CrystalMovable crystal1, CrystalMovable crystal2)
     {
         Vector3 effectPos = Vector3.Lerp(crystal1.transform.position, crystal2.transform.position, 0.5f);
