@@ -5021,7 +5021,8 @@ MonoBehaviour:
     m_RotationOrder: 4
   maxBobTime: 0
   animator: {fileID: 6896468625561920056}
-  connectedCrystal: {fileID: 0}
+  connectedCrystals: []
+  connectionLimit: 6
   crystalConnectEffect: {fileID: 947041677007373129, guid: e263c68d2f15daa45ab983618ee50145, type: 3}
 --- !u!54 &8102558748057592307
 Rigidbody:

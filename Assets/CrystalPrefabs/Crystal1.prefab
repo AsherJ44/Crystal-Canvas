@@ -4998,7 +4998,8 @@ MonoBehaviour:
     m_RotationOrder: 4
   maxBobTime: 0
   animator: {fileID: 8909259999177306883}
-  connectedCrystal: {fileID: 0}
+  connectedCrystals: []
+  connectionLimit: 4
   crystalConnectEffect: {fileID: 947041677007373129, guid: e263c68d2f15daa45ab983618ee50145, type: 3}
 --- !u!136 &7462976421182562217
 CapsuleCollider:

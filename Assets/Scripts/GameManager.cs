@@ -86,7 +86,13 @@ public class GameManager : MonoBehaviour
             particles.Play();
 
             //Find linked crystal and instantiate effect
-            if (crystal.connectedCrystal != null) { ConnectEffect(crystal, crystal.connectedCrystal); }
+            if (crystal.connectedCrystals != null) 
+            {
+                for (int i = 0; i < crystal.connectedCrystals.Length; i++)
+                {
+                    ConnectEffect(crystal, crystal.connectedCrystals[i]);
+                }
+            }
         }
 
         //Setting relevant buttons active and inactive
@@ -125,9 +131,25 @@ public class GameManager : MonoBehaviour
         uploadButton.SetActive(false);
     }
 
-    private void UpdateLinks()
+    public void UpdateLinks()
     {
-        foreach(CrystalMovable crystal in canvasCrystals)
+        //Destroying all the connection effects between crystals
+        foreach (GameObject connection in crystalConnections) { Destroy(connection); }
+
+        foreach (CrystalMovable crystal in canvasCrystals)
+        {
+            //Find linked crystal and instantiate effect
+            if (crystal.connectedCrystals != null)
+            {
+                for (int i = 0; i < crystal.connectedCrystals.Length; i++)
+                {
+                    ConnectEffect(crystal, crystal.connectedCrystals[i]);
+                }
+            }
+        }
+
+        /*
+        foreach (CrystalMovable crystal in canvasCrystals)
         {
             crystal.connectedCrystals = new CrystalMovable[crystal.connectionLimit];
 
@@ -158,6 +180,7 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+        */
     }
 
     private void ConnectEffect(CrystalMovable crystal1, CrystalMovable crystal2)

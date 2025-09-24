@@ -42,7 +42,7 @@ public class CrystalMovable : MonoBehaviour
     [HideInInspector] public CrystalMovable[] connectedCrystals;
     public int connectionLimit = 2;
     public GameObject crystalConnectEffect;
-    GameObject connectEffect;
+    GameObject[] connectEffects;
     Animator connectAnimator;
 
     void OnEnable()
@@ -58,6 +58,7 @@ public class CrystalMovable : MonoBehaviour
     {
         manager = FindAnyObjectByType<GameManager>();
         GetComponent<Renderer>().material = crystalColours[colourIndex];
+        connectEffects = new GameObject[connectionLimit];
     }
 
     /*
@@ -105,7 +106,16 @@ public class CrystalMovable : MonoBehaviour
 
             mousePosition = Input.mousePosition - GetMousePosition();
             mouseClickTimer = Time.time + mouseClickTime; //Starting the mouse click timer
-            connectEffect = Instantiate(crystalConnectEffect, new Vector3(0, 0, 0), transform.rotation);
+
+            for (int i = 0; i < connectionLimit; i++)
+            {
+                 Destroy(connectEffects[i]);
+            }
+
+            for (int i = 0; i < connectionLimit; i++)
+            {
+                connectEffects[i] = Instantiate(crystalConnectEffect, new Vector3(0, 0, 0), transform.rotation);
+            }
         }
     }
 
@@ -124,11 +134,15 @@ public class CrystalMovable : MonoBehaviour
 
             transform.position = mousePos; //Moving the object
 
-            connectedCrystal = FindNearestCrystal();
-            if (connectedCrystal != null) { ConnectEffect(); }
-
+            connectedCrystals = FindNearestCrystals();
+            if (connectedCrystals != null) 
+            {
+                for (int i = 0; i < connectionLimit; i++)
+                {
+                    ConnectEffect(connectedCrystals[i], connectEffects[i]);
+                }
+            }
         }
-        
     }
 
     private void OnMouseUp()
@@ -150,7 +164,15 @@ public class CrystalMovable : MonoBehaviour
                 StartCoroutine(WaitAndDestroy());
             }
 
-            Destroy(connectEffect);
+            for (int i = 0; i < connectionLimit; i++)
+            {
+                Destroy(connectEffects[i]);
+            }
+
+            if (manager.crystalsActive)
+            {
+                manager.UpdateLinks();
+            }
         }
 
         //Add code to calculate direction and velocity of crystal current position compared to previous position
@@ -173,16 +195,14 @@ public class CrystalMovable : MonoBehaviour
         renderer.material = crystalColours[colourIndex];
     }
 
-    private CrystalMovable FindNearestCrystal()
+    private CrystalMovable[] FindNearestCrystals()
     {
-        //Iterates through all the crystal movable objects and returns the closest one
-        //CrystalMovable[] crystals = FindObjectsByType<CrystalMovable>(FindObjectsSortMode.None);
-        //List<CrystalMovable> crystals = ;
+        //Iterates through all the crystal movable objects and returns the closest ones, up to the connection limit of the crystal
 
         if (manager.canvasCrystals.Count > 1)
         {
             float closestCrystal = 9999f;
-            CrystalMovable tempCrystal = null;
+            List<CrystalMovable> distSorted = new List<CrystalMovable>();
 
             foreach (CrystalMovable crystal in manager.canvasCrystals)
             {
@@ -190,30 +210,39 @@ public class CrystalMovable : MonoBehaviour
                 {
                     float crystalDistance = Vector3.Distance(transform.position, crystal.transform.position);
 
-                    if(crystalDistance < closestCrystal && crystal.transform != this.transform)
+                    //If the crystal isn't the current crystal and is closer than the other closest crystal
+                    if (crystal.transform != this.transform)
                     {
-                        closestCrystal = crystalDistance;
-                        tempCrystal = crystal;
+                        if(crystalDistance < closestCrystal)
+                        {
+                            distSorted.Insert(0, crystal);
+                            closestCrystal = crystalDistance;
+                        }
+                        else { distSorted.Add(crystal); }
                     }
                 }
             }
-            return tempCrystal;
+
+            CrystalMovable[] tempCrystals = new CrystalMovable[connectionLimit];
+            for (int i = 0; i < tempCrystals.Length; i++)
+            {
+                tempCrystals[i] = distSorted[i];
+            }
+
+            return tempCrystals;
         }
 
         //Returning null if no other crystals are on the canvas
         return null;
     }
 
-    private void ConnectEffect()
+    private void ConnectEffect(CrystalMovable connectedCrystal, GameObject connectEffect)
     {
         Vector3 effectPos = Vector3.Lerp(transform.position, connectedCrystal.transform.position, 0.5f);
-        //float direction = Vector3.SignedAngle(transform.position, connectedCrystal.transform.position, Vector3.up);
 
         float crystalDistance = Vector3.Distance(transform.position, connectedCrystal.transform.position);
 
         connectEffect.transform.position = effectPos;
-        //connectAnimator = connectEffect.GetComponent<Animator>();
-        //connectAnimator.enabled = true;
 
         Vector3 scaleChange = new Vector3(connectEffect.transform.localScale.x, connectEffect.transform.localScale.y, crystalDistance);
         connectEffect.transform.localScale = scaleChange;
