@@ -1,10 +1,11 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static CrystalSpawn;
+using static UnityEngine.GraphicsBuffer;
 
 public class CrystalMovable : MonoBehaviour
 {
@@ -244,12 +245,17 @@ public class CrystalMovable : MonoBehaviour
 
         connectEffect.transform.position = effectPos;
 
-        Vector3 scaleChange = new Vector3(connectEffect.transform.localScale.x, connectEffect.transform.localScale.y, crystalDistance);
+        Vector3 scaleChange = new Vector3(connectEffect.transform.localScale.x, connectEffect.transform.localScale.y, crystalDistance / 10);
         connectEffect.transform.localScale = scaleChange;
-        ParticleSystem connectParticles = connectEffect.GetComponentInChildren<ParticleSystem>();
-        var shape = connectParticles.shape;
-        shape.scale = new Vector3(shape.scale.x, shape.scale.y, (crystalDistance * 0.5f));
+        //ParticleSystem connectParticles = connectEffect.GetComponentInChildren<ParticleSystem>();
+        //var shape = connectParticles.shape;
+        //shape.scale = new Vector3(shape.scale.x, shape.scale.y, (crystalDistance * 0.5f));
 
-        connectEffect.transform.LookAt(connectedCrystal.transform.position);
+        //connectEffect.transform.LookAt(connectedCrystal.transform.position);
+
+        Vector3 directionToTarget = connectedCrystal.transform.position - transform.position;
+        directionToTarget.y = 0; // Project onto the XZ plane
+        transform.rotation = Quaternion.LookRotation(directionToTarget);
+
     }
 }

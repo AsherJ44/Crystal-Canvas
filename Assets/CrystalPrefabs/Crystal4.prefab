@@ -5023,7 +5023,7 @@ MonoBehaviour:
   animator: {fileID: 6896468625561920056}
   connectedCrystals: []
   connectionLimit: 6
-  crystalConnectEffect: {fileID: 947041677007373129, guid: e263c68d2f15daa45ab983618ee50145, type: 3}
+  crystalConnectEffect: {fileID: 477663028728936394, guid: 62bf4b7ad3e15cf4cba2364c616ed1d8, type: 3}
 --- !u!54 &8102558748057592307
 Rigidbody:
   m_ObjectHideFlags: 0
