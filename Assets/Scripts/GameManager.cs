@@ -195,11 +195,11 @@ public class GameManager : MonoBehaviour
 
         Vector3 scaleChange = new Vector3(connectEffect.transform.localScale.x, connectEffect.transform.localScale.y, crystalDistance);
         connectEffect.transform.localScale = scaleChange;
-        ParticleSystem connectParticles = connectEffect.GetComponentInChildren<ParticleSystem>();
-        var shape = connectParticles.shape;
-        shape.scale = new Vector3(shape.scale.x, shape.scale.y, (crystalDistance * 0.5f));
+        //ParticleSystem connectParticles = connectEffect.GetComponentInChildren<ParticleSystem>();
+        //var shape = connectParticles.shape;
+        //shape.scale = new Vector3(shape.scale.x, shape.scale.y, (crystalDistance * 0.5f));
 
-        connectEffect.transform.LookAt(crystal2.transform.position);
+        connectEffect.transform.LookAt(new Vector3(connectEffect.transform.position.x, crystal2.transform.position.y, crystal2.transform.position.z));
 
         crystalConnections.Add(connectEffect);
     }

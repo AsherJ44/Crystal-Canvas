@@ -245,17 +245,12 @@ public class CrystalMovable : MonoBehaviour
 
         connectEffect.transform.position = effectPos;
 
-        Vector3 scaleChange = new Vector3(connectEffect.transform.localScale.x, connectEffect.transform.localScale.y, crystalDistance / 10);
+        Vector3 scaleChange = new Vector3(connectEffect.transform.localScale.x, connectEffect.transform.localScale.x, crystalDistance);
         connectEffect.transform.localScale = scaleChange;
         //ParticleSystem connectParticles = connectEffect.GetComponentInChildren<ParticleSystem>();
         //var shape = connectParticles.shape;
         //shape.scale = new Vector3(shape.scale.x, shape.scale.y, (crystalDistance * 0.5f));
 
-        //connectEffect.transform.LookAt(connectedCrystal.transform.position);
-
-        Vector3 directionToTarget = connectedCrystal.transform.position - transform.position;
-        directionToTarget.y = 0; // Project onto the XZ plane
-        transform.rotation = Quaternion.LookRotation(directionToTarget);
-
+        connectEffect.transform.LookAt(new Vector3(connectEffect.transform.position.x, connectedCrystal.transform.position.y, connectedCrystal.transform.position.z));
     }
 }
