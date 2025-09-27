@@ -90,7 +90,7 @@ public class GameManager : MonoBehaviour
             {
                 for (int i = 0; i < crystal.connectedCrystals.Length; i++)
                 {
-                    ConnectEffect(crystal, crystal.connectedCrystals[i]);
+                    crystal.ConnectEffect(crystal, crystal.connectedCrystals[i], crystal.connectEffects[i]);
                 }
             }
         }
@@ -115,6 +115,11 @@ public class GameManager : MonoBehaviour
                 Destroy(crystal.transform.GetChild(1).gameObject);
                 crystal.GetComponent<MeshRenderer>().material = crystalColours[crystal.colourIndex].oldMaterial;
                 crystal.crystalEffect.SetActive(false);
+
+                for (int i = 0; i < crystal.connectedCrystals.Length; i++)
+                {
+                    Destroy(crystal.connectEffects[i]);
+                }
             }
 
             //Destroying all the connection effects between crystals
@@ -134,7 +139,7 @@ public class GameManager : MonoBehaviour
     public void UpdateLinks()
     {
         //Destroying all the connection effects between crystals
-        foreach (GameObject connection in crystalConnections) { Destroy(connection); }
+        //foreach (GameObject connection in crystalConnections) { Destroy(connection); }
 
         foreach (CrystalMovable crystal in canvasCrystals)
         {
@@ -143,7 +148,7 @@ public class GameManager : MonoBehaviour
             {
                 for (int i = 0; i < crystal.connectedCrystals.Length; i++)
                 {
-                    ConnectEffect(crystal, crystal.connectedCrystals[i]);
+                    crystal.ConnectEffect(crystal, crystal.connectedCrystals[i], crystal.connectEffects[i]);
                 }
             }
         }
@@ -183,6 +188,7 @@ public class GameManager : MonoBehaviour
         */
     }
 
+    /*
     private void ConnectEffect(CrystalMovable crystal1, CrystalMovable crystal2)
     {
         Vector3 effectPos = Vector3.Lerp(crystal1.transform.position, crystal2.transform.position, 0.5f);
@@ -203,6 +209,7 @@ public class GameManager : MonoBehaviour
 
         crystalConnections.Add(connectEffect);
     }
+    */
 
     /*
     private void SpecialEffectCheck(CrystalMovable crystal)

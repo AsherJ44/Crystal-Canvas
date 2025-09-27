@@ -31,7 +31,7 @@ public class CrystalMovable : MonoBehaviour
     public AudioSource crystalAudio;
 
     public AnimationCurve bobCurve;
-    bool bobbing = false;
+    //bool bobbing = false;
     public float maxBobTime;
     float bobTime;
 
@@ -43,7 +43,7 @@ public class CrystalMovable : MonoBehaviour
     [HideInInspector] public CrystalMovable[] connectedCrystals;
     public int connectionLimit = 2;
     public GameObject crystalConnectEffect;
-    GameObject[] connectEffects;
+    public GameObject[] connectEffects;
     Animator connectAnimator;
 
     void OnEnable()
@@ -51,7 +51,7 @@ public class CrystalMovable : MonoBehaviour
         //Setting the crystal floating element to inactive once the crystal is made movable
         CrystalFloat crystalFloat = GetComponent<CrystalFloat>();
         crystalFloat.enabled = false;
-        bobbing = true;
+        //bobbing = true;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -100,7 +100,7 @@ public class CrystalMovable : MonoBehaviour
     {
         if (this.enabled)
         {
-            bobbing = false;
+            //bobbing = false;
             //Picks a random audio clip from the sounds in manager and plays it
             crystalAudio.clip = manager.crystalSounds[Random.Range(0, manager.crystalSounds.Length)];
             crystalAudio.Play();
@@ -108,14 +108,14 @@ public class CrystalMovable : MonoBehaviour
             mousePosition = Input.mousePosition - GetMousePosition();
             mouseClickTimer = Time.time + mouseClickTime; //Starting the mouse click timer
 
-            for (int i = 0; i < connectionLimit; i++)
-            {
-                 Destroy(connectEffects[i]);
-            }
+            connectedCrystals = FindNearestCrystals();
 
-            for (int i = 0; i < connectionLimit; i++)
-            {
-                connectEffects[i] = Instantiate(crystalConnectEffect, new Vector3(0, 0, 0), transform.rotation);
+            for (int i = 0; i < connectedCrystals.Length; i++)
+            {   
+                if (connectEffects[i] == null)
+                {
+                    connectEffects[i] = Instantiate(crystalConnectEffect, new Vector3(0, 0, 0), transform.rotation);
+                }
             }
         }
     }
@@ -135,12 +135,20 @@ public class CrystalMovable : MonoBehaviour
 
             transform.position = mousePos; //Moving the object
 
-            connectedCrystals = FindNearestCrystals();
-            if (connectedCrystals != null) 
+            if (manager.crystalsActive)
             {
-                for (int i = 0; i < connectionLimit; i++)
+                manager.UpdateLinks();
+            }
+
+            else
+            {
+                connectedCrystals = FindNearestCrystals();
+                if (connectedCrystals != null)
                 {
-                    ConnectEffect(connectedCrystals[i], connectEffects[i]);
+                    for (int i = 0; i < connectedCrystals.Length; i++)
+                    {
+                        ConnectEffect(this, connectedCrystals[i], connectEffects[i], false);
+                    }
                 }
             }
         }
@@ -152,7 +160,7 @@ public class CrystalMovable : MonoBehaviour
         //if (Time.time < mouseClickTimer && moveComplete) { ColourCycle(); }
         if (this.enabled)
         {
-            bobbing = true;
+            //bobbing = true;
             //Picks a random audio clip from the sounds in manager and plays it
             crystalAudio.clip = manager.crystalSounds[Random.Range(0, manager.crystalSounds.Length)];
             crystalAudio.Play();
@@ -165,7 +173,8 @@ public class CrystalMovable : MonoBehaviour
                 StartCoroutine(WaitAndDestroy());
             }
 
-            for (int i = 0; i < connectionLimit; i++)
+            connectedCrystals = FindNearestCrystals();
+            for (int i = 0; i < connectEffects.Length; i++)
             {
                 Destroy(connectEffects[i]);
             }
@@ -224,7 +233,7 @@ public class CrystalMovable : MonoBehaviour
                 }
             }
 
-            CrystalMovable[] tempCrystals = new CrystalMovable[connectionLimit];
+            CrystalMovable[] tempCrystals = new CrystalMovable[distSorted.Count];
             for (int i = 0; i < tempCrystals.Length; i++)
             {
                 tempCrystals[i] = distSorted[i];
@@ -237,20 +246,26 @@ public class CrystalMovable : MonoBehaviour
         return null;
     }
 
-    private void ConnectEffect(CrystalMovable connectedCrystal, GameObject connectEffect)
+    public void ConnectEffect(CrystalMovable thisCrystal, CrystalMovable connectedCrystal, GameObject connectEffect, bool connectionSpawned)
     {
-        Vector3 effectPos = Vector3.Lerp(transform.position, connectedCrystal.transform.position, 0.5f);
+        GameObject currentEffect;
 
-        float crystalDistance = Vector3.Distance(transform.position, connectedCrystal.transform.position);
+        if (!connectionSpawned) { currentEffect = Instantiate(connectEffect, new Vector3(0, 0, 0), transform.rotation); }
 
-        connectEffect.transform.position = effectPos;
+        else { currentEffect = connectEffect; }
 
-        Vector3 scaleChange = new Vector3(connectEffect.transform.localScale.x, connectEffect.transform.localScale.x, crystalDistance);
-        connectEffect.transform.localScale = scaleChange;
+        Vector3 effectPos = Vector3.Lerp(thisCrystal.transform.position, connectedCrystal.transform.position, 0.5f);
+
+        float crystalDistance = Vector3.Distance(thisCrystal.transform.position, connectedCrystal.transform.position);
+
+        currentEffect.transform.position = effectPos;
+
+        Vector3 scaleChange = new Vector3(connectEffect.transform.localScale.x, currentEffect.transform.localScale.x, crystalDistance);
+        currentEffect.transform.localScale = scaleChange;
         //ParticleSystem connectParticles = connectEffect.GetComponentInChildren<ParticleSystem>();
         //var shape = connectParticles.shape;
         //shape.scale = new Vector3(shape.scale.x, shape.scale.y, (crystalDistance * 0.5f));
 
-        connectEffect.transform.LookAt(new Vector3(connectEffect.transform.position.x, connectedCrystal.transform.position.y, connectedCrystal.transform.position.z));
+        currentEffect.transform.LookAt(new Vector3(currentEffect.transform.position.x, connectedCrystal.transform.position.y, connectedCrystal.transform.position.z));
     }
 }
