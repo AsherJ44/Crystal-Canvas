@@ -51,7 +51,6 @@ public class GameManager : MonoBehaviour
 
     public List<CrystalColours> crystalColours = new List<CrystalColours>();
     public List<CrystalSpecialEffects> specialEffects = new List<CrystalSpecialEffects>();
-    public List<GameObject> crystalConnections = new List<GameObject>();
 
     public void Start()
     {
@@ -85,14 +84,7 @@ public class GameManager : MonoBehaviour
             pfxMain.startColor = crystalColours[crystalIndex].particleColor;
             particles.Play();
 
-            //Find linked crystal and instantiate effect
-            if (crystal.connectedCrystals != null) 
-            {
-                for (int i = 0; i < crystal.connectedCrystals.Length; i++)
-                {
-                    crystal.ConnectEffect(crystal, crystal.connectedCrystals[i], crystal.connectEffects[i]);
-                }
-            }
+            crystal.UpdateLinks();
         }
 
         //Setting relevant buttons active and inactive
@@ -116,16 +108,8 @@ public class GameManager : MonoBehaviour
                 crystal.GetComponent<MeshRenderer>().material = crystalColours[crystal.colourIndex].oldMaterial;
                 crystal.crystalEffect.SetActive(false);
 
-                for (int i = 0; i < crystal.connectedCrystals.Length; i++)
-                {
-                    Destroy(crystal.connectEffects[i]);
-                }
+                crystal.WipeLinks();
             }
-
-            //Destroying all the connection effects between crystals
-            foreach(GameObject connection in crystalConnections) { Destroy(connection); }
-
-            crystalConnections = new List<GameObject>();
         }
 
         //Setting relevant buttons active and inactive
@@ -135,81 +119,6 @@ public class GameManager : MonoBehaviour
         cameraPanButton.SetActive(true);
         uploadButton.SetActive(false);
     }
-
-    public void UpdateLinks()
-    {
-        //Destroying all the connection effects between crystals
-        //foreach (GameObject connection in crystalConnections) { Destroy(connection); }
-
-        foreach (CrystalMovable crystal in canvasCrystals)
-        {
-            //Find linked crystal and instantiate effect
-            if (crystal.connectedCrystals != null)
-            {
-                for (int i = 0; i < crystal.connectedCrystals.Length; i++)
-                {
-                    crystal.ConnectEffect(crystal, crystal.connectedCrystals[i], crystal.connectEffects[i]);
-                }
-            }
-        }
-
-        /*
-        foreach (CrystalMovable crystal in canvasCrystals)
-        {
-            crystal.connectedCrystals = new CrystalMovable[crystal.connectionLimit];
-
-            //Loops through the list of crystals and checks they aren't the same as the current one
-            foreach (CrystalMovable otherCrystal in canvasCrystals)
-            {
-                if (otherCrystal != crystal)
-                {
-                    float crystalGap = Vector3.Distance(crystal.transform.position, otherCrystal.transform.position);
-                    bool crystalAdded = false;
-                    int biggestDistanceIndex = 999;
-                    for(int i = 0; i < crystal.connectionLimit; i++)
-                    {
-                        //If the crystal has an empty connection, adding this one regardless of the distance
-                        if (crystal.connectedCrystals[i] = null) { crystal.connectedCrystals[i] = otherCrystal; crystalAdded = true; break; }
-
-                        float tempGap = Vector3.Distance(crystal.transform.position, crystal.connectedCrystals[i].transform.position);
-                        //If the crystal has a current connection, check the distance between the current connection and the possible new one, and take note if it's longer
-                        if (tempGap > crystalGap)
-                        {
-                            crystalGap = tempGap;
-                            biggestDistanceIndex = i;
-                        }
-                    }
-                    
-                    //If the crystal was closer than one of the currently connected ones, add it to the list
-                    if (!crystalAdded && biggestDistanceIndex != 999) { crystal.connectedCrystals[biggestDistanceIndex] = otherCrystal; }
-                }
-            }
-        }
-        */
-    }
-
-    /*
-    private void ConnectEffect(CrystalMovable crystal1, CrystalMovable crystal2)
-    {
-        Vector3 effectPos = Vector3.Lerp(crystal1.transform.position, crystal2.transform.position, 0.5f);
-
-        float crystalDistance = Vector3.Distance(crystal1.transform.position, crystal2.transform.position);
-
-        GameObject connectEffect = Instantiate(crystal1.crystalConnectEffect, crystal1.transform);
-
-        connectEffect.transform.position = effectPos;
-
-        Vector3 scaleChange = new Vector3(connectEffect.transform.localScale.x, connectEffect.transform.localScale.y, crystalDistance);
-        connectEffect.transform.localScale = scaleChange;
-        //ParticleSystem connectParticles = connectEffect.GetComponentInChildren<ParticleSystem>();
-        //var shape = connectParticles.shape;
-        //shape.scale = new Vector3(shape.scale.x, shape.scale.y, (crystalDistance * 0.5f));
-
-        connectEffect.transform.LookAt(new Vector3(connectEffect.transform.position.x, crystal2.transform.position.y, crystal2.transform.position.z));
-
-        crystalConnections.Add(connectEffect);
-    }
-    */
 
     /*
     private void SpecialEffectCheck(CrystalMovable crystal)

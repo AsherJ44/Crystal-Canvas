@@ -135,22 +135,7 @@ public class CrystalMovable : MonoBehaviour
 
             transform.position = mousePos; //Moving the object
 
-            if (manager.crystalsActive)
-            {
-                manager.UpdateLinks();
-            }
-
-            else
-            {
-                connectedCrystals = FindNearestCrystals();
-                if (connectedCrystals != null)
-                {
-                    for (int i = 0; i < connectedCrystals.Length; i++)
-                    {
-                        ConnectEffect(this, connectedCrystals[i], connectEffects[i], false);
-                    }
-                }
-            }
+            UpdateLinks();
         }
     }
 
@@ -173,15 +158,9 @@ public class CrystalMovable : MonoBehaviour
                 StartCoroutine(WaitAndDestroy());
             }
 
-            connectedCrystals = FindNearestCrystals();
-            for (int i = 0; i < connectEffects.Length; i++)
+            if (!manager.crystalsActive)
             {
-                Destroy(connectEffects[i]);
-            }
-
-            if (manager.crystalsActive)
-            {
-                manager.UpdateLinks();
+                WipeLinks();
             }
         }
 
@@ -233,8 +212,12 @@ public class CrystalMovable : MonoBehaviour
                 }
             }
 
-            CrystalMovable[] tempCrystals = new CrystalMovable[distSorted.Count];
-            for (int i = 0; i < tempCrystals.Length; i++)
+            int crystalCount = connectionLimit;
+            if (distSorted.Count < connectionLimit) { crystalCount = distSorted.Count; }
+
+            CrystalMovable[] tempCrystals = new CrystalMovable[crystalCount];
+
+            for (int i = 0; i < crystalCount; i++)
             {
                 tempCrystals[i] = distSorted[i];
             }
@@ -246,26 +229,47 @@ public class CrystalMovable : MonoBehaviour
         return null;
     }
 
-    public void ConnectEffect(CrystalMovable thisCrystal, CrystalMovable connectedCrystal, GameObject connectEffect, bool connectionSpawned)
+    //Spawns links between a crystal and all other relevant crystals
+    public void UpdateLinks()
     {
-        GameObject currentEffect;
+        connectedCrystals = FindNearestCrystals();
+        if (connectedCrystals != null)
+        {
+            for (int i = 0; i < connectedCrystals.Length; i++)
+            {
+                if (connectEffects[i] == null)
+                {
+                    connectEffects[i] = Instantiate(crystalConnectEffect);
+                }
+                
+                ConnectEffect(this, connectedCrystals[i], connectEffects[i]);
+            }
+        }
+    }
 
-        if (!connectionSpawned) { currentEffect = Instantiate(connectEffect, new Vector3(0, 0, 0), transform.rotation); }
+    //Destroys all the connections of a given crystal
+    public void WipeLinks()
+    {
+        foreach (GameObject connection in this.connectEffects)
+        {
+            Destroy(connection);
+        }
+    }
 
-        else { currentEffect = connectEffect; }
-
+    public void ConnectEffect(CrystalMovable thisCrystal, CrystalMovable connectedCrystal, GameObject connectEffect)
+    {
         Vector3 effectPos = Vector3.Lerp(thisCrystal.transform.position, connectedCrystal.transform.position, 0.5f);
 
         float crystalDistance = Vector3.Distance(thisCrystal.transform.position, connectedCrystal.transform.position);
 
-        currentEffect.transform.position = effectPos;
+        connectEffect.transform.position = effectPos;
 
-        Vector3 scaleChange = new Vector3(connectEffect.transform.localScale.x, currentEffect.transform.localScale.x, crystalDistance);
-        currentEffect.transform.localScale = scaleChange;
+        Vector3 scaleChange = new Vector3(connectEffect.transform.localScale.x, connectEffect.transform.localScale.x, crystalDistance);
+        connectEffect.transform.localScale = scaleChange;
         //ParticleSystem connectParticles = connectEffect.GetComponentInChildren<ParticleSystem>();
         //var shape = connectParticles.shape;
         //shape.scale = new Vector3(shape.scale.x, shape.scale.y, (crystalDistance * 0.5f));
 
-        currentEffect.transform.LookAt(new Vector3(currentEffect.transform.position.x, connectedCrystal.transform.position.y, connectedCrystal.transform.position.z));
+        connectEffect.transform.LookAt(new Vector3(connectEffect.transform.position.x, connectedCrystal.transform.position.y, connectedCrystal.transform.position.z));
     }
 }
