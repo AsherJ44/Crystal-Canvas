@@ -154,7 +154,9 @@ MonoBehaviour:
   animator: {fileID: 3272612591347737358}
   connectedCrystals: []
   connectionLimit: 2
-  crystalConnectEffect: {fileID: 3286108108336289105, guid: a3f70295803ccf64db8638b0c5139ac6, type: 3}
+  crystalConnectEffectOff: {fileID: 3286108108336289105, guid: e288636a9f4dce84a8f193e423965242, type: 3}
+  crystalConnectEffectLit: {fileID: 3286108108336289105, guid: a3f70295803ccf64db8638b0c5139ac6, type: 3}
+  connectEffects: []
 --- !u!114 &6540989137121251448
 MonoBehaviour:
   m_ObjectHideFlags: 0

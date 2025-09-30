@@ -42,7 +42,9 @@ public class CrystalMovable : MonoBehaviour
     //Crystal Connection values
     [HideInInspector] public CrystalMovable[] connectedCrystals;
     public int connectionLimit = 2;
-    public GameObject crystalConnectEffect;
+    public GameObject crystalConnectEffectOff;
+    public GameObject crystalConnectEffectLit;
+    GameObject crystalConnectEffect;
     public GameObject[] connectEffects;
     Animator connectAnimator;
 
@@ -114,7 +116,7 @@ public class CrystalMovable : MonoBehaviour
             {   
                 if (connectEffects[i] == null)
                 {
-                    connectEffects[i] = Instantiate(crystalConnectEffect, new Vector3(0, 0, 0), transform.rotation);
+                    connectEffects[i] = Instantiate(crystalConnectEffectOff, new Vector3(0, 0, 0), transform.rotation);
                 }
             }
         }
@@ -239,6 +241,8 @@ public class CrystalMovable : MonoBehaviour
             {
                 if (connectEffects[i] == null)
                 {
+                    if (manager.crystalsActive) { crystalConnectEffect = crystalConnectEffectLit; }
+                    else { crystalConnectEffect = crystalConnectEffectOff; }
                     connectEffects[i] = Instantiate(crystalConnectEffect);
                 }
                 
