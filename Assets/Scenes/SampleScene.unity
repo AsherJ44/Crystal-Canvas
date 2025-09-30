@@ -715,7 +715,6 @@ MonoBehaviour:
     newMaterial: {fileID: 2100000, guid: 5ce7d74a5c1244d449041e4f335db6c4, type: 2}
     oldMaterial: {fileID: 2100000, guid: 5ce7d74a5c1244d449041e4f335db6c4, type: 2}
   specialEffects: []
-  crystalConnections: []
 --- !u!114 &425893065
 MonoBehaviour:
   m_ObjectHideFlags: 0
