@@ -55,16 +55,16 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _DisolvePower: 3.47
+    - _DisolvePower: 5.58
     - _Gradient: -0.12
     - _Intensity: 33.45
     - _LightIntensity: 16.55
-    - _MaskPower: 0.7
+    - _MaskPower: 0.49
     - _NoiseScale: 7.15
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
     - _NoiseSpeed: {r: -0.19, g: 0, b: 0, a: 0}
-    - _NoiseTiling: {r: 0.18, g: 7.64, b: 0, a: 0}
+    - _NoiseTiling: {r: 0.22, g: 7.64, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
