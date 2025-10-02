@@ -73,7 +73,7 @@ public class SaveManager : MonoBehaviour
             Debug.Log("Game Loaded");
 
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             Debug.LogError("Save Failed to " + savePath);
         }

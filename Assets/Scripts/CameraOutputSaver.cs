@@ -9,6 +9,7 @@ public class CameraOutputSaver : MonoBehaviour
     public int resolutionWidth = 1920;
     public int resolutionHeight = 1080;
     public string folderName = "CameraCaptures";
+    public ScreenshotTaker serverCapturer;
     GlobalInstanceManager globalInstanceManager;
 
     public GameObject submitButton;
@@ -47,6 +48,8 @@ public class CameraOutputSaver : MonoBehaviour
         string fileName = string.Format("{0}/capture_{1}.png", path, GlobalInstanceManager.Instance.CameraCaptureIndex);
         File.WriteAllBytes(fileName, bytes);
         Debug.Log("Camera output saved to: " + fileName);
+
+        serverCapturer.Upload(screenshot);
 
         SaveManager.Instance.SaveGame();
         submitButton.SetActive(true);
