@@ -172,7 +172,7 @@ public class GameManager : MonoBehaviour
         var sr = File.CreateText(fileName);
         sr.WriteLine("Playtime {0} minutes and {1} seconds", timeMinutes, timeSeconds);
         sr.WriteLine("User accessed crystal stream {0} times", pan.timesPanned);
-        sr.WriteLine("User took a snapshot {0} times", cameraOutputSaver.captureIndex);
+        sr.WriteLine("User took a snapshot {0} times", GlobalInstanceManager.Instance.CameraCaptureIndex);
         sr.Close();
         Application.Quit();
     }

@@ -166,7 +166,7 @@ MonoBehaviour:
   maxBobTime: 0
   animator: {fileID: 565275327633037182}
   connectedCrystals: []
-  connectionLimit: 2
+  connectionLimit: 1
   crystalConnectEffectOff: {fileID: 3286108108336289105, guid: e288636a9f4dce84a8f193e423965242, type: 3}
   crystalConnectEffectLit: {fileID: 3286108108336289105, guid: a3f70295803ccf64db8638b0c5139ac6, type: 3}
   connectEffects: []
