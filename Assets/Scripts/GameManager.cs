@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     public GameObject crystalActiveButton;
     public GameObject crystalInactiveButton;
     public GameObject cameraPanButton;
+    public MouseEffect mouseEffect;
+
 
     [Header("Analytics Tracking")]
     public CameraPan pan;
