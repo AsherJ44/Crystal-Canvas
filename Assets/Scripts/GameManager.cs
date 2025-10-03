@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public GameObject crystalActiveButton;
     public GameObject crystalInactiveButton;
     public GameObject cameraPanButton;
-    public MouseEffect mouseEffect;
+    public GameObject mouseEffect;
 
 
     [Header("Analytics Tracking")]
@@ -64,6 +64,8 @@ public class GameManager : MonoBehaviour
     public void ActivateCrystals()
     {
         crystalsActive = true;
+        mouseEffect.SetActive(true);
+        mouseEffect.GetComponent<MouseEffect>().SetPos();
 
         foreach (CrystalMovable crystal in canvasCrystals)
         {
@@ -100,6 +102,7 @@ public class GameManager : MonoBehaviour
     {
         if (crystalsActive)
         {
+            mouseEffect.SetActive(false);
             crystalsActive = false;
 
             //Disabling crystal effects

@@ -9,17 +9,23 @@ public class MouseEffect : MonoBehaviour
 
     private void Start()
     {
-        manager = gameObject.GetComponent<GameManager>();
+        manager = FindAnyObjectByType<GameManager>();
     }
 
     void Update()
     {
         if (manager.crystalsActive)
         {
-            mousePosition = Input.mousePosition - GetMousePosition();
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition - mousePosition);
-            transform.position = mousePos;
+            Vector3 mouseScreenPosition = Input.mousePosition;
+            mouseScreenPosition.z = 10f;
+            Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
+            transform.position = mouseWorldPosition;
         }
+    }
+
+    public Vector3 SetPos()
+    {
+        return Input.mousePosition - GetMousePosition();
     }
 
     private Vector3 GetMousePosition()
