@@ -5020,7 +5020,12 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   maxBobTime: 0
+  discarding: 0
   animator: {fileID: 7874739418227880996}
+  buttonsArray:
+  - {fileID: 0}
+  buttons:
+  - {fileID: 0}
   connectedCrystals: []
   connectionLimit: 2
   crystalConnectEffectOff: {fileID: 3286108108336289105, guid: e288636a9f4dce84a8f193e423965242, type: 3}

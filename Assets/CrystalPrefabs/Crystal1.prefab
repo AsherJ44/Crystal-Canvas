@@ -4997,7 +4997,13 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   maxBobTime: 0
+  discarding: 0
   animator: {fileID: 8909259999177306883}
+  buttons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  images: []
   connectedCrystals: []
   connectionLimit: 1
   crystalConnectEffectOff: {fileID: 3286108108336289105, guid: e288636a9f4dce84a8f193e423965242, type: 3}

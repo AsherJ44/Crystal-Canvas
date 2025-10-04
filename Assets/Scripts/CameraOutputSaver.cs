@@ -26,7 +26,7 @@ public class CameraOutputSaver : MonoBehaviour
 
     public void CaptureAndSaveCameraOutput()
     {
-        RenderTexture rt = new RenderTexture(resolutionWidth, resolutionHeight, 24);
+        RenderTexture rt = new RenderTexture(resolutionWidth, resolutionHeight, 24, UnityEngine.Experimental.Rendering.DefaultFormat.HDR);
         targetCamera.targetTexture = rt;
         Texture2D screenshot = new Texture2D(resolutionWidth, resolutionHeight, TextureFormat.RGB24, false);
         targetCamera.Render();

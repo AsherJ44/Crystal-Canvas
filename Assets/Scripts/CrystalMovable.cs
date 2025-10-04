@@ -4,6 +4,7 @@ using System.Drawing;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using static CrystalSpawn;
 using static UnityEngine.GraphicsBuffer;
 
@@ -22,7 +23,7 @@ public class CrystalMovable : MonoBehaviour
 
     public List<Material> crystalColours; //List of possible crystal colours
 
-    public bool inDestructionArea = false; //Bool to determine if a crystal is going to be destroyed
+    [HideInInspector] public bool inDestructionArea = false; //Bool to determine if a crystal is going to be destroyed
 
     [HideInInspector] public int colourIndex;
 
@@ -34,6 +35,7 @@ public class CrystalMovable : MonoBehaviour
     //bool bobbing = false;
     public float maxBobTime;
     float bobTime;
+    [HideInInspector] public bool discarding;
 
     Vector3 mousePosition;
 
@@ -102,6 +104,11 @@ public class CrystalMovable : MonoBehaviour
     {
         if (this.enabled)
         {
+            //Disables the buttons while the player is moving a crystal
+            foreach (Button button in manager.buttons)
+            {
+                button.gameObject.SetActive(false);
+            }
             //bobbing = false;
             //Picks a random audio clip from the sounds in manager and plays it
             crystalAudio.clip = manager.crystalSounds[Random.Range(0, manager.crystalSounds.Length)];
@@ -147,6 +154,12 @@ public class CrystalMovable : MonoBehaviour
         //if (Time.time < mouseClickTimer && moveComplete) { ColourCycle(); }
         if (this.enabled)
         {
+            //Re-enables the key buttons
+            foreach (Button button in manager.buttons)
+            {
+                button.gameObject.SetActive(true);
+            }
+
             //bobbing = true;
             //Picks a random audio clip from the sounds in manager and plays it
             crystalAudio.clip = manager.crystalSounds[Random.Range(0, manager.crystalSounds.Length)];
@@ -154,6 +167,7 @@ public class CrystalMovable : MonoBehaviour
 
             if (inDestructionArea) 
             {
+                discarding = true;
                 manager.canvasCrystals.Remove(this);
                 animator.enabled = true;
                 //animator.SetBool("FlyingAway", true);
@@ -197,7 +211,7 @@ public class CrystalMovable : MonoBehaviour
 
             foreach (CrystalMovable crystal in manager.canvasCrystals)
             {
-                if (crystal.enabled)
+                if (crystal.enabled && !crystal.discarding) //Checks the crystal exists and is not in the process of being destroyed
                 {
                     float crystalDistance = Vector3.Distance(transform.position, crystal.transform.position);
 
