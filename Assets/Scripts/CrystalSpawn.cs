@@ -22,7 +22,7 @@ public class CrystalSpawn : MonoBehaviour
     [Serializable]
     public struct Crystal
     {
-        public CrystalFloat crystal;
+        public CrystalMovable crystal;
         public float xRotateRate;
         public float yRotateRate;
         public float zRotateRate;
@@ -58,7 +58,7 @@ public class CrystalSpawn : MonoBehaviour
         int crystalColourInt = UnityEngine.Random.Range(0, crystalColours.Count);
 
         Crystal newCrystalValues = crystalValues[crystalInt];
-        CrystalFloat newCrystal = Instantiate(crystalValues[crystalInt].crystal, new Vector3(crystalX, crystalSpawnY, crystalZ), this.transform.rotation);
+        CrystalMovable newCrystal = Instantiate(crystalValues[crystalInt].crystal, new Vector3(crystalX, crystalSpawnY, crystalZ), this.transform.rotation);
         
         newCrystal.properties.speed = crystalFloatSpeed;
         newCrystal.properties.xRotate = UnityEngine.Random.Range(-(newCrystalValues.xRotateRate), newCrystalValues.xRotateRate);
