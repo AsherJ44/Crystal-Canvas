@@ -104,7 +104,7 @@ Material:
     - _METALNESS: 0.2
     - _Metallic: 0
     - _Mode: 3
-    - _OPACITY: 0.838
+    - _OPACITY: 0.61
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _QueueControl: 0
@@ -125,9 +125,9 @@ Material:
     - _BASE_COLOR: {r: 0, g: 0.9596743, b: 1, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EMISSION_COLOR: {r: 0, g: 0.5699145, b: 0.5943396, a: 0.8235294}
+    - _EMISSION_COLOR: {r: 0, g: 0.71867824, b: 0.99215686, a: 0.8235294}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _SPECULAR_COLOR: {r: 0.8490566, g: 0.8490566, b: 0.8490566, a: 1}
+    - _SPECULAR_COLOR: {r: 0.8349056, g: 1, b: 0.9561251, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

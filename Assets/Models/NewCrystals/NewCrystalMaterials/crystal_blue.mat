@@ -91,7 +91,7 @@ Material:
     - _METALNESS: 0.15
     - _Metallic: 0
     - _Mode: 3
-    - _OPACITY: 0.868
+    - _OPACITY: 0.731
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _QueueControl: 0

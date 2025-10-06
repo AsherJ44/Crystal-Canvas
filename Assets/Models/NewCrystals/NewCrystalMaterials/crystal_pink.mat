@@ -91,7 +91,7 @@ Material:
     - _METALNESS: 0.67
     - _Metallic: 0
     - _Mode: 3
-    - _OPACITY: 0.575
+    - _OPACITY: 0.82
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _QueueControl: 0
@@ -109,12 +109,12 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 0
     m_Colors:
-    - _BASE_COLOR: {r: 0.9433962, g: 0.013349922, b: 0.90692395, a: 0.78039217}
+    - _BASE_COLOR: {r: 1, g: 0.2028302, b: 0.7331062, a: 0.78039217}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EMISSION_COLOR: {r: 1, g: 0.089622565, b: 0.96379155, a: 0.90588236}
+    - _EMISSION_COLOR: {r: 0.91813564, g: 0, b: 1, a: 0.90588236}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _SPECULAR_COLOR: {r: 1, g: 1, b: 1, a: 1}
+    - _SPECULAR_COLOR: {r: 0.9622642, g: 0, b: 0.5673671, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

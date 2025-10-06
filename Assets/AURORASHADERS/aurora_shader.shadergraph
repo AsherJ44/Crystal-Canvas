@@ -650,8 +650,8 @@
     ],
     "m_VertexContext": {
         "m_Position": {
-            "x": 863.0000610351563,
-            "y": -361.0000915527344
+            "x": 1295.0,
+            "y": -358.0
         },
         "m_Blocks": [
             {
@@ -667,8 +667,8 @@
     },
     "m_FragmentContext": {
         "m_Position": {
-            "x": 864.0001220703125,
-            "y": -83.00011444091797
+            "x": 1296.0001220703125,
+            "y": -144.00003051757813
         },
         "m_Blocks": [
             {
@@ -3796,7 +3796,7 @@
     "m_AlembicMotionVectors": false,
     "m_SupportsLODCrossFade": false,
     "m_CustomEditorGUI": "",
-    "m_SupportVFX": false
+    "m_SupportVFX": true
 }
 
 {
