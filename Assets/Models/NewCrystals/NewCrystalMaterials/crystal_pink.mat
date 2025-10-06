@@ -28,6 +28,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _DiamondTexture:
+        m_Texture: {fileID: 2800000, guid: d9d3d47e3958b7a418facd4618430e57, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _EMISSION_COLOR_MAP:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -88,33 +92,35 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.09615385
     - _GlossyReflections: 1
-    - _METALNESS: 0.67
+    - _METALNESS: 2.3
     - _Metallic: 0
     - _Mode: 3
-    - _OPACITY: 0.82
+    - _OPACITY: 0.76
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _ParallaxAmp: 20
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _SPECULAR_IOR: 1.5
-    - _SPECULAR_ROUGHNESS: -2.33
+    - _SPECULAR_IOR: 7
+    - _SPECULAR_ROUGHNESS: 0.75
     - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
+    - _Steps: 5
     - _Surface: 1
     - _UVSec: 0
     - _WorkflowMode: 1
     - _ZWrite: 0
     m_Colors:
-    - _BASE_COLOR: {r: 1, g: 0.2028302, b: 0.7331062, a: 0.78039217}
+    - _BASE_COLOR: {r: 1, g: 0.14509803, b: 0.777497, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EMISSION_COLOR: {r: 0.91813564, g: 0, b: 1, a: 0.90588236}
+    - _EMISSION_COLOR: {r: 0.9811321, g: 0, b: 0.8416446, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _SPECULAR_COLOR: {r: 0.9622642, g: 0, b: 0.5673671, a: 1}
+    - _SPECULAR_COLOR: {r: 1, g: 0.43867922, b: 0.77106917, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

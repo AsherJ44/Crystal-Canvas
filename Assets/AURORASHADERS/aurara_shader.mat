@@ -95,7 +95,7 @@ Material:
     - _ExcludeFromTUAndAA: 0
     - _Gradient: -0.1
     - _Intensity: 33.45
-    - _LightIntensity: -0.19
+    - _LightIntensity: -0.32
     - _MaskPower: 1.06
     - _MaterialID: 1
     - _MaterialTypeMask: 2
@@ -139,7 +139,7 @@ Material:
     m_Colors:
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _NoiseSpeed: {r: 0.4, g: 0.2, b: 0, a: 0}
+    - _NoiseSpeed: {r: 0.25, g: 0.1, b: 0, a: 0}
     - _NoiseTiling: {r: 0.17, g: 7.02, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
