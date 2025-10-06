@@ -1711,23 +1711,23 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 7a4f80385eebc2146b4eb24fb871a951, type: 2}
   - {fileID: 2100000, guid: 5ce7d74a5c1244d449041e4f335db6c4, type: 2}
   crystalValues:
-  - crystal: {fileID: 8339593559639568424, guid: bbb3241d9d4f9ba4484bfce01aa9361f, type: 3}
+  - crystal: {fileID: 7485640883031671420, guid: bbb3241d9d4f9ba4484bfce01aa9361f, type: 3}
     xRotateRate: 30
     yRotateRate: 30
     zRotateRate: 30
-  - crystal: {fileID: 943538451838327392, guid: 181ab43d914daaf45a09895ea93da3e8, type: 3}
+  - crystal: {fileID: 7185758173278266770, guid: 181ab43d914daaf45a09895ea93da3e8, type: 3}
     xRotateRate: 30
     yRotateRate: 30
     zRotateRate: 30
-  - crystal: {fileID: 7528748585331245442, guid: 8a18d4cb5511f1a4b9bf7e4993f4a494, type: 3}
+  - crystal: {fileID: 7622544743195575148, guid: 8a18d4cb5511f1a4b9bf7e4993f4a494, type: 3}
     xRotateRate: 30
     yRotateRate: 30
     zRotateRate: 30
-  - crystal: {fileID: 6390663215579914139, guid: ed241bb4824bbc3429a8ec29050c4dbe, type: 3}
+  - crystal: {fileID: 8810093445367913111, guid: ed241bb4824bbc3429a8ec29050c4dbe, type: 3}
     xRotateRate: 30
     yRotateRate: 30
     zRotateRate: 30
-  - crystal: {fileID: 6540989137121251448, guid: d1743b69a4b8a6d48801ee0be0370e84, type: 3}
+  - crystal: {fileID: 7499263516794864050, guid: d1743b69a4b8a6d48801ee0be0370e84, type: 3}
     xRotateRate: 30
     yRotateRate: 30
     zRotateRate: 30
