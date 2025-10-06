@@ -4844,9 +4844,8 @@ GameObject:
   - component: {fileID: 5275577615566763983}
   - component: {fileID: 462790250788821898}
   - component: {fileID: 787101982513345032}
-  - component: {fileID: 5978392066660816503}
-  - component: {fileID: 943538451838327392}
   - component: {fileID: 7185758173278266770}
+  - component: {fileID: 5978392066660816503}
   - component: {fileID: 3978535005472061116}
   - component: {fileID: 7874739418227880996}
   - component: {fileID: 3832090123963680136}
@@ -4926,42 +4925,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &5978392066660816503
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3083157050330341223}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.011312338
-  m_Height: 0.028628852
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &943538451838327392
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3083157050330341223}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83ea8f81ddb5be34b93fc3fb22d73549, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  manager: {fileID: 0}
 --- !u!114 &7185758173278266770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4969,13 +4932,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3083157050330341223}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 221a36e095e5cf94cbafeb36202e2739, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 0}
-  moveComplete: 0
+  onCanvas: 0
+  inDestructionArea: 0
+  colourIndex: 0
   crystalEffect: {fileID: 2246469315263622800}
   crystalColours:
   - {fileID: 2100000, guid: 29dc59e45b12e154d932d29bc08e31d2, type: 2}
@@ -4983,8 +4948,6 @@ MonoBehaviour:
   - {fileID: 2100000, guid: a2d836f9fb302ba4082bd41a23cf6a35, type: 2}
   - {fileID: 2100000, guid: 7a4f80385eebc2146b4eb24fb871a951, type: 2}
   - {fileID: 2100000, guid: 5ce7d74a5c1244d449041e4f335db6c4, type: 2}
-  inDestructionArea: 0
-  colourIndex: 0
   crystalAudio: {fileID: 3832090123963680136}
   bobCurve:
     serializedVersion: 2
@@ -5020,17 +4983,36 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   maxBobTime: 0
-  discarding: 0
   animator: {fileID: 7874739418227880996}
-  buttonsArray:
-  - {fileID: 0}
-  buttons:
-  - {fileID: 0}
-  connectedCrystals: []
+  discarding: 0
   connectionLimit: 2
   crystalConnectEffectOff: {fileID: 3286108108336289105, guid: e288636a9f4dce84a8f193e423965242, type: 3}
   crystalConnectEffectLit: {fileID: 3286108108336289105, guid: a3f70295803ccf64db8638b0c5139ac6, type: 3}
+  connectedCrystals: []
   connectEffects: []
+--- !u!136 &5978392066660816503
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3083157050330341223}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.011312338
+  m_Height: 0.028628852
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &3978535005472061116
 Rigidbody:
   m_ObjectHideFlags: 0
