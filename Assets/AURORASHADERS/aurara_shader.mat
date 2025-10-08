@@ -95,7 +95,7 @@ Material:
     - _ExcludeFromTUAndAA: 0
     - _Gradient: -0.1
     - _Intensity: 33.45
-    - _LightIntensity: 0.385
+    - _LightIntensity: 0.383
     - _MaskPower: 1.06
     - _MaterialID: 1
     - _MaterialTypeMask: 2
@@ -123,6 +123,7 @@ Material:
     - _StencilWriteMaskMV: 43
     - _SupportDecals: 1
     - _SurfaceType: 0
+    - _SwaySpeed: -0.29
     - _TransmissionEnable: 1
     - _TransparentBackfaceEnable: 0
     - _TransparentCullMode: 2
@@ -139,7 +140,8 @@ Material:
     m_Colors:
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _NoiseSpeed: {r: 0.25, g: 0.1, b: 0, a: 0}
-    - _NoiseTiling: {r: 0.17, g: 7.02, b: 0, a: 0}
+    - _NoiseSpeed: {r: 0.55, g: 0.25, b: 0, a: 0}
+    - _NoiseTiling: {r: 0.13, g: 8.3, b: 0, a: 0}
+    - _SwaySpeed_2: {r: 6, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
