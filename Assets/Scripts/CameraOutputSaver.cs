@@ -1,7 +1,9 @@
 using System;
+using System.Collections;
 using System.IO;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CameraOutputSaver : MonoBehaviour
 {
@@ -11,8 +13,10 @@ public class CameraOutputSaver : MonoBehaviour
     public string folderName = "CameraCaptures";
     public ScreenshotTaker serverCapturer;
     GlobalInstanceManager globalInstanceManager;
+    GameManager manager;
 
-    public GameObject submitButton;
+    public ShareFrame shareFrame;
+    public RawImage captureFrameImg;
 
     void Start()
     {
@@ -22,6 +26,7 @@ public class CameraOutputSaver : MonoBehaviour
             enabled = false;
         }
         globalInstanceManager = GlobalInstanceManager.Instance;
+        manager = FindAnyObjectByType<GameManager>();
     }
 
     public void CaptureAndSaveCameraOutput()
@@ -48,12 +53,14 @@ public class CameraOutputSaver : MonoBehaviour
         string fileName = string.Format("{0}/capture_{1}.png", path, GlobalInstanceManager.Instance.CameraCaptureIndex);
         File.WriteAllBytes(fileName, bytes);
         Debug.Log("Camera output saved to: " + fileName);
+        manager.cameraCaptureCounter++;
 
         serverCapturer.Upload(screenshot);
 
         SaveManager.Instance.SaveGame();
-        submitButton.SetActive(true);
-
-        Destroy(screenshot);
+        
+        shareFrame.gameObject.SetActive(true);
+        captureFrameImg.texture = (Texture)screenshot;
+        screenshot.Apply();
     }
 }

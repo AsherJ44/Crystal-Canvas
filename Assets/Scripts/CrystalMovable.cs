@@ -144,6 +144,9 @@ public class CrystalMovable : MonoBehaviour
     {
         if (!onCanvas)
         {
+            //Picks a random audio clip from the sounds in manager and plays it
+            crystalAudio.clip = manager.crystalStreamSounds[Random.Range(0, manager.crystalStreamSounds.Length)];
+            crystalAudio.Play();
             //Store a reference of the crystal's current position
             startPos = transform.position;
             //Set random position within the canvas bounds
@@ -205,10 +208,13 @@ public class CrystalMovable : MonoBehaviour
         //if (Time.time < mouseClickTimer && moveComplete) { ColourCycle(); }
         if (onCanvas)
         {
-            //Re-enables the key buttons
-            foreach (Button button in manager.buttons)
+            if (!manager.crystalsActive)
             {
-                button.gameObject.SetActive(true);
+                //Re-enables the key buttons
+                foreach (Button button in manager.buttons)
+                {
+                    button.gameObject.SetActive(true);
+                }
             }
 
             //bobbing = true;
