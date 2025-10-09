@@ -126,7 +126,7 @@ public class GameManager : MonoBehaviour
         crystalInactiveButton.SetActive(false);
         snapShotButton.SetActive(false);
         cameraPanButton.SetActive(true);
-        uploadButton.SetActive(false);
+        //uploadButton.SetActive(false);
     }
 
     /*

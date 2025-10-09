@@ -123,10 +123,10 @@ Material:
     - _StencilWriteMaskMV: 43
     - _SupportDecals: 1
     - _SurfaceType: 0
-    - _SwayAmount: 0.167
-    - _SwayDistance: 3
-    - _SwayFrequency: 12
-    - _SwaySpeed: 10
+    - _SwayAmount: 0.09
+    - _SwayDistance: 6.79
+    - _SwayFrequency: 4
+    - _SwaySpeed: 20
     - _TransmissionEnable: 1
     - _TransparentBackfaceEnable: 0
     - _TransparentCullMode: 2
