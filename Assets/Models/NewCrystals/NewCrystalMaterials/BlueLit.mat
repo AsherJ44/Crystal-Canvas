@@ -27,14 +27,14 @@ Material:
   m_Shader: {fileID: -6465566751694194690, guid: 30fa68ce467463643a86b839ca0eb195, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
+  m_ValidKeywords: []
+  m_InvalidKeywords:
+  - _ALPHAPREMULTIPLY_ON
   - _DISABLE_DECALS
   - _DISABLE_SSR_TRANSPARENT
   - _ENABLE_FOG_ON_TRANSPARENT
   - _MATERIAL_FEATURE_SPECULAR_COLOR
   - _SURFACE_TYPE_TRANSPARENT
-  m_InvalidKeywords:
-  - _ALPHAPREMULTIPLY_ON
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -182,7 +182,7 @@ Material:
     - _MaterialID: 4
     - _MaterialTypeMask: 16
     - _Metallic: 0
-    - _OPACITY: 0
+    - _OPACITY: 0.491
     - _OcclusionStrength: 1
     - _OpaqueCullMode: 2
     - _Parallax: 0.02
@@ -197,7 +197,7 @@ Material:
     - _RefractionModel: 0
     - _RenderQueueType: 4
     - _RequireSplitLighting: 0
-    - _SPECULAR_IOR: 1.5
+    - _SPECULAR_IOR: 4
     - _SPECULAR_ROUGHNESS: 10
     - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
@@ -233,13 +233,13 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 0
     m_Colors:
-    - _BASE_COLOR: {r: 0.050980385, g: 0.12960924, b: 0.34117648, a: 1}
+    - _BASE_COLOR: {r: 0.049172312, g: 0.20161432, b: 0.6132076, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
-    - _EMISSION_COLOR: {r: 0.7971698, g: 0.8197065, b: 1, a: 0}
+    - _EMISSION_COLOR: {r: 0.08962262, g: 0.23944394, b: 1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SPECULAR_COLOR: {r: 0.4712976, g: 0.6412939, b: 0.8396226, a: 1}
+    - _SPECULAR_COLOR: {r: 0.31706125, g: 0.49984187, b: 0.7075472, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
