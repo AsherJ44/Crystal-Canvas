@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
     {
         crystalInactiveButton.SetActive(false);
         snapShotButton.SetActive(false);
-        uploadButton.SetActive(false);
+        //uploadButton.SetActive(false);
         cameraCaptureCounter = 0;
     }
 
