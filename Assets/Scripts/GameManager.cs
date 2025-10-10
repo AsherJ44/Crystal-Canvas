@@ -18,17 +18,20 @@ public class GameManager : MonoBehaviour
     public GameObject crystalInactiveButton;
     public GameObject cameraPanButton;
     public GameObject mouseEffect;
+    public Button[] buttons;
 
 
     [Header("Analytics Tracking")]
     public CameraPan pan;
     public CameraOutputSaver cameraOutputSaver;
     string folderName = "Analytics";
+    [HideInInspector] public int cameraCaptureCounter = 0;
 
     [Header("Crystal Values")]
     public bool crystalsActive = false;
     public Light crystalLight;
     public AudioClip[] crystalSounds;
+    public AudioClip[] crystalStreamSounds;
 
     [Serializable]
     public struct CrystalColours
@@ -58,7 +61,8 @@ public class GameManager : MonoBehaviour
     {
         crystalInactiveButton.SetActive(false);
         snapShotButton.SetActive(false);
-        uploadButton.SetActive(false);
+        //uploadButton.SetActive(false);
+        cameraCaptureCounter = 0;
     }
 
     public void ActivateCrystals()
@@ -122,7 +126,7 @@ public class GameManager : MonoBehaviour
         crystalInactiveButton.SetActive(false);
         snapShotButton.SetActive(false);
         cameraPanButton.SetActive(true);
-        uploadButton.SetActive(false);
+        //uploadButton.SetActive(false);
     }
 
     /*
@@ -160,8 +164,8 @@ public class GameManager : MonoBehaviour
 
     public void ExitGame()
     {
-        float timeMinutes;
-        if (Time.time > 60) { timeMinutes = (Time.time / 60); }
+        int timeMinutes;
+        if (Time.time > 60) { timeMinutes = (int)(Time.time / 60); }
         else { timeMinutes = 0; }
 
         float timeSeconds = Mathf.RoundToInt(Time.time % 60);
@@ -172,12 +176,12 @@ public class GameManager : MonoBehaviour
             Directory.CreateDirectory(path);
         }
 
-        string fileName = string.Format("{0}/PlayerAnalytics.txt", path);
+        string fileName = string.Format("{0}/Player{1}Analytics.txt", path, GlobalInstanceManager.Instance.testerIndex);
 
         var sr = File.CreateText(fileName);
         sr.WriteLine("Playtime {0} minutes and {1} seconds", timeMinutes, timeSeconds);
         sr.WriteLine("User accessed crystal stream {0} times", pan.timesPanned);
-        sr.WriteLine("User took a snapshot {0} times", GlobalInstanceManager.Instance.CameraCaptureIndex);
+        sr.WriteLine("User took a snapshot {0} times", cameraCaptureCounter);
         sr.Close();
         Application.Quit();
     }

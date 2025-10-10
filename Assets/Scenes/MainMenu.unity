@@ -211,6 +211,7 @@ GameObject:
   - component: {fileID: 227866420}
   - component: {fileID: 227866419}
   - component: {fileID: 227866422}
+  - component: {fileID: 227866423}
   m_Layer: 5
   m_Name: Play
   m_TagString: Untagged
@@ -236,7 +237,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.02142334, y: -254}
-  m_SizeDelta: {x: 200, y: 130}
+  m_SizeDelta: {x: 217.9, y: 154.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &227866419
 MonoBehaviour:
@@ -294,6 +295,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 227866423}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &227866420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -347,6 +360,103 @@ MonoBehaviour:
   m_EffectColor: {r: 1, g: 1, b: 1, a: 1}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
+--- !u!82 &227866423
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227866417}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 1073a1b20bf70aa40a2434e031d29e30, type: 3}
+  m_Resource: {fileID: 8300000, guid: 1073a1b20bf70aa40a2434e031d29e30, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.5
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &389252355
 GameObject:
   m_ObjectHideFlags: 0
@@ -393,6 +503,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CameraCaptureIndex: 0
+  testerIndex: 0
 --- !u!114 &389252358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1711,23 +1822,23 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 7a4f80385eebc2146b4eb24fb871a951, type: 2}
   - {fileID: 2100000, guid: 5ce7d74a5c1244d449041e4f335db6c4, type: 2}
   crystalValues:
-  - crystal: {fileID: 8339593559639568424, guid: bbb3241d9d4f9ba4484bfce01aa9361f, type: 3}
+  - crystal: {fileID: 7485640883031671420, guid: bbb3241d9d4f9ba4484bfce01aa9361f, type: 3}
     xRotateRate: 30
     yRotateRate: 30
     zRotateRate: 30
-  - crystal: {fileID: 943538451838327392, guid: 181ab43d914daaf45a09895ea93da3e8, type: 3}
+  - crystal: {fileID: 7185758173278266770, guid: 181ab43d914daaf45a09895ea93da3e8, type: 3}
     xRotateRate: 30
     yRotateRate: 30
     zRotateRate: 30
-  - crystal: {fileID: 7528748585331245442, guid: 8a18d4cb5511f1a4b9bf7e4993f4a494, type: 3}
+  - crystal: {fileID: 7622544743195575148, guid: 8a18d4cb5511f1a4b9bf7e4993f4a494, type: 3}
     xRotateRate: 30
     yRotateRate: 30
     zRotateRate: 30
-  - crystal: {fileID: 6390663215579914139, guid: ed241bb4824bbc3429a8ec29050c4dbe, type: 3}
+  - crystal: {fileID: 8810093445367913111, guid: ed241bb4824bbc3429a8ec29050c4dbe, type: 3}
     xRotateRate: 30
     yRotateRate: 30
     zRotateRate: 30
-  - crystal: {fileID: 6540989137121251448, guid: d1743b69a4b8a6d48801ee0be0370e84, type: 3}
+  - crystal: {fileID: 7499263516794864050, guid: d1743b69a4b8a6d48801ee0be0370e84, type: 3}
     xRotateRate: 30
     yRotateRate: 30
     zRotateRate: 30

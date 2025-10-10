@@ -5,6 +5,7 @@ public class GlobalInstanceManager : MonoBehaviour
     public static GlobalInstanceManager Instance;
 
     public int CameraCaptureIndex;
+    public int testerIndex;
 
     private void Awake()
     {

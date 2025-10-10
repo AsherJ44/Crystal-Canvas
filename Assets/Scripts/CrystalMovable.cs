@@ -4,57 +4,67 @@ using System.Drawing;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using static CrystalSpawn;
 using static UnityEngine.GraphicsBuffer;
 
 public class CrystalMovable : MonoBehaviour
 {
+    //Management values
     [HideInInspector] public GameManager manager;
+    [HideInInspector] public bool onCanvas = false;
+    [HideInInspector] public bool inDestructionArea = false; //Bool to determine if a crystal is going to be destroyed
+    [HideInInspector] public int colourIndex;
 
+    //Bounding values
     float minXBound = -0.195f;
     float maxXBound = 0.195f;
     float minYBound = -0.087f;
     float maxYBound = 0.105f;
-
-    [HideInInspector] public bool moveComplete = false;
-
-    public GameObject crystalEffect;
-
-    public List<Material> crystalColours; //List of possible crystal colours
-
-    public bool inDestructionArea = false; //Bool to determine if a crystal is going to be destroyed
-
-    [HideInInspector] public int colourIndex;
-
-    private float mouseClickTime = 0.2f;
-    private float mouseClickTimer;
-    public AudioSource crystalAudio;
-
-    public AnimationCurve bobCurve;
-    //bool bobbing = false;
-    public float maxBobTime;
+    float mouseClickTime = 0.2f;
+    float mouseClickTimer;
+    bool bobbing = false;
     float bobTime;
+
+    [Header("Crystal Values")]
+    public GameObject crystalEffect;
+    public List<Material> crystalColours; //List of possible crystal colours
+    public AudioSource crystalAudio;
+    public AnimationCurve bobCurve;
+    public float maxBobTime;
+    public Animator animator;
+
+    [HideInInspector] public bool discarding;
 
     Vector3 mousePosition;
 
-    public Animator animator;
-
+    [Header("Crystal Connections")]
     //Crystal Connection values
-    [HideInInspector] public CrystalMovable[] connectedCrystals;
     public int connectionLimit = 2;
     public GameObject crystalConnectEffectOff;
     public GameObject crystalConnectEffectLit;
-    GameObject crystalConnectEffect;
-    public GameObject[] connectEffects;
-    Animator connectAnimator;
+    //public Animator connectAnimator;
 
-    void OnEnable()
+    GameObject crystalConnectEffect;
+    [HideInInspector] public CrystalMovable[] connectedCrystals;
+    [HideInInspector] public GameObject[] connectEffects;
+    
+    //Crystal Float values
+    bool clickedAndMoving = false;
+    float lerpLevel = 0.0f;
+    Vector3 startPos;
+    Vector3 canvasPos;
+    bool waiting = false;
+
+    public struct CrystalMotionProperties
     {
-        //Setting the crystal floating element to inactive once the crystal is made movable
-        CrystalFloat crystalFloat = GetComponent<CrystalFloat>();
-        crystalFloat.enabled = false;
-        //bobbing = true;
+        public float speed;
+        public float xRotate;
+        public float yRotate;
+        public float zRotate;
     }
+
+    public CrystalMotionProperties properties = new CrystalMotionProperties();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -64,17 +74,49 @@ public class CrystalMovable : MonoBehaviour
         connectEffects = new GameObject[connectionLimit];
     }
 
-    /*
+    // Update is called once per frame
     void Update()
     {
+        this.transform.Rotate(properties.xRotate * Time.deltaTime, properties.yRotate * Time.deltaTime, properties.zRotate * Time.deltaTime, Space.Self);
+        if (!onCanvas)
+        {
+            transform.position = new Vector3(transform.position.x, this.transform.position.y - (properties.speed * Time.deltaTime), transform.position.z);
+            
+            //Destroys the crystal once it goes low enough
+            if (transform.position.y < -0.45f)
+            {
+                Destroy(gameObject);
+            }
+
+            //Moves the crystal over to the canvas and waits for 2 seconds before activating the crystal movable component
+            if (clickedAndMoving)
+            {
+                transform.position = Vector3.Lerp(startPos, canvasPos, lerpLevel);
+                lerpLevel += Time.deltaTime;
+
+                if (!waiting)
+                {
+                    waiting = true;
+                    StartCoroutine(WaitToActivate());
+                }
+            }
+        }
+
         if (bobbing)
         {
             if (bobTime > maxBobTime) { bobTime = 0; }
-            transform.position = new Vector3(transform.position.x, transform.position.y + bobCurve.Evaluate(bobTime), transform.position.z);
+            transform.position = new Vector3(transform.position.x, transform.position.y + (bobCurve.Evaluate(bobTime) * Time.deltaTime), transform.position.z);
             bobTime += Time.deltaTime;
         }
     }
-    */
+
+    private IEnumerator WaitToActivate()
+    {
+        yield return new WaitForSeconds(2.0f);
+        manager.canvasCrystals.Add(this);
+        onCanvas = true;
+    }
+
     private void OnTriggerEnter(UnityEngine.Collider other)
     {
         if (other.transform.CompareTag("Bin"))
@@ -100,8 +142,27 @@ public class CrystalMovable : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (this.enabled)
+        if (!onCanvas)
         {
+            //Picks a random audio clip from the sounds in manager and plays it
+            crystalAudio.clip = manager.crystalStreamSounds[Random.Range(0, manager.crystalStreamSounds.Length)];
+            crystalAudio.Play();
+            //Store a reference of the crystal's current position
+            startPos = transform.position;
+            //Set random position within the canvas bounds
+            canvasPos = new Vector3(-0.25f, UnityEngine.Random.Range(-0.087f, 0.105f), UnityEngine.Random.Range(-0.195f, 0.195f));
+            //Setting the crystal to start lerping over to the canvas
+            clickedAndMoving = true;
+            properties.speed = 0;
+        }
+        
+        if (onCanvas && !manager.crystalsActive)
+        {
+            //Disables the buttons while the player is moving a crystal
+            foreach (Button button in manager.buttons)
+            {
+                button.gameObject.SetActive(false);
+            }
             //bobbing = false;
             //Picks a random audio clip from the sounds in manager and plays it
             crystalAudio.clip = manager.crystalSounds[Random.Range(0, manager.crystalSounds.Length)];
@@ -124,7 +185,7 @@ public class CrystalMovable : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        if (this.enabled)
+        if (onCanvas && !manager.crystalsActive)
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition - mousePosition);
         
@@ -145,8 +206,17 @@ public class CrystalMovable : MonoBehaviour
     {
         //If the mouse is down for less than 0.2 seconds, change the colour
         //if (Time.time < mouseClickTimer && moveComplete) { ColourCycle(); }
-        if (this.enabled)
+        if (onCanvas)
         {
+            if (!manager.crystalsActive)
+            {
+                //Re-enables the key buttons
+                foreach (Button button in manager.buttons)
+                {
+                    button.gameObject.SetActive(true);
+                }
+            }
+
             //bobbing = true;
             //Picks a random audio clip from the sounds in manager and plays it
             crystalAudio.clip = manager.crystalSounds[Random.Range(0, manager.crystalSounds.Length)];
@@ -154,6 +224,7 @@ public class CrystalMovable : MonoBehaviour
 
             if (inDestructionArea) 
             {
+                discarding = true;
                 manager.canvasCrystals.Remove(this);
                 animator.enabled = true;
                 //animator.SetBool("FlyingAway", true);
@@ -197,7 +268,7 @@ public class CrystalMovable : MonoBehaviour
 
             foreach (CrystalMovable crystal in manager.canvasCrystals)
             {
-                if (crystal.enabled)
+                if (crystal.enabled && !crystal.discarding) //Checks the crystal exists and is not in the process of being destroyed
                 {
                     float crystalDistance = Vector3.Distance(transform.position, crystal.transform.position);
 

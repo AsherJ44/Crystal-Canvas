@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2484519315042548676}
   - component: {fileID: 8319379037538843955}
   - component: {fileID: 7499263516794864050}
-  - component: {fileID: 6540989137121251448}
   - component: {fileID: 1207308204322323601}
   - component: {fileID: 5598210749149911889}
   - component: {fileID: 3272612591347737358}
@@ -100,13 +99,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3612238592625912173}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 221a36e095e5cf94cbafeb36202e2739, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 0}
-  moveComplete: 0
+  onCanvas: 0
+  inDestructionArea: 0
+  colourIndex: 0
   crystalEffect: {fileID: 4482786426575720224}
   crystalColours:
   - {fileID: 2100000, guid: 29dc59e45b12e154d932d29bc08e31d2, type: 2}
@@ -114,8 +115,6 @@ MonoBehaviour:
   - {fileID: 2100000, guid: a2d836f9fb302ba4082bd41a23cf6a35, type: 2}
   - {fileID: 2100000, guid: 7a4f80385eebc2146b4eb24fb871a951, type: 2}
   - {fileID: 2100000, guid: 5ce7d74a5c1244d449041e4f335db6c4, type: 2}
-  inDestructionArea: 0
-  colourIndex: 0
   crystalAudio: {fileID: 63645565777843882}
   bobCurve:
     serializedVersion: 2
@@ -152,24 +151,12 @@ MonoBehaviour:
     m_RotationOrder: 4
   maxBobTime: 0
   animator: {fileID: 3272612591347737358}
-  connectedCrystals: []
+  discarding: 0
   connectionLimit: 2
   crystalConnectEffectOff: {fileID: 3286108108336289105, guid: e288636a9f4dce84a8f193e423965242, type: 3}
   crystalConnectEffectLit: {fileID: 3286108108336289105, guid: a3f70295803ccf64db8638b0c5139ac6, type: 3}
+  connectedCrystals: []
   connectEffects: []
---- !u!114 &6540989137121251448
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3612238592625912173}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83ea8f81ddb5be34b93fc3fb22d73549, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  manager: {fileID: 0}
 --- !u!136 &1207308204322323601
 CapsuleCollider:
   m_ObjectHideFlags: 0

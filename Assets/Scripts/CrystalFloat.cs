@@ -62,7 +62,7 @@ public class CrystalFloat : MonoBehaviour
         CrystalMovable crystalMovable = GetComponent<CrystalMovable>();
         crystalMovable.enabled = true;
         manager.canvasCrystals.Add(crystalMovable);
-        crystalMovable.moveComplete = true;
+        crystalMovable.onCanvas = true;
     }
 
     private void OnMouseDown()
