@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -6,17 +5,26 @@ using System.Collections;
 
 public class ScreenTransition : MonoBehaviour
 {
-    public Image image; 
+    [SerializeField] private Image image;
+    [SerializeField] private MenuHandler menuHandler;
+    [SerializeField] private int sceneToLoad;
+    [SerializeField] private float fadeInTime;
+    [SerializeField] private AudioSource backgroundMusic;
+    float baseVolume;
 
     private void Awake()
     {
         if (image != null)
         {
             Color c = image.color;
-            c.a = 0f;
+            c.a = 1f;
             image.color = c;
         }
+
+        if (backgroundMusic != null) { baseVolume = backgroundMusic.volume; }
+        StartCoroutine(FadeFromBlack(fadeInTime));
     }
+
     public void FadeAndLoad(float duration)
     {
         StartCoroutine(FadeToBlackAndLoad(duration));
@@ -32,20 +40,23 @@ public class ScreenTransition : MonoBehaviour
         {
             t += Time.deltaTime;
             c.a = t / duration;
+            backgroundMusic.volume = baseVolume - ((t / duration) * baseVolume);
             image.color = c;
             yield return null;
         }
-
+        menuHandler.LoadScene(sceneToLoad);
     }
-    public IEnumerator FadeOut(float duration)
+
+    public IEnumerator FadeFromBlack(float duration)
     {
         float t = 0f;
         Color c = image.color;
 
-        while (t < 1)
+        while (t < duration)
         {
             t += Time.deltaTime;
-            c.a = 1f - (t / 1f);
+            c.a = 1f - (t / duration);
+            backgroundMusic.volume = (t / duration) * baseVolume;
             image.color = c;
             yield return null;
         }

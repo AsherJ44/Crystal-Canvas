@@ -40,8 +40,8 @@ public class JuicedButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         //If the button hasn't been clicked within the amount of seconds allowed by first click timer, instantiate a particle effect and start pulsating
         if (!buttonClicked && Time.time > firstClickTimer && !tutorialising)
         {
-            newEffect = Instantiate(tutorialisationEffect, this.transform);
-            effectBaseScale = newEffect.transform.localScale;
+            //newEffect = Instantiate(tutorialisationEffect, this.transform);
+            //effectBaseScale = newEffect.transform.localScale;
             tutorialising = true;
             StartCoroutine(ButtonPulsate());
         }
