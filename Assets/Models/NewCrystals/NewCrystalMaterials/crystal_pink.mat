@@ -95,7 +95,7 @@ Material:
     - _METALNESS: 2.5
     - _Metallic: 0
     - _Mode: 3
-    - _OPACITY: 0.683
+    - _OPACITY: 0.706
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _ParallaxAmp: 20

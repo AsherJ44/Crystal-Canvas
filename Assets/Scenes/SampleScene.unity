@@ -671,8 +671,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4284158464
+  m_fontColor: {r: 0, g: 0.0702659, b: 0.3584906, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -807,8 +807,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4284158464
+  m_fontColor: {r: 0, g: 0.07058824, b: 0.35686275, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1082,29 +1082,29 @@ MonoBehaviour:
   specialEffectDistanceThreshold: 0
   crystalColours:
   - lightColor: {r: 0, g: 0.019607844, b: 1, a: 1}
-    particleColor: {r: 0, g: 0.15294118, b: 0.8, a: 1}
+    particleColor: {r: 0.2216981, g: 0.49164036, b: 1, a: 1}
     intensity: 10
     newMaterial: {fileID: 2100000, guid: e55a8ca1e7a0ecc4080b05989c048dcd, type: 2}
     oldMaterial: {fileID: 2100000, guid: 29dc59e45b12e154d932d29bc08e31d2, type: 2}
   - lightColor: {r: 0, g: 0.9372549, b: 1, a: 1}
-    particleColor: {r: 0, g: 0.9607843, b: 1, a: 1}
-    intensity: 10
+    particleColor: {r: 0.7216981, g: 0.9890862, b: 1, a: 1}
+    intensity: 3.45
     newMaterial: {fileID: 2100000, guid: e29a422abaf6c3842b6420f58a859318, type: 2}
     oldMaterial: {fileID: 2100000, guid: 12324337e535b114d94e979a5e4b847d, type: 2}
-  - lightColor: {r: 1, g: 1, b: 1, a: 1}
-    particleColor: {r: 0.8, g: 0, b: 0.76862746, a: 1}
-    intensity: 0.6
-    newMaterial: {fileID: 2100000, guid: a2d836f9fb302ba4082bd41a23cf6a35, type: 2}
+  - lightColor: {r: 1, g: 0.1273585, b: 0.7057822, a: 1}
+    particleColor: {r: 1, g: 0.19339621, b: 0.9683686, a: 1}
+    intensity: 8
+    newMaterial: {fileID: 2100000, guid: ed561daff64fd244b845b245b60e473d, type: 2}
     oldMaterial: {fileID: 2100000, guid: a2d836f9fb302ba4082bd41a23cf6a35, type: 2}
-  - lightColor: {r: 0.25780392, g: 0, b: 0.6745283, a: 1}
-    particleColor: {r: 0.15294118, g: 0.019607844, b: 0.4509804, a: 1}
-    intensity: 6.5
+  - lightColor: {r: 0.18659224, g: 0.057849795, b: 0.9433962, a: 1}
+    particleColor: {r: 0.46043906, g: 0, b: 0.99215686, a: 1}
+    intensity: 13.3
     newMaterial: {fileID: 2100000, guid: 3cb9852e0d661734291e3da89fd70eff, type: 2}
     oldMaterial: {fileID: 2100000, guid: 7a4f80385eebc2146b4eb24fb871a951, type: 2}
-  - lightColor: {r: 0.05940919, g: 0, b: 0.4575472, a: 1}
-    particleColor: {r: 0.02745098, g: 0.043137256, b: 0.23921569, a: 1}
-    intensity: 65
-    newMaterial: {fileID: 2100000, guid: 5ce7d74a5c1244d449041e4f335db6c4, type: 2}
+  - lightColor: {r: 0.806313, g: 0.2216981, b: 1, a: 1}
+    particleColor: {r: 1, g: 0.82290035, b: 0.5803922, a: 1}
+    intensity: 0.8
+    newMaterial: {fileID: 2100000, guid: 5f001403aed64c747b6df4d8aedb9784, type: 2}
     oldMaterial: {fileID: 2100000, guid: 5ce7d74a5c1244d449041e4f335db6c4, type: 2}
   specialEffects: []
 --- !u!114 &425893065
@@ -1779,8 +1779,8 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_NormalColor: {r: 0.7783019, g: 0.9081922, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.3066038, g: 0.6570477, b: 1, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -2052,7 +2052,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 0.78039217, g: 0.9098039, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -2978,7 +2978,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.89433956, g: 0.8828891, b: 0.7340334, a: 0.38039216}
+  m_Color: {r: 0.8240477, g: 0.8486084, b: 0.8867924, a: 0.8}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3083,7 +3083,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  slideTime: 2
+  slideTime: 1.8
 --- !u!1 &2080981455
 GameObject:
   m_ObjectHideFlags: 0

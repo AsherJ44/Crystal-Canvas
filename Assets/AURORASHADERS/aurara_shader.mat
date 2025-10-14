@@ -44,7 +44,7 @@ Material:
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 1
+  m_DoubleSidedGI: 0
   m_CustomRenderQueue: 3000
   stringTagMap:
     MotionVector: User
@@ -84,7 +84,7 @@ Material:
     - _CullMode: 2
     - _CullModeForward: 2
     - _DepthOffsetEnable: 0
-    - _DisolvePower: -5.01
+    - _DisolvePower: -4.82
     - _DoubleSidedEnable: 0
     - _DoubleSidedGIMode: 0
     - _DoubleSidedNormalMode: 2
@@ -123,10 +123,10 @@ Material:
     - _StencilWriteMaskMV: 43
     - _SupportDecals: 1
     - _SurfaceType: 0
-    - _SwayAmount: 0.09
-    - _SwayDistance: 6.79
-    - _SwayFrequency: 4
-    - _SwaySpeed: 20
+    - _SwayAmount: 0.1
+    - _SwayDistance: 10
+    - _SwayFrequency: 3.9
+    - _SwaySpeed: 3.8
     - _TransmissionEnable: 1
     - _TransparentBackfaceEnable: 0
     - _TransparentCullMode: 2
