@@ -150,7 +150,19 @@ public class CrystalMovable : MonoBehaviour
             //Store a reference of the crystal's current position
             startPos = transform.position;
             //Set random position within the canvas bounds
-            canvasPos = new Vector3(-0.25f, UnityEngine.Random.Range(-0.087f, 0.105f), UnityEngine.Random.Range(-0.195f, 0.195f));
+            float canvasY = UnityEngine.Random.Range(-0.087f, 0.105f);
+            float canvasZ = UnityEngine.Random.Range(-0.195f, 0.195f);
+            bool posValid = false;
+            
+            while (!posValid)
+            {
+                canvasY = UnityEngine.Random.Range(-0.087f, 0.105f);
+                canvasZ = UnityEngine.Random.Range(-0.195f, 0.195f);
+                if (!(canvasY < 0.105f && canvasY > 0.075f && canvasZ < -0.16f && canvasZ > -0.195f)) { posValid = true; break; }
+            }
+            
+            canvasPos = new Vector3(-0.25f, canvasY, canvasZ);
+
             //Setting the crystal to start lerping over to the canvas
             clickedAndMoving = true;
             properties.speed = 0;

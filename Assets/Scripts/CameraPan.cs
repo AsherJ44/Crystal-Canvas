@@ -46,6 +46,7 @@ public class CameraPan : MonoBehaviour
 
             if (manager.canvasCrystals.Count > 0) { manager.DeactivateCrystals(); }
                 
+            leftButton.GetComponent<JuicedButton>().SizeReset();
             leftButton.SetActive(false);
             rightButton.SetActive(true);
             captureButton.SetActive(false);
@@ -61,6 +62,7 @@ public class CameraPan : MonoBehaviour
 
             leftButton.SetActive(true);
             rightButton.SetActive(false);
+            rightButton.GetComponent<JuicedButton>().SizeReset();
             captureButton.SetActive(false);
             onCanvas = true;
 

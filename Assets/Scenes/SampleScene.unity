@@ -1350,8 +1350,8 @@ Canvas:
   m_GameObject: {fileID: 578196901}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 330585545}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -2140,7 +2140,7 @@ GameObject:
   - component: {fileID: 1306244868}
   - component: {fileID: 1306244871}
   m_Layer: 5
-  m_Name: CameraPanToStream (1)
+  m_Name: CameraPanToStream
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2163,7 +2163,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -920, y: 5}
-  m_SizeDelta: {x: 35, y: 427}
+  m_SizeDelta: {x: 35, y: 197}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1306244868
 MonoBehaviour:
@@ -2278,20 +2278,44 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 2
-      outSlope: 2
+      inSlope: 1.2454944
+      outSlope: 1.2454944
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.04671281
     - serializedVersion: 3
       time: 0.2
       value: 0.25
-      inSlope: 0.17729615
-      outSlope: 0.17729615
+      inSlope: 1.2784349
+      outSlope: 1.2784349
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.075868145
+      inWeight: 0.063437074
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  shrinkCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.25
+      inSlope: -1.2524393
+      outSlope: -1.2524393
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.058823533
+    - serializedVersion: 3
+      time: 0.2
+      value: 0
+      inSlope: -1.3687383
+      outSlope: -1.3687383
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.057670027
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -2639,6 +2663,7 @@ GameObject:
   - component: {fileID: 1358945397}
   - component: {fileID: 1358945395}
   - component: {fileID: 1358945398}
+  - component: {fileID: 1358945399}
   m_Layer: 5
   m_Name: CameraPanToCanvas
   m_TagString: Untagged
@@ -2663,7 +2688,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 923, y: 5}
-  m_SizeDelta: {x: 35, y: 427}
+  m_SizeDelta: {x: 35, y: 197}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1358945395
 MonoBehaviour:
@@ -2759,6 +2784,71 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1358945399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1358945393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7288de716bf920342ae75388926cbbdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisButton: {fileID: 1358945395}
+  growCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.2
+      value: 0.25
+      inSlope: 0.17729615
+      outSlope: 0.17729615
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.075868145
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  shrinkCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.24873352
+      inSlope: -0.57582366
+      outSlope: -0.57582366
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.11309408
+    - serializedVersion: 3
+      time: 0.2
+      value: 0
+      inSlope: -2.2834885
+      outSlope: -2.2834885
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.039230287
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  growTime: 0.2
+  buttonClicked: 0
+  firstClickTimer: 3
+  tutorialisationEffect: {fileID: 8013778996263047796, guid: eee8ae52cfc9a014288e4e914cde7173, type: 3}
 --- !u!1 &1412826899
 GameObject:
   m_ObjectHideFlags: 0
