@@ -99,7 +99,7 @@ Material:
     - _MaskPower: 2.04
     - _MaterialID: 1
     - _MaterialTypeMask: 2
-    - _NoiseScale: 2.4
+    - _NoiseScale: 3
     - _OpaqueCullMode: 2
     - _PerPixelSorting: 0
     - _QueueControl: 0
@@ -123,10 +123,10 @@ Material:
     - _StencilWriteMaskMV: 43
     - _SupportDecals: 1
     - _SurfaceType: 0
-    - _SwayAmount: 0.1
-    - _SwayDistance: 10
-    - _SwayFrequency: 3.9
-    - _SwaySpeed: 3.8
+    - _SwayAmount: 0.038
+    - _SwayDistance: 51.5
+    - _SwayFrequency: 148.4
+    - _SwaySpeed: 1
     - _TransmissionEnable: 1
     - _TransparentBackfaceEnable: 0
     - _TransparentCullMode: 2
