@@ -17,6 +17,8 @@ public class CrystalSpawn : MonoBehaviour
     public float spawnMinTime;
     public float spawnMaxTime;
 
+    GameManager manager;
+
     public List<Material> crystalColours;
 
     [Serializable]
@@ -35,6 +37,7 @@ public class CrystalSpawn : MonoBehaviour
     {
         nextCrystal = UnityEngine.Random.Range(spawnMinTime, spawnMaxTime);
         crystalTimer = 0.0f;
+        manager = FindAnyObjectByType<GameManager>();
     }
 
     // Update is called once per frame
@@ -70,5 +73,7 @@ public class CrystalSpawn : MonoBehaviour
 
         var motion = newCrystal.GetComponentInChildren<CrystalMovable>();
         motion.colourIndex = crystalColourInt;
+
+        newCrystal.GetComponent<AudioSource>().volume = manager.masterVolume; //Set the crystal's volume to the master volume
     }
 }

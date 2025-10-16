@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Pause Menu Values")]
     public float masterVolume;
+    public float masterBrightness;
     public Image fadeImage;
     public GameObject pauseMenu;
 
@@ -84,7 +85,7 @@ public class GameManager : MonoBehaviour
 
             //Setting the colour and intensity of the crystals point light
             newCrystalLight.color = crystalColours[crystalIndex].lightColor;
-            newCrystalLight.intensity = crystalColours[crystalIndex].intensity;
+            newCrystalLight.intensity = crystalColours[crystalIndex].intensity * masterBrightness;
 
             //Changing the crystal's material to one with a much higher specular roughness so it glows better
             crystal.GetComponent<MeshRenderer>().material = crystalColours[crystalIndex].newMaterial;
@@ -177,12 +178,23 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void PauseMenu()
+    public void UpdateBrightness(float changedBrightness)
     {
-        //StartCoroutine(PauseFadeIn());
-        pauseMenu.SetActive(true);
+        masterBrightness = changedBrightness;
+        Color c = fadeImage.color;
+        c.a = 1f - (masterBrightness * 0.02f);
+
+        foreach (CrystalMovable crystal in canvasCrystals)
+        {
+            crystal.GetComponentInChildren<Light>().intensity = crystalColours[crystal.colourIndex].intensity * masterBrightness;
+        }
     }
 
+    public void PauseMenu()
+    {
+        if (pauseMenu.activeSelf) { Time.timeScale = 1; pauseMenu.SetActive(false); }
+        else if (!pauseMenu.activeSelf) { Time.timeScale = 0; pauseMenu.SetActive(true); }
+    }
 
     public IEnumerator PauseFadeIn()
     {

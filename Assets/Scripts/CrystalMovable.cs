@@ -173,9 +173,9 @@ public class CrystalMovable : MonoBehaviour
             //Disables the buttons while the player is moving a crystal
             foreach (Button button in manager.buttons)
             {
-                button.gameObject.SetActive(false);
+                if (button != null) { button.gameObject.SetActive(false); }
             }
-            //bobbing = false;
+
             //Picks a random audio clip from the sounds in manager and plays it
             crystalAudio.clip = manager.crystalSounds[Random.Range(0, manager.crystalSounds.Length)];
             crystalAudio.Play();
