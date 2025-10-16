@@ -7,6 +7,7 @@ using UnityEngine.Experimental.GlobalIllumination;
 using static GameManager;
 using static UnityEngine.ParticleSystem;
 using System.IO;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -20,6 +21,10 @@ public class GameManager : MonoBehaviour
     public GameObject mouseEffect;
     public Button[] buttons;
 
+    [Header("Pause Menu Values")]
+    public float masterVolume;
+    public Image fadeImage;
+    public GameObject pauseMenu;
 
     [Header("Analytics Tracking")]
     public CameraPan pan;
@@ -160,6 +165,55 @@ public class GameManager : MonoBehaviour
     public void OpenGallery(string url)
     {
         Application.OpenURL(url);
+    }
+
+    public void UpdateVolume(float changedVolume)
+    {
+        masterVolume = changedVolume;
+        AudioSource[] audioSources = FindObjectsByType<AudioSource>(FindObjectsSortMode.None);
+        foreach (AudioSource audioSource in audioSources)
+        {
+            audioSource.volume = masterVolume;
+        }
+    }
+
+    public void PauseMenu()
+    {
+        //StartCoroutine(PauseFadeIn());
+        pauseMenu.SetActive(true);
+    }
+
+
+    public IEnumerator PauseFadeIn()
+    {
+        float t = 0f;
+        Color c = fadeImage.color;
+        float duration = 1f;
+
+        // Fade to black
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            c.a = (t / duration) * 0.5f;
+            fadeImage.color = c;
+            yield return null;
+        }
+    }
+
+    public IEnumerator PauseFadeOut()
+    {
+        float t = 0f;
+        Color c = fadeImage.color;
+        float duration = 1f;
+
+        // Fade to black
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            c.a = 0.5f - ((t / duration) * 0.5f);
+            fadeImage.color = c;
+            yield return null;
+        }
     }
 
     public void ExitGame()
