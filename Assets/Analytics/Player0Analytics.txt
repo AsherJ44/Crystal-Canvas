@@ -1,3 +1,3 @@
-Playtime 10 minutes and 34 seconds
-User accessed crystal stream 2 times
-User took a snapshot 1 times
+Playtime 1 minutes and 41 seconds
+User accessed crystal stream 3 times
+User took a snapshot 0 times
