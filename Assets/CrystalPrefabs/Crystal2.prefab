@@ -4941,7 +4941,7 @@ MonoBehaviour:
   onCanvas: 0
   inDestructionArea: 0
   colourIndex: 0
-  crystalEffect: {fileID: 2246469315263622800}
+  crystalEffect: {fileID: 2606394600364164283, guid: 80d64933828f34540b38a5d8923a30bc, type: 3}
   crystalColours:
   - {fileID: 2100000, guid: 29dc59e45b12e154d932d29bc08e31d2, type: 2}
   - {fileID: 2100000, guid: 12324337e535b114d94e979a5e4b847d, type: 2}
