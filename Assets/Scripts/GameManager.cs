@@ -21,11 +21,12 @@ public class GameManager : MonoBehaviour
     public GameObject mouseEffect;
     public Button[] buttons;
 
-    [Header("Pause Menu Values")]
+    [Header("Menu Values")]
     public float masterVolume;
     public float masterBrightness;
     public Image fadeImage;
     public GameObject pauseMenu;
+    public GameObject sendToGalleryMenu;
 
     [Header("Analytics Tracking")]
     public CameraPan pan;
@@ -194,6 +195,12 @@ public class GameManager : MonoBehaviour
     {
         if (pauseMenu.activeSelf) { Time.timeScale = 1; pauseMenu.SetActive(false); }
         else if (!pauseMenu.activeSelf) { Time.timeScale = 0; pauseMenu.SetActive(true); }
+    }
+
+    public void SendToGalleryMenu()
+    {
+        if (sendToGalleryMenu.activeSelf) { sendToGalleryMenu.SetActive(false); }
+        else if (!sendToGalleryMenu.activeSelf) { sendToGalleryMenu.SetActive(true); }
     }
 
     public IEnumerator PauseFadeIn()

@@ -8,15 +8,23 @@ public class ScreenshotTaker : MonoBehaviour
 {
     private const string bucket = "galactic-gallery-84c83.firebasestorage.app";
 
+    [HideInInspector] public Texture2D uploadImage;
+    [HideInInspector] public string userName = "Anonymous";
+
     public void Upload(Texture2D image)
     {
         StartCoroutine(UploadMedia(image));
     }
 
+    public void UploadLastCapture()
+    {
+        StartCoroutine(UploadMedia(uploadImage));
+    }
+
     private IEnumerator UploadMedia(Texture2D image)
     {
         byte[] imageBytes = image.EncodeToJPG();
-        string fileName = $"screenshot_{DateTime.UtcNow:yyyyMMdd_HHmmss}.jpg";
+        string fileName = $"{userName};;{DateTime.UtcNow:HHmm, dd/MM/yyyy}.jpg";
 
         // Use media upload (simplest form)
         string url = $"https://firebasestorage.googleapis.com/v0/b/{bucket}/o?uploadType=media&name={UnityWebRequest.EscapeURL(fileName)}";

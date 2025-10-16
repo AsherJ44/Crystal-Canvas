@@ -55,7 +55,8 @@ public class CameraOutputSaver : MonoBehaviour
         Debug.Log("Camera output saved to: " + fileName);
         manager.cameraCaptureCounter++;
 
-        serverCapturer.Upload(screenshot);
+        serverCapturer.uploadImage = screenshot;
+        //serverCapturer.Upload(screenshot);
 
         SaveManager.Instance.SaveGame();
         
