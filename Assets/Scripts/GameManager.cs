@@ -137,7 +137,6 @@ public class GameManager : MonoBehaviour
         crystalInactiveButton.SetActive(false);
         snapShotButton.SetActive(false);
         cameraPanButton.SetActive(true);
-        //uploadButton.SetActive(false);
     }
 
     /*
@@ -200,8 +199,18 @@ public class GameManager : MonoBehaviour
 
     public void PauseMenu()
     {
-        if (pauseMenu.activeSelf) { Time.timeScale = 1; pauseMenu.SetActive(false); }
-        else if (!pauseMenu.activeSelf) { Time.timeScale = 0; pauseMenu.SetActive(true); }
+        if (pauseMenu.activeSelf) 
+        { 
+            Time.timeScale = 1; 
+            pauseMenu.SetActive(false);
+            if (crystalsActive) { mouseEffect.SetActive(true); }
+        }
+        else if (!pauseMenu.activeSelf) 
+        { 
+            Time.timeScale = 0; 
+            pauseMenu.SetActive(true);
+            if (crystalsActive) { mouseEffect.SetActive(false); }
+        }
     }
 
     public void SendToGalleryMenu()
@@ -233,6 +242,28 @@ public class GameManager : MonoBehaviour
             submitButton.GetComponent<Button>().interactable = true;
         }    
     }
+    
+    public void CanvasReset()
+    {
+        cameraPanButton.SetActive(true);
+        StartCoroutine(DestroyCrystals());
+    }
+
+    public IEnumerator DestroyCrystals()
+    {
+        if (crystalsActive) { DeactivateCrystals(); }
+        CrystalMovable[] crystals = canvasCrystals.ToArray();
+
+        foreach (CrystalMovable crystal in crystals)
+        {
+            crystal.FlyAndDie();
+            canvasCrystals.Remove(crystal);
+            yield return new WaitForSeconds(0.1f);
+        }
+        yield return new WaitForSeconds(0.2f);
+        cameraPanButton.SetActive(true);
+    }
+    
     public IEnumerator PauseFadeIn()
     {
         float t = 0f;

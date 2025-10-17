@@ -74,6 +74,9 @@ public class CrystalSpawn : MonoBehaviour
         var motion = newCrystal.GetComponentInChildren<CrystalMovable>();
         motion.colourIndex = crystalColourInt;
 
-        newCrystal.GetComponent<AudioSource>().volume = manager.masterVolume; //Set the crystal's volume to the master volume
+        if (manager != null)
+        {
+            newCrystal.GetComponent<AudioSource>().volume = manager.masterVolume; //Set the crystal's volume to the master volume
+        }
     }
 }

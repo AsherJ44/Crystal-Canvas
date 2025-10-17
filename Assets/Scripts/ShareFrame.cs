@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShareFrame : MonoBehaviour
 {
@@ -13,8 +14,11 @@ public class ShareFrame : MonoBehaviour
     Vector3 newPosition;
     RectTransform rectTransform;
 
+    public Button returnToGameButton;
+
     void OnEnable()
     {
+        returnToGameButton.enabled = true;
         slidingUp = true;
         slideTimer = 0;
     }
@@ -50,6 +54,7 @@ public class ShareFrame : MonoBehaviour
 
     public void Deactivate()
     {
+        returnToGameButton.enabled = false;
         slidingDown = true;
         slideTimer = 0;
     }

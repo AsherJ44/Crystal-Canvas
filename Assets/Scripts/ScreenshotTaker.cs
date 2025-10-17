@@ -24,7 +24,7 @@ public class ScreenshotTaker : MonoBehaviour
     private IEnumerator UploadMedia(Texture2D image)
     {
         byte[] imageBytes = image.EncodeToJPG();
-        string fileName = $"{userName};;{DateTime.UtcNow:HHmm, ddMMyyyy}.jpg";
+        string fileName = $";;{userName};;{DateTime.UtcNow:dd-MM-yyyy};;{DateTime.UtcNow:hhmmss};;.jpg";
 
         // Use media upload (simplest form)
         string url = $"https://firebasestorage.googleapis.com/v0/b/{bucket}/o?uploadType=media&name={UnityWebRequest.EscapeURL(fileName)}";

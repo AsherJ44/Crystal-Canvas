@@ -23,16 +23,14 @@ public class CrystalMovable : MonoBehaviour
     float maxYBound = 0.105f;
     float mouseClickTime = 0.2f;
     float mouseClickTimer;
-    bool bobbing = false;
-    float bobTime;
 
     [Header("Crystal Values")]
     public GameObject crystalEffect;
     public List<Material> crystalColours; //List of possible crystal colours
     public AudioSource crystalAudio;
-    public AnimationCurve bobCurve;
-    public float maxBobTime;
     public Animator animator;
+    [HideInInspector] public bool reset = false;
+    GameObject bin;
 
     [HideInInspector] public bool discarding;
 
@@ -72,6 +70,7 @@ public class CrystalMovable : MonoBehaviour
         manager = FindAnyObjectByType<GameManager>();
         GetComponent<Renderer>().material = crystalColours[colourIndex];
         connectEffects = new GameObject[connectionLimit];
+        bin = GameObject.FindGameObjectWithTag("Bin");
     }
 
     // Update is called once per frame
@@ -102,11 +101,18 @@ public class CrystalMovable : MonoBehaviour
             }
         }
 
-        if (bobbing)
+        if (reset)
         {
-            if (bobTime > maxBobTime) { bobTime = 0; }
-            transform.position = new Vector3(transform.position.x, transform.position.y + (bobCurve.Evaluate(bobTime) * Time.deltaTime), transform.position.z);
-            bobTime += Time.deltaTime;
+            transform.position = Vector3.Lerp(startPos, bin.transform.position, lerpLevel);
+            lerpLevel += Time.deltaTime;
+
+            if (transform.position == bin.transform.position)
+            {
+                discarding = true;
+                manager.canvasCrystals.Remove(this);
+                animator.enabled = true;
+                StartCoroutine(WaitAndDestroy());
+            }
         }
     }
 
@@ -144,9 +150,13 @@ public class CrystalMovable : MonoBehaviour
     {
         if (!onCanvas)
         {
-            //Picks a random audio clip from the sounds in manager and plays it
-            crystalAudio.clip = manager.crystalStreamSounds[Random.Range(0, manager.crystalStreamSounds.Length)];
-            crystalAudio.Play();
+            if (manager != null)
+            { 
+                //Picks a random audio clip from the sounds in manager and plays it
+                crystalAudio.clip = manager.crystalStreamSounds[Random.Range(0, manager.crystalStreamSounds.Length)];
+                crystalAudio.Play();
+            }
+            
             //Store a reference of the crystal's current position
             startPos = transform.position;
             //Set random position within the canvas bounds
@@ -229,7 +239,6 @@ public class CrystalMovable : MonoBehaviour
                 }
             }
 
-            //bobbing = true;
             //Picks a random audio clip from the sounds in manager and plays it
             crystalAudio.clip = manager.crystalSounds[Random.Range(0, manager.crystalSounds.Length)];
             crystalAudio.Play();
@@ -248,8 +257,6 @@ public class CrystalMovable : MonoBehaviour
                 WipeLinks();
             }
         }
-
-        //Add code to calculate direction and velocity of crystal current position compared to previous position
     }
 
     IEnumerator WaitAndDestroy()
@@ -358,5 +365,12 @@ public class CrystalMovable : MonoBehaviour
         //shape.scale = new Vector3(shape.scale.x, shape.scale.y, (crystalDistance * 0.5f));
 
         connectEffect.transform.LookAt(new Vector3(connectEffect.transform.position.x, connectedCrystal.transform.position.y, connectedCrystal.transform.position.z));
+    }
+
+    public void FlyAndDie()
+    {
+        lerpLevel = 0f;
+        reset = true;
+        startPos = transform.position;
     }
 }
