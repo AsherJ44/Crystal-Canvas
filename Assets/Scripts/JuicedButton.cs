@@ -23,6 +23,7 @@ public class JuicedButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     public float firstClickTimer;
     public GameObject tutorialisationEffect;
     GameObject newEffect;
+    public Vector3 particleSystemScale;
     bool tutorialising;
     Vector3 baseScale;
     Vector3 effectBaseScale;
@@ -38,10 +39,16 @@ public class JuicedButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     private void Update()
     {
         //If the button hasn't been clicked within the amount of seconds allowed by first click timer, instantiate a particle effect and start pulsating
-        if (!buttonClicked && Time.time > firstClickTimer && !tutorialising)
+        if (!buttonClicked && Time.time > firstClickTimer && !tutorialising && firstClickTimer > 0)
         {
-            //newEffect = Instantiate(tutorialisationEffect, this.transform);
-            //effectBaseScale = newEffect.transform.localScale;
+
+            newEffect = Instantiate(tutorialisationEffect, this.transform);
+            effectBaseScale = newEffect.transform.localScale;
+
+            var shape = newEffect.GetComponent<ParticleSystem>().shape;
+            shape.scale = particleSystemScale;
+
+
             tutorialising = true;
             StartCoroutine(ButtonPulsate());
         }

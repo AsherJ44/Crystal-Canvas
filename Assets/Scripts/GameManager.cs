@@ -8,6 +8,7 @@ using static GameManager;
 using static UnityEngine.ParticleSystem;
 using System.IO;
 using System.Collections;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -27,6 +28,9 @@ public class GameManager : MonoBehaviour
     public Image fadeImage;
     public GameObject pauseMenu;
     public GameObject sendToGalleryMenu;
+    public ScreenshotTaker uploader;
+    public GameObject submitButton;
+    public TMP_InputField nameText;
 
     [Header("Analytics Tracking")]
     public CameraPan pan;
@@ -185,9 +189,12 @@ public class GameManager : MonoBehaviour
         Color c = fadeImage.color;
         c.a = 1f - (masterBrightness * 0.02f);
 
-        foreach (CrystalMovable crystal in canvasCrystals)
+        if (crystalsActive)
         {
-            crystal.GetComponentInChildren<Light>().intensity = crystalColours[crystal.colourIndex].intensity * masterBrightness;
+            foreach (CrystalMovable crystal in canvasCrystals)
+            {
+                crystal.GetComponentInChildren<Light>().intensity = crystalColours[crystal.colourIndex].intensity * masterBrightness;
+            }
         }
     }
 
@@ -203,6 +210,29 @@ public class GameManager : MonoBehaviour
         else if (!sendToGalleryMenu.activeSelf) { sendToGalleryMenu.SetActive(true); }
     }
 
+    public void ConfirmName()
+    {
+        string username = nameText.text;
+        bool nameAllowed = true;
+
+        /* Checking if the entered name is allowed
+        foreach (string badWord in badWords)
+        {
+            if (username == badWord) 
+            { 
+                nameAllowed = false;
+                badWordPopup.SetActive(true);
+            }
+        }
+
+        */
+
+        if (nameAllowed)
+        {
+            uploader.userName = username;
+            submitButton.GetComponent<Button>().interactable = true;
+        }    
+    }
     public IEnumerator PauseFadeIn()
     {
         float t = 0f;
