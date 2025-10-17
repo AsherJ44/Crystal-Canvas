@@ -2006,12 +2006,12 @@ MonoBehaviour:
   crystalColours:
   - lightColor: {r: 0.0141509175, g: 0.3403211, b: 1, a: 1}
     particleColor: {r: 0.2028302, g: 0.9459922, b: 1, a: 1}
-    intensity: 10
+    intensity: 6
     newMaterial: {fileID: 2100000, guid: 0ea293f2c0cf6974da9a30bae2d2695b, type: 2}
     oldMaterial: {fileID: 2100000, guid: 29dc59e45b12e154d932d29bc08e31d2, type: 2}
   - lightColor: {r: 0, g: 0.9372549, b: 1, a: 1}
     particleColor: {r: 0.759434, g: 0.98983526, b: 1, a: 1}
-    intensity: 2.3
+    intensity: 0.1
     newMaterial: {fileID: 2100000, guid: 11ac241b3a9e7264bb8a0db2ec6e77ca, type: 2}
     oldMaterial: {fileID: 2100000, guid: 12324337e535b114d94e979a5e4b847d, type: 2}
   - lightColor: {r: 1, g: 0.1273585, b: 0.7057822, a: 1}
