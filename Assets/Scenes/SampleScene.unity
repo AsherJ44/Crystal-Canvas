@@ -2024,7 +2024,7 @@ MonoBehaviour:
     intensity: 13.3
     newMaterial: {fileID: 2100000, guid: ec2ff3960077d474a9e4ef24a6d59653, type: 2}
     oldMaterial: {fileID: 2100000, guid: 7a4f80385eebc2146b4eb24fb871a951, type: 2}
-  - lightColor: {r: 0.806313, g: 0.2216981, b: 1, a: 1}
+  - lightColor: {r: 1, g: 0.766723, b: 0.6556604, a: 1}
     particleColor: {r: 1, g: 0.9601485, b: 0.6933962, a: 1}
     intensity: 0.8
     newMaterial: {fileID: 2100000, guid: 4845cec5ce28c9945aed2c0d8c7710a9, type: 2}

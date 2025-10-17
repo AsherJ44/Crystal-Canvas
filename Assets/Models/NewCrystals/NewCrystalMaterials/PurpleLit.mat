@@ -167,7 +167,7 @@ Material:
     m_Colors:
     - _BASE_COLOR: {r: 0.3607843, g: 0.11372546, b: 0.62352943, a: 1}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
-    - _EMISSION_COLOR: {r: 1, g: 1, b: 1, a: 0}
+    - _EMISSION_COLOR: {r: 0.9518658, g: 0.8915094, b: 1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _SPECULAR_COLOR: {r: 0.23921564, g: 0.2313725, b: 1, a: 1}
   m_BuildTextureStacks: []
