@@ -31,6 +31,9 @@ public class GameManager : MonoBehaviour
     public ScreenshotTaker uploader;
     public GameObject submitButton;
     public TMP_InputField nameText;
+    public AudioClip buttonPress;
+    public AudioClip lightsOn;
+    public AudioSource audioSource;
 
     [Header("Analytics Tracking")]
     public CameraPan pan;
@@ -81,6 +84,8 @@ public class GameManager : MonoBehaviour
         crystalsActive = true;
         mouseEffect.SetActive(true);
         mouseEffect.GetComponent<MouseEffect>().SetPos();
+
+        audioSource.PlayOneShot(lightsOn);
 
         foreach (CrystalMovable crystal in canvasCrystals)
         {
