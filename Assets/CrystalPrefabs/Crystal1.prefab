@@ -116,41 +116,8 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 7a4f80385eebc2146b4eb24fb871a951, type: 2}
   - {fileID: 2100000, guid: 5ce7d74a5c1244d449041e4f335db6c4, type: 2}
   crystalAudio: {fileID: 1637675869822564188}
-  bobCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: -0.2
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.5
-      value: 0.2
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.10380614
-    - serializedVersion: 3
-      time: 1
-      value: -0.2
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  maxBobTime: 0
   animator: {fileID: 8909259999177306883}
+  reset: 0
   discarding: 0
   connectionLimit: 1
   crystalConnectEffectOff: {fileID: 3286108108336289105, guid: e288636a9f4dce84a8f193e423965242, type: 3}
@@ -372,7 +339,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7529520920072975828, guid: 80d64933828f34540b38a5d8923a30bc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0067
+      value: 0.0057
       objectReference: {fileID: 0}
     - target: {fileID: 7529520920072975828, guid: 80d64933828f34540b38a5d8923a30bc, type: 3}
       propertyPath: m_LocalPosition.y
@@ -380,7 +347,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7529520920072975828, guid: 80d64933828f34540b38a5d8923a30bc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.0005
+      value: 0.0003
       objectReference: {fileID: 0}
     - target: {fileID: 7529520920072975828, guid: 80d64933828f34540b38a5d8923a30bc, type: 3}
       propertyPath: m_LocalRotation.w
