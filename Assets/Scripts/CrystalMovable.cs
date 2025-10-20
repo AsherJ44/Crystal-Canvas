@@ -25,6 +25,7 @@ public class CrystalMovable : MonoBehaviour
     float mouseClickTimer;
 
     [Header("Crystal Values")]
+    public bool clickable;
     public GameObject crystalEffect;
     public List<Material> crystalColours; //List of possible crystal colours
     public AudioSource crystalAudio;
@@ -148,7 +149,7 @@ public class CrystalMovable : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (!onCanvas)
+        if (!onCanvas && clickable)
         {
             if (manager != null)
             { 

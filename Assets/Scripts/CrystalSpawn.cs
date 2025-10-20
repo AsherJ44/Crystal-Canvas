@@ -19,6 +19,8 @@ public class CrystalSpawn : MonoBehaviour
 
     GameManager manager;
 
+    public bool crystalsClickable;
+
     public List<Material> crystalColours;
 
     [Serializable]
@@ -78,5 +80,6 @@ public class CrystalSpawn : MonoBehaviour
         {
             newCrystal.GetComponent<AudioSource>().volume = manager.masterVolume; //Set the crystal's volume to the master volume
         }
+        if (crystalsClickable) { newCrystal.clickable = true; }
     }
 }
