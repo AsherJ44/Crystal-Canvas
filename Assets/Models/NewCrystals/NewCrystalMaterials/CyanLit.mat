@@ -63,6 +63,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: d9d3d47e3958b7a418facd4618430e57, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _DiamondTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _EMISSION_COLOR_MAP:
         m_Texture: {fileID: 2800000, guid: d9d3d47e3958b7a418facd4618430e57, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -126,12 +130,13 @@ Material:
     - _EnableBlendModePreserveSpecularLighting: 1
     - _EnableFogOnTransparent: 1
     - _ExcludeFromTUAndAA: 0
-    - _METALNESS: -0.15
+    - _METALNESS: 0.2
     - _MaterialID: 1
     - _MaterialTypeMask: 2
     - _OPACITY: 1
     - _OpacitySwirl: 61
     - _OpaqueCullMode: 2
+    - _ParallaxAmp: 20
     - _PerPixelSorting: 0
     - _QueueControl: 0
     - _QueueOffset: 0
@@ -143,7 +148,7 @@ Material:
     - _RefractionModel: 0
     - _RenderQueueType: 1
     - _RequireSplitLighting: 0
-    - _SPECULAR_IOR: 0.87
+    - _SPECULAR_IOR: 1.09
     - _SPECULAR_ROUGHNESS: 1.5
     - _Speed: 0.441
     - _SrcBlend: 1
@@ -157,6 +162,7 @@ Material:
     - _StencilWriteMaskDistortionVec: 4
     - _StencilWriteMaskGBuffer: 15
     - _StencilWriteMaskMV: 41
+    - _Steps: 5
     - _SupportDecals: 1
     - _SurfaceType: 0
     - _TransmissionEnable: 1
@@ -176,11 +182,11 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 1
     m_Colors:
-    - _BASE_COLOR: {r: 0.57075465, g: 1, b: 0.9794194, a: 1}
+    - _BASE_COLOR: {r: 0.503293, g: 0.735849, b: 0.72518134, a: 1}
     - _Color: {r: 7671.7437, g: 138841.1, b: 78460.51, a: 1}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
-    - _EMISSION_COLOR: {r: 0.6933962, g: 1, b: 0.98544586, a: 1}
+    - _EMISSION_COLOR: {r: 0.6886792, g: 0.6886792, b: 0.6886792, a: 1}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SPECULAR_COLOR: {r: 0.68235296, g: 1, b: 0.9882353, a: 0.6117647}
+    - _SPECULAR_COLOR: {r: 0.3490566, g: 0.3490566, b: 0.3490566, a: 0.6117647}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

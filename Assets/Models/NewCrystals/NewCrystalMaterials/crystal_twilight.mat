@@ -105,10 +105,10 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.13461539
     - _GlossyReflections: 1
-    - _METALNESS: 0.4
+    - _METALNESS: 0.65
     - _Metallic: 0
     - _Mode: 3
-    - _OPACITY: 0.519
+    - _OPACITY: 0.488
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _ParallaxAmp: 20
@@ -116,7 +116,7 @@ Material:
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _SPECULAR_IOR: 8
-    - _SPECULAR_ROUGHNESS: 0.7
+    - _SPECULAR_ROUGHNESS: 0.38
     - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -128,7 +128,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 0
     m_Colors:
-    - _BASE_COLOR: {r: 1, g: 0.89312315, b: 0.7311321, a: 1}
+    - _BASE_COLOR: {r: 1, g: 0.79896265, b: 0.7294118, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EMISSION_COLOR: {r: 0.3438434, g: 0, b: 1, a: 1}
