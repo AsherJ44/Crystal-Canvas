@@ -32,6 +32,8 @@ public class CrystalMovable : MonoBehaviour
     public Animator animator;
     [HideInInspector] public bool reset = false;
     GameObject bin;
+    public Bin binVoid;
+    float mouseDragTime = 0f;
 
     [HideInInspector] public bool discarding;
 
@@ -73,6 +75,7 @@ public class CrystalMovable : MonoBehaviour
         GetComponent<Renderer>().material = crystalColours[colourIndex];
         connectEffects = new GameObject[connectionLimit];
         bin = GameObject.FindGameObjectWithTag("Bin");
+        binVoid = manager.binVoid;
     }
 
     // Update is called once per frame
@@ -182,6 +185,8 @@ public class CrystalMovable : MonoBehaviour
         
         if (onCanvas && !manager.crystalsActive && clickable)
         {
+            binVoid.CrystalPickedUp();
+
             //Disables the buttons while the player is moving a crystal
             foreach (Button button in manager.buttons)
             {
@@ -195,13 +200,15 @@ public class CrystalMovable : MonoBehaviour
             mousePosition = Input.mousePosition - GetMousePosition();
             mouseClickTimer = Time.time + mouseClickTime; //Starting the mouse click timer
 
-            connectedCrystals = FindNearestCrystals();
-
-            for (int i = 0; i < connectedCrystals.Length; i++)
-            {   
-                if (connectEffects[i] == null)
-                {
-                    connectEffects[i] = Instantiate(crystalConnectEffectOff, new Vector3(0, 0, 0), transform.rotation);
+            if (manager.canvasCrystals.Count > 1)
+            {
+                connectedCrystals = FindNearestCrystals();
+                for (int i = 0; i < connectedCrystals.Length; i++)
+                {   
+                    if (connectEffects[i] == null)
+                    {
+                        connectEffects[i] = Instantiate(crystalConnectEffectOff, new Vector3(0, 0, 0), transform.rotation);
+                    }
                 }
             }
         }
@@ -211,6 +218,9 @@ public class CrystalMovable : MonoBehaviour
     {
         if (onCanvas && !manager.crystalsActive)
         {
+            if (mouseDragTime > 1f) { binVoid.CrystalPickedUp(); }
+            else { mouseDragTime += Time.deltaTime; }
+
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition - mousePosition);
         
             //Ensuring the crystal stays within the screen bounds even if the player attempts to move it outside of them
@@ -228,8 +238,6 @@ public class CrystalMovable : MonoBehaviour
 
     private void OnMouseUp()
     {
-        //If the mouse is down for less than 0.2 seconds, change the colour
-        //if (Time.time < mouseClickTimer && moveComplete) { ColourCycle(); }
         if (onCanvas)
         {
             if (!manager.crystalsActive)
@@ -240,6 +248,9 @@ public class CrystalMovable : MonoBehaviour
                     button.gameObject.SetActive(true);
                 }
             }
+
+            mouseDragTime = 0f;
+            binVoid.CrystalDropped();
 
             //Picks a random audio clip from the sounds in manager and plays it
             crystalAudio.clip = manager.crystalSounds[Random.Range(0, manager.crystalSounds.Length)];

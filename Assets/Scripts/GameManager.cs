@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public GameObject cameraPanButton;
     public GameObject mouseEffect;
     public Button[] buttons;
+    public Bin binVoid;
 
     [Header("Menu Values")]
     public float masterVolume;

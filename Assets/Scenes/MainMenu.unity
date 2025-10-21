@@ -1232,6 +1232,7 @@ GameObject:
   - component: {fileID: 1327285772}
   - component: {fileID: 1327285771}
   - component: {fileID: 1327285770}
+  - component: {fileID: 1327285775}
   m_Layer: 5
   m_Name: Play
   m_TagString: Untagged
@@ -1440,6 +1441,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1327285772}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
+        m_MethodName: set_interactable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1327285773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1478,6 +1491,72 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1327285768}
   m_CullTransparentMesh: 1
+--- !u!114 &1327285775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1327285768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7288de716bf920342ae75388926cbbdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisButton: {fileID: 1327285772}
+  growCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.2
+      value: 0.25
+      inSlope: 0.17729615
+      outSlope: 0.17729615
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.075868145
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  shrinkCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.24873352
+      inSlope: -0.57582366
+      outSlope: -0.57582366
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.11309408
+    - serializedVersion: 3
+      time: 0.2
+      value: 0
+      inSlope: -2.2834885
+      outSlope: -2.2834885
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.039230287
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  growTime: 0.2
+  buttonClicked: 0
+  firstClickTimer: 3
+  tutorialisationEffect: {fileID: 8013778996263047796, guid: eee8ae52cfc9a014288e4e914cde7173, type: 3}
+  particleSystemScale: {x: 0.155, y: 0.6, z: 0.01}
 --- !u!1 &1373619364
 GameObject:
   m_ObjectHideFlags: 0
