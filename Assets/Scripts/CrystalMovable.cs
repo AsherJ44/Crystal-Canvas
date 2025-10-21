@@ -47,7 +47,8 @@ public class CrystalMovable : MonoBehaviour
     GameObject crystalConnectEffect;
     [HideInInspector] public CrystalMovable[] connectedCrystals;
     [HideInInspector] public GameObject[] connectEffects;
-    
+    Vector3 scaleChange;
+
     //Crystal Float values
     bool clickedAndMoving = false;
     float lerpLevel = 0.0f;
@@ -169,7 +170,7 @@ public class CrystalMovable : MonoBehaviour
             {
                 canvasY = UnityEngine.Random.Range(-0.087f, 0.105f);
                 canvasZ = UnityEngine.Random.Range(-0.195f, 0.195f);
-                if (!(canvasY < 0.105f && canvasY > 0.075f && canvasZ < -0.16f && canvasZ > -0.195f)) { posValid = true; break; }
+                if (!(canvasY < 0.105f && canvasY > 0.07f && canvasZ < -0.1575f && canvasZ > -0.195f) && (!(canvasY < 0.105f && canvasY > 0.08f && canvasZ < -0.17f && canvasZ > -0.195f))) { posValid = true; break; }
             }
             
             canvasPos = new Vector3(-0.25f, canvasY, canvasZ);
@@ -179,7 +180,7 @@ public class CrystalMovable : MonoBehaviour
             properties.speed = 0;
         }
         
-        if (onCanvas && !manager.crystalsActive)
+        if (onCanvas && !manager.crystalsActive && clickable)
         {
             //Disables the buttons while the player is moving a crystal
             foreach (Button button in manager.buttons)
@@ -359,11 +360,10 @@ public class CrystalMovable : MonoBehaviour
 
         connectEffect.transform.position = effectPos;
 
-        Vector3 scaleChange = new Vector3(connectEffect.transform.localScale.x, connectEffect.transform.localScale.x, crystalDistance);
+        if (manager.crystalsActive) { scaleChange = new Vector3(connectEffect.transform.localScale.x, connectEffect.transform.localScale.x, crystalDistance * 1.5f);}
+        else { scaleChange = new Vector3(connectEffect.transform.localScale.x, connectEffect.transform.localScale.x, crystalDistance); }
+       
         connectEffect.transform.localScale = scaleChange;
-        //ParticleSystem connectParticles = connectEffect.GetComponentInChildren<ParticleSystem>();
-        //var shape = connectParticles.shape;
-        //shape.scale = new Vector3(shape.scale.x, shape.scale.y, (crystalDistance * 0.5f));
 
         connectEffect.transform.LookAt(new Vector3(connectEffect.transform.position.x, connectedCrystal.transform.position.y, connectedCrystal.transform.position.z));
     }

@@ -79,6 +79,15 @@ public class GameManager : MonoBehaviour
         cameraCaptureCounter = 0;
     }
 
+    public void CrystalsClickable(bool crystalClickable)
+    {
+        foreach (CrystalMovable crystal in canvasCrystals)
+        {
+            crystal.clickable = crystalClickable;
+        }
+    }
+
+
     public void ActivateCrystals()
     {
         crystalsActive = true;
