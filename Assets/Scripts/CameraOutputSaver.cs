@@ -31,9 +31,10 @@ public class CameraOutputSaver : MonoBehaviour
 
     public void CaptureAndSaveCameraOutput()
     {
-        RenderTexture rt = new RenderTexture(resolutionWidth, resolutionHeight, 24, UnityEngine.Experimental.Rendering.DefaultFormat.HDR);
+        RenderTexture rt = new RenderTexture(resolutionWidth, resolutionHeight, 24, format: RenderTextureFormat.DefaultHDR, readWrite: RenderTextureReadWrite.Linear);
         targetCamera.targetTexture = rt;
-        Texture2D screenshot = new Texture2D(resolutionWidth, resolutionHeight, TextureFormat.RGB24, false);
+        Texture2D screenshot = new Texture2D(resolutionWidth, resolutionHeight, TextureFormat.RGB24, false, true);
+
         targetCamera.Render();
         RenderTexture.active = rt;
         screenshot.ReadPixels(new Rect(0, 0, resolutionWidth, resolutionHeight), 0, 0);
@@ -54,6 +55,8 @@ public class CameraOutputSaver : MonoBehaviour
         File.WriteAllBytes(fileName, bytes);
         Debug.Log("Camera output saved to: " + fileName);
         manager.cameraCaptureCounter++;
+
+        ScreenCapture.CaptureScreenshot(fileName, 1);
 
         serverCapturer.uploadImage = screenshot;
         //serverCapturer.Upload(screenshot);

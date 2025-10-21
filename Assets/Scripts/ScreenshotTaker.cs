@@ -34,7 +34,7 @@ public class ScreenshotTaker : MonoBehaviour
         UnityWebRequest request = new UnityWebRequest(url, "POST");
         request.uploadHandler = new UploadHandlerRaw(imageBytes);
         request.downloadHandler = new DownloadHandlerBuffer();
-        request.SetRequestHeader("Content-Type", "image/jpeg");
+        request.SetRequestHeader("Content-Type", "image/jpg");
 
         yield return request.SendWebRequest();
 
