@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
     public GameObject mouseEffect;
     public Button[] buttons;
     public Bin binVoid;
+    public BadWordCheck badWordChecker;
+    public GameObject censorPopUp;
 
     [Header("Menu Values")]
     public float masterVolume;
@@ -237,25 +239,18 @@ public class GameManager : MonoBehaviour
     public void ConfirmName()
     {
         string username = nameText.text;
-        bool nameAllowed = true;
 
-        /* Checking if the entered name is allowed
-        foreach (string badWord in badWords)
+        if (!badWordChecker.ModerationCheck(username))
         {
-            if (username == badWord) 
-            { 
-                nameAllowed = false;
-                badWordPopup.SetActive(true);
-            }
+            sendToGalleryMenu.SetActive(false);
+            censorPopUp.SetActive(true);
         }
 
-        */
-
-        if (nameAllowed)
+        else
         {
             uploader.userName = username;
             submitButton.GetComponent<Button>().interactable = true;
-        }    
+        }
     }
     
     public void CanvasReset()

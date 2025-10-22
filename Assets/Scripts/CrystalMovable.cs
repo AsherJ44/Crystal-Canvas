@@ -173,7 +173,9 @@ public class CrystalMovable : MonoBehaviour
             {
                 canvasY = UnityEngine.Random.Range(-0.087f, 0.105f);
                 canvasZ = UnityEngine.Random.Range(-0.195f, 0.195f);
-                if (!(canvasY < 0.105f && canvasY > 0.07f && canvasZ < -0.1575f && canvasZ > -0.195f) && (!(canvasY < 0.105f && canvasY > 0.08f && canvasZ < -0.17f && canvasZ > -0.195f))) { posValid = true; break; }
+                if (!(canvasY < 0.105f && canvasY > 0.07f && canvasZ < -0.1575f && canvasZ > -0.195f) && 
+                   (!(canvasY < 0.105f && canvasY > 0.08f && canvasZ < -0.17f && canvasZ > -0.195f)) && 
+                   (!(canvasY < -0.087f && canvasY > 0.065f && canvasZ < 0.167f && canvasZ > 0.195f)))  { posValid = true; break; }
             }
             
             canvasPos = new Vector3(-0.25f, canvasY, canvasZ);
