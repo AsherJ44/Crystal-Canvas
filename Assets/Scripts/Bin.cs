@@ -22,13 +22,17 @@ public class Bin : MonoBehaviour
 
     private void Update()
     {
-        if (crystalDropped) { StopAllCoroutines(); }
+        //if (crystalDropped) { StopAllCoroutines(); }
     }
+
     public void CrystalPickedUp()
     {
-        crystalHeld = true;
-        growTimer = 0f;
-        StartCoroutine(BinPulsate());
+        if (!crystalHeld)
+        {
+            crystalHeld = true;
+            growTimer = 0f;
+            StartCoroutine(BinPulsate());
+        }
     }
 
     public void CrystalDropped()
