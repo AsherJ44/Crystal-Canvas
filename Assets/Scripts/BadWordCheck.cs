@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -12,14 +13,18 @@ public class BadWordCheck : MonoBehaviour
 
     public List<string> excludedWords;
 
+    int wordCounter;
+
     private void Start()
     {
         foreach (TextAsset languagePack in languages)
         {
             string languageText = languagePack.text;
             string[] languageWords = Regex.Split(languageText, "\n|\r|\r\n");
-            Debug.Log(languageText);
-            foreach (string word in languageWords) { words.Add(word); }
+            foreach (string word in languageWords) 
+            {
+                if (!string.IsNullOrEmpty(word)) { words.Add(word); }
+            }
         }
     }
 
@@ -27,7 +32,7 @@ public class BadWordCheck : MonoBehaviour
     {
         foreach (string word in words)
         {
-            if (word.Contains(username, System.StringComparison.OrdinalIgnoreCase) || username.Contains(word, System.StringComparison.OrdinalIgnoreCase))
+            if (username.Contains(word, System.StringComparison.OrdinalIgnoreCase))
             {
                 /*
                 foreach (string excludedWord in excludedWords) 
@@ -38,6 +43,8 @@ public class BadWordCheck : MonoBehaviour
                 Debug.Log($"Bad Word {word} found in username {username}");
                 return false; 
             }
+            wordCounter++;
+            Debug.Log(wordCounter);
         }
         return true;
     }
