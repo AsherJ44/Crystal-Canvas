@@ -32,8 +32,9 @@ public class CrystalMovable : MonoBehaviour
     public Animator animator;
     [HideInInspector] public bool reset = false;
     GameObject bin;
-    public Bin binVoid;
+    Bin binVoid;
     float mouseDragTime = 0f;
+    public AudioClip discardSound;
 
     [HideInInspector] public bool discarding;
 
@@ -116,6 +117,7 @@ public class CrystalMovable : MonoBehaviour
                 discarding = true;
                 manager.canvasCrystals.Remove(this);
                 animator.enabled = true;
+                crystalAudio.PlayOneShot(discardSound);
                 StartCoroutine(WaitAndDestroy());
             }
         }
@@ -263,7 +265,7 @@ public class CrystalMovable : MonoBehaviour
                 discarding = true;
                 manager.canvasCrystals.Remove(this);
                 animator.enabled = true;
-                //animator.SetBool("FlyingAway", true);
+                crystalAudio.PlayOneShot(discardSound);
                 StartCoroutine(WaitAndDestroy());
             }
 

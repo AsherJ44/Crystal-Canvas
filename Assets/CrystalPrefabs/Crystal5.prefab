@@ -108,6 +108,7 @@ MonoBehaviour:
   onCanvas: 0
   inDestructionArea: 0
   colourIndex: 0
+  clickable: 0
   crystalEffect: {fileID: 3310456792287450000}
   crystalColours:
   - {fileID: 2100000, guid: 29dc59e45b12e154d932d29bc08e31d2, type: 2}
@@ -118,6 +119,7 @@ MonoBehaviour:
   crystalAudio: {fileID: 63645565777843882}
   animator: {fileID: 3272612591347737358}
   reset: 0
+  discardSound: {fileID: 8300000, guid: 463192bb9fab3944ca3f3feb25805981, type: 3}
   discarding: 0
   connectionLimit: 2
   crystalConnectEffectOff: {fileID: 3286108108336289105, guid: e288636a9f4dce84a8f193e423965242, type: 3}
