@@ -32,7 +32,7 @@ public class BadWordCheck : MonoBehaviour
     {
         foreach (string word in words)
         {
-            if (username.Contains(word, System.StringComparison.OrdinalIgnoreCase))
+            if (username.Contains($"{word} ", System.StringComparison.OrdinalIgnoreCase))
             {
                 /*
                 foreach (string excludedWord in excludedWords) 
