@@ -84,7 +84,7 @@ Material:
     - _CullMode: 2
     - _CullModeForward: 2
     - _DepthOffsetEnable: 0
-    - _DisolvePower: -4.82
+    - _DisolvePower: -4.01
     - _DoubleSidedEnable: 0
     - _DoubleSidedGIMode: 0
     - _DoubleSidedNormalMode: 2
@@ -93,13 +93,13 @@ Material:
     - _EnableBlendModePreserveSpecularLighting: 0
     - _EnableFogOnTransparent: 1
     - _ExcludeFromTUAndAA: 0
-    - _Gradient: -0.1
+    - _Gradient: -0.09
     - _Intensity: 33.45
-    - _LightIntensity: 0.383
+    - _LightIntensity: 0.56
     - _MaskPower: 1.32
     - _MaterialID: 1
     - _MaterialTypeMask: 2
-    - _NoiseScale: 3.2
+    - _NoiseScale: 5.5
     - _OpaqueCullMode: 2
     - _PerPixelSorting: 0
     - _QueueControl: 0
@@ -123,10 +123,10 @@ Material:
     - _StencilWriteMaskMV: 43
     - _SupportDecals: 1
     - _SurfaceType: 0
-    - _SwayAmount: 0.0395
-    - _SwayDistance: 65
+    - _SwayAmount: 0.046
+    - _SwayDistance: 50
     - _SwayFrequency: 151.39
-    - _SwaySpeed: 1.41
+    - _SwaySpeed: 2.21
     - _TransmissionEnable: 1
     - _TransparentBackfaceEnable: 0
     - _TransparentCullMode: 2
@@ -143,8 +143,8 @@ Material:
     m_Colors:
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _NoiseSpeed: {r: 0.55, g: 0.25, b: 0, a: 0}
-    - _NoiseTiling: {r: 0.13, g: 8.3, b: 0, a: 0}
+    - _NoiseSpeed: {r: 0.5, g: 0.15, b: 0, a: 0}
+    - _NoiseTiling: {r: 0.1, g: 8.1, b: 0, a: 0}
     - _SwaySpeed_2: {r: 6, g: 0, b: 0, a: 0}
     - _Vector3: {r: 0.01, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

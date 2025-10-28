@@ -2562,27 +2562,27 @@ MonoBehaviour:
   crystalColours:
   - lightColor: {r: 0.0141509175, g: 0.3403211, b: 1, a: 1}
     particleColor: {r: 0.2028302, g: 0.9459922, b: 1, a: 1}
-    intensity: 6
+    intensity: 8.3
     newMaterial: {fileID: 2100000, guid: 0ea293f2c0cf6974da9a30bae2d2695b, type: 2}
     oldMaterial: {fileID: 2100000, guid: 29dc59e45b12e154d932d29bc08e31d2, type: 2}
   - lightColor: {r: 0, g: 0.9372549, b: 1, a: 1}
     particleColor: {r: 0.759434, g: 0.98983526, b: 1, a: 1}
-    intensity: 0.93
+    intensity: 1.005
     newMaterial: {fileID: 2100000, guid: 11ac241b3a9e7264bb8a0db2ec6e77ca, type: 2}
     oldMaterial: {fileID: 2100000, guid: 12324337e535b114d94e979a5e4b847d, type: 2}
-  - lightColor: {r: 1, g: 0.1273585, b: 0.7057822, a: 1}
-    particleColor: {r: 1, g: 0.13679248, b: 0.7055725, a: 1}
-    intensity: 0.95
-    newMaterial: {fileID: 2100000, guid: c088149d4cd1a884a9bd4a37c97cb065, type: 2}
-    oldMaterial: {fileID: 2100000, guid: a2d836f9fb302ba4082bd41a23cf6a35, type: 2}
   - lightColor: {r: 0.18659224, g: 0.057849795, b: 0.9433962, a: 1}
     particleColor: {r: 0.68430287, g: 0.4669811, b: 1, a: 1}
     intensity: 13.3
     newMaterial: {fileID: 2100000, guid: ec2ff3960077d474a9e4ef24a6d59653, type: 2}
     oldMaterial: {fileID: 2100000, guid: 7a4f80385eebc2146b4eb24fb871a951, type: 2}
+  - lightColor: {r: 1, g: 0.1273585, b: 0.7057822, a: 1}
+    particleColor: {r: 1, g: 0.13679248, b: 0.7055725, a: 1}
+    intensity: 1.012
+    newMaterial: {fileID: 2100000, guid: c088149d4cd1a884a9bd4a37c97cb065, type: 2}
+    oldMaterial: {fileID: 2100000, guid: a2d836f9fb302ba4082bd41a23cf6a35, type: 2}
   - lightColor: {r: 1, g: 0.766723, b: 0.6556604, a: 1}
     particleColor: {r: 1, g: 0.9601485, b: 0.6933962, a: 1}
-    intensity: 0.9
+    intensity: 1.011
     newMaterial: {fileID: 2100000, guid: 4845cec5ce28c9945aed2c0d8c7710a9, type: 2}
     oldMaterial: {fileID: 2100000, guid: 5ce7d74a5c1244d449041e4f335db6c4, type: 2}
   specialEffects: []
@@ -3216,7 +3216,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.9292453, g: 0.9973647, b: 1, a: 1}
+    m_NormalColor: {r: 0.6415094, g: 0.6415094, b: 0.6415094, a: 1}
     m_HighlightedColor: {r: 0.9150943, g: 0.9150943, b: 0.9150943, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -3324,7 +3324,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.7075472, g: 0.7075472, b: 0.7075472, a: 0.8666667}
+  m_Color: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 0.2901961}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5639,7 +5639,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   crystalFloatSpeed: 0.0175
   crystalSpawnY: 0.135
-  spawnXRange: 0.08
+  spawnXRange: 0.122
   spawnZRange: 0.025
   spawnMinTime: 0.5
   spawnMaxTime: 1
@@ -5680,7 +5680,7 @@ Transform:
   m_GameObject: {fileID: 1033823147}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.175, z: -0.25}
+  m_LocalPosition: {x: 0.0021, y: 0.175, z: -0.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7611,7 +7611,7 @@ MonoBehaviour:
   buttonClicked: 0
   firstClickTimer: 3
   tutorialisationEffect: {fileID: 8013778996263047796, guid: eee8ae52cfc9a014288e4e914cde7173, type: 3}
-  particleSystemScale: {x: 0.155, y: 0.6, z: 0.01}
+  particleSystemScale: {x: 0.14, y: 0.67, z: 0.01}
 --- !u!1 &1337716518
 GameObject:
   m_ObjectHideFlags: 0
@@ -8172,7 +8172,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1358945393}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -8180,7 +8180,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 917, y: 5}
+  m_AnchoredPosition: {x: 916, y: 5}
   m_SizeDelta: {x: 35, y: 197}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1358945395
@@ -8354,7 +8354,7 @@ MonoBehaviour:
   buttonClicked: 0
   firstClickTimer: 3
   tutorialisationEffect: {fileID: 8013778996263047796, guid: eee8ae52cfc9a014288e4e914cde7173, type: 3}
-  particleSystemScale: {x: 0.155, y: 0.6, z: 0.01}
+  particleSystemScale: {x: 0.14, y: 0.67, z: 0.01}
 --- !u!1 &1397226671
 GameObject:
   m_ObjectHideFlags: 0
