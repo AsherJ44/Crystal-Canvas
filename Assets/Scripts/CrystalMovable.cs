@@ -35,6 +35,8 @@ public class CrystalMovable : MonoBehaviour
     Bin binVoid;
     float mouseDragTime = 0f;
     public AudioClip discardSound;
+    private float timeElapsed;
+    [SerializeField] private float flyTime;
 
     [HideInInspector] public bool discarding;
 
@@ -94,10 +96,12 @@ public class CrystalMovable : MonoBehaviour
             }
 
             //Moves the crystal over to the canvas and waits for 2 seconds before activating the crystal movable component
-            if (clickedAndMoving)
+            if (clickedAndMoving && timeElapsed < flyTime)
             {
-                transform.position = Vector3.Lerp(startPos, canvasPos, lerpLevel);
-                lerpLevel += Time.deltaTime;
+                // Calculate the interpolation point (t) between 0 and 1
+                float t = timeElapsed / flyTime;
+                transform.position = Vector3.Lerp(startPos, canvasPos, t);
+                timeElapsed += Time.deltaTime;
 
                 if (!waiting)
                 {

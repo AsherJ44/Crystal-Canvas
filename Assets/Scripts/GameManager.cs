@@ -13,7 +13,7 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     [Header("Game Management Objects")]
-    [HideInInspector] public List<CrystalMovable> canvasCrystals; //List of all crystals on the canvas, used to turn them on and off
+    public List<CrystalMovable> canvasCrystals; //List of all crystals on the canvas, used to turn them on and off
     public GameObject snapShotButton;
     public GameObject uploadButton;
     public GameObject crystalActiveButton;
@@ -101,6 +101,7 @@ public class GameManager : MonoBehaviour
 
         foreach (CrystalMovable crystal in canvasCrystals)
         {
+            Debug.Log(crystal + "lit");
             int crystalIndex = crystal.colourIndex; //Getting the colour reference for the crystal
 
             Light newCrystalLight = Instantiate(crystalLight, new Vector3(crystal.transform.position.x + 0.02f, crystal.transform.position.y, crystal.transform.position.z), Quaternion.Euler(new Vector3(0,0,0)), crystal.transform);
